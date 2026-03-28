@@ -13,13 +13,7 @@
   --glass-border:rgba(201,168,76,0.15);
 }
 html{scroll-behavior:smooth}
-body{background:var(--black);color:var(--cream);font-family:'Cormorant Garamond',serif;overflow-x:hidden;cursor:none}
-
-/* CURSOR */
-#cur{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .2s,height .2s,background .2s}
-#cur-ring{position:fixed;width:38px;height:38px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.45;transition:width .3s,height .3s,opacity .3s}
-body.hov #cur{width:20px;height:20px;background:var(--gold2)}
-body.hov #cur-ring{width:56px;height:56px;opacity:.2}
+body{background:var(--black);color:var(--cream);font-family:'Cormorant Garamond',serif;overflow-x:hidden;}
 
 /* NOISE */
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");pointer-events:none;z-index:8000;opacity:.5}
@@ -32,7 +26,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 48px;display:flex;justify-content:space-between;align-items:center;transition:all .4s}
 nav.scrolled{background:rgba(6,6,6,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.08)}
-.logo{display:flex;align-items:center;gap:12px;text-decoration:none;cursor:none}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
 
 /* ✨ SHINY PREMIUM LOGO BADGE ✨ */
 .logo img{
@@ -52,19 +46,19 @@ nav.scrolled{background:rgba(6,6,6,.96);backdrop-filter:blur(20px);border-bottom
 }
 
 .nav-links{display:flex;gap:32px;list-style:none}
-.nav-links a{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--cream);text-decoration:none;opacity:.5;transition:opacity .3s,color .3s;position:relative;cursor:none}
+.nav-links a{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--cream);text-decoration:none;opacity:.5;transition:opacity .3s,color .3s;position:relative;}
 .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .3s}
 .nav-links a:hover,.nav-links a.active{opacity:1;color:var(--gold)}
 .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
-.nav-cta{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--black);background:var(--gold);padding:11px 22px;text-decoration:none;cursor:none;border-radius:6px;transition:background .3s,transform .3s}
+.nav-cta{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--black);background:var(--gold);padding:11px 22px;text-decoration:none;border-radius:6px;transition:background .3s,transform .3s}
 .nav-cta:hover{background:var(--gold2);transform:translateY(-1px)}
-.burger{display:none;flex-direction:column;gap:5px;cursor:none;padding:4px}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
 .burger span{width:24px;height:1px;background:var(--gold);transition:.3s}
 .mob-menu{display:none;position:fixed;inset:0;background:rgba(6,6,6,.98);backdrop-filter:blur(30px);z-index:999;flex-direction:column;justify-content:center;align-items:center;gap:36px}
 .mob-menu.open{display:flex}
-.mob-menu a{font-family:'Bebas Neue',sans-serif;font-size:52px;letter-spacing:4px;color:var(--cream);text-decoration:none;transition:color .3s;cursor:none}
+.mob-menu a{font-family:'Bebas Neue',sans-serif;font-size:52px;letter-spacing:4px;color:var(--cream);text-decoration:none;transition:color .3s;}
 .mob-menu a:hover{color:var(--gold)}
-.mob-close{position:absolute;top:28px;right:48px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--gold);cursor:none;opacity:.6}
+.mob-close{position:absolute;top:28px;right:48px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--gold);cursor:pointer;opacity:.6}
 
 /* SHARED */
 section{position:relative;overflow:hidden}
@@ -90,7 +84,7 @@ section{position:relative;overflow:hidden}
 @keyframes orbf{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.05)}}
 
 /* BUTTONS */
-.btn{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:16px 36px;text-decoration:none;cursor:none;position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:10px;transition:color .4s;border-radius:6px;}
+.btn{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:16px 36px;text-decoration:none;position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:10px;transition:color .4s;border-radius:6px;}
 .btn-gold{color:var(--black);background:var(--gold)}
 .btn-gold::before{content:'';position:absolute;inset:0;background:var(--gold2);transform:translateX(-100%);transition:transform .4s cubic-bezier(.25,.46,.45,.94)}
 .btn-gold:hover::before{transform:translateX(0)}
@@ -139,10 +133,10 @@ section{position:relative;overflow:hidden}
 .prod-head h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,7vw,95px);line-height:.93;margin-top:16px}
 .prod-head h2 span{color:var(--gold)}
 .prod-tabs{display:flex;gap:3px;margin:48px 0;flex-wrap:wrap}
-.ptab{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--cream);opacity:.4;padding:10px 20px;border:1px solid rgba(201,168,76,.1);cursor:none;border-radius:6px;transition:all .3s;background:transparent}
+.ptab{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--cream);opacity:.4;padding:10px 20px;border:1px solid rgba(201,168,76,.1);cursor:pointer;border-radius:6px;transition:all .3s;background:transparent}
 .ptab.active,.ptab:hover{opacity:1;color:var(--gold);border-color:rgba(201,168,76,.4);background:rgba(201,168,76,.05)}
 .pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.pcard{position:relative;overflow:hidden;cursor:none;aspect-ratio:3/4;background:var(--warm2);transition:transform .4s}
+.pcard{position:relative;overflow:hidden;aspect-ratio:3/4;background:var(--warm2);transition:transform .4s; cursor:pointer;}
 .pcard:hover{transform:scale(.98)}
 .pcard-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .9s cubic-bezier(.25,.46,.45,.94)}
 .pcard:hover .pcard-img{transform:scale(1.09)}
@@ -163,7 +157,7 @@ section{position:relative;overflow:hidden}
 .pcard:hover .pname{transform:translateY(0)}
 .pdesc{font-style:italic;font-weight:300;font-size:14px;color:var(--cream);opacity:0;line-height:1.7;max-height:0;overflow:hidden;transition:opacity .5s .1s,max-height .5s}
 .pcard:hover .pdesc{opacity:.7;max-height:80px}
-.plink{display:inline-flex;align-items:center;gap:10px;margin-top:16px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);text-decoration:none;cursor:none;opacity:0;transform:translateX(-10px);transition:opacity .4s .15s,transform .4s .15s}
+.plink{display:inline-flex;align-items:center;gap:10px;margin-top:16px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);text-decoration:none;opacity:0;transform:translateX(-10px);transition:opacity .4s .15s,transform .4s .15s}
 .plink::after{content:'→';transition:transform .3s}
 .plink:hover::after{transform:translateX(5px)}
 .pcard:hover .plink{opacity:1;transform:translateX(0)}
@@ -174,7 +168,7 @@ section{position:relative;overflow:hidden}
 /* Kitchen sub */
 .ksub{margin-top:80px;display:none}
 .ksubgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.kscard{position:relative;overflow:hidden;cursor:none;aspect-ratio:1;background:var(--warm)}
+.kscard{position:relative;overflow:hidden;aspect-ratio:1;background:var(--warm)}
 .kscard-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .7s}
 .kscard:hover .kscard-img{transform:scale(1.1)}
 .kscard-ov{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(6,6,6,.85) 100%);z-index:1}
@@ -187,7 +181,7 @@ section{position:relative;overflow:hidden}
 .works-head h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,7vw,95px);line-height:.93;margin-top:16px}
 .works-head h2 span{color:var(--gold)}
 .wfilter{display:flex;gap:3px;margin:40px 0;flex-wrap:wrap}
-.wfbtn{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--cream);opacity:.4;padding:9px 18px;border:1px solid rgba(201,168,76,.1);border-radius:6px;cursor:none;transition:all .3s;background:transparent}
+.wfbtn{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--cream);opacity:.4;padding:9px 18px;border:1px solid rgba(201,168,76,.1);border-radius:6px;cursor:pointer;transition:all .3s;background:transparent}
 .wfbtn.active,.wfbtn:hover{opacity:1;color:var(--gold);border-color:rgba(201,168,76,.4)}
 
 /* ✨ FIXED GALLERY GRID (NO MORE EXCEL LOOK!) ✨ */
@@ -202,7 +196,6 @@ section{position:relative;overflow:hidden}
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-  cursor: none;
   background: var(--warm2);
 }
 /* Absolute Positioning stretches images/videos perfectly inside their boxes */
@@ -229,6 +222,7 @@ section{position:relative;overflow:hidden}
 .witem-wide { grid-column: span 2; grid-row: span 1; }
 .witem-tall { grid-column: span 1; grid-row: span 2; }
 .witem-large { grid-column: span 2; grid-row: span 2; }
+.witem-vertical{aspect-ratio:9/16}
 
 /* MATERIALS SECTION */
 #materials{padding:120px 8vw 100px}
@@ -287,7 +281,7 @@ section{position:relative;overflow:hidden}
 .ccard{padding:48px 40px;background:var(--warm2);transition:background .4s}
 .ccard:hover{background:var(--warm)}
 .ccard-l{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);opacity:.55;margin-bottom:20px}
-.ccard a,.ccard p{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream);font-weight:300;text-decoration:none;display:block;margin-bottom:6px;transition:color .3s;cursor:none}
+.ccard a,.ccard p{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream);font-weight:300;text-decoration:none;display:block;margin-bottom:6px;transition:color .3s;}
 .ccard a:hover{color:var(--gold)}
 
 /* CTA BAND */
@@ -321,7 +315,6 @@ footer{background:var(--black)}
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  cursor: none;
   font-size: 24px;
   position: relative;
   transition: transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s;
@@ -361,7 +354,7 @@ footer{background:var(--black)}
 }
 
 .ft{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;padding:60px 8vw;flex-wrap:wrap}
-.fb .logo{display:flex;align-items:center;gap:12px;margin-bottom:16px;text-decoration:none;cursor:default}
+.fb .logo{display:flex;align-items:center;gap:12px;margin-bottom:16px;text-decoration:none;}
 
 /* ✨ SHINY PREMIUM LOGO BADGE (FOOTER) ✨ */
 .fb .logo img{
@@ -378,7 +371,7 @@ footer{background:var(--black)}
 .fb p{font-style:italic;font-weight:300;font-size:13px;color:var(--cream);opacity:.3;max-width:220px;line-height:1.7}
 .fn{display:flex;gap:56px;flex-wrap:wrap}
 .fnc h4{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);opacity:.55;margin-bottom:16px}
-.fnc a{display:block;font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--cream);opacity:.38;text-decoration:none;margin-bottom:8px;cursor:none;transition:opacity .3s,color .3s}
+.fnc a{display:block;font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--cream);opacity:.38;text-decoration:none;margin-bottom:8px;transition:opacity .3s,color .3s}
 .fnc a:hover{opacity:1;color:var(--gold)}
 .fb2{display:flex;justify-content:space-between;align-items:center;padding:24px 8vw;border-top:1px solid rgba(201,168,76,.05);flex-wrap:wrap;gap:16px}
 .fcopy{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--cream);opacity:.18}
@@ -414,16 +407,13 @@ footer{background:var(--black)}
   /* Mobile stack for works */
   .wgrid { grid-template-columns: 1fr; grid-auto-rows: 280px; }
   .witem-large, .witem-wide, .witem-tall, .witem-sq { grid-column: span 1; }
-  .witem-tall, .witem-large { grid-row: span 2; }
+  .witem-tall, .witem-large { grid-row: span 2; } /* Keeps Vertical Videos Tall on Phones! */
 }
 </style>
 </head>
 <body>
 
 <div id="particles"></div>
-
-<div id="cur"></div>
-<div id="cur-ring"></div>
 
 <div class="mob-menu" id="mobMenu">
   <span class="mob-close" id="mobClose">✕ CLOSE</span>
@@ -551,7 +541,7 @@ footer{background:var(--black)}
         </div>
       </div>
       <div class="pcard tilt reveal d2" data-cat="bathroom">
-        <div class="pcard-img" style="background-image:url('https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=800&auto=format')"></div>
+        <div class="pcard-img" style="background-image:url('https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80')"></div>
         <div class="pcard-overlay"></div>
         <div class="pcard-glow" style="background:radial-gradient(circle at 50% 80%,rgba(100,150,200,.1),transparent 70%)"></div>
         <div class="pcard-num">03</div>
@@ -564,7 +554,7 @@ footer{background:var(--black)}
         </div>
       </div>
       <div class="pcard tilt reveal d3" data-cat="media">
-        <div class="pcard-img" style="background-image:url('https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=800&auto=format')"></div>
+        <div class="pcard-img" style="background-image:url('https://images.unsplash.com/photo-1600607686527-6fb886090705?w=800&q=80')"></div>
         <div class="pcard-overlay"></div>
         <div class="pcard-glow" style="background:radial-gradient(circle at 50% 80%,rgba(245,240,232,.06),transparent 70%)"></div>
         <div class="pcard-num">04</div>
@@ -674,32 +664,32 @@ footer{background:var(--black)}
       </div>
 
       <div class="witem witem-tall reveal d3" data-wcat="bathroom">
-        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format" alt="Luxury Bathroom Setup" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80" alt="Luxury Bathroom Setup" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Bathroom — Luxury Setup</span></div>
       </div>
 
       <div class="witem witem-sq reveal" data-wcat="bathroom">
-        <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=800&auto=format" alt="Modern Bathroom Vanity" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&q=80" alt="Modern Bathroom Vanity" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Bathroom — Modern Vanity</span></div>
       </div>
       
       <div class="witem witem-sq reveal d1" data-wcat="bathroom">
-        <img src="https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Bathroom Cabinet" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80" alt="Bathroom Cabinet" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Bathroom — Custom Cabinets</span></div>
       </div>
 
       <div class="witem witem-wide reveal d2" data-wcat="media">
-        <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=1200&auto=format" alt="Minimalist Media Console" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?w=1200&q=80" alt="Minimalist Media Console" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Media Unit — Minimalist Console</span></div>
       </div>
       
       <div class="witem witem-sq reveal d3" data-wcat="media">
-        <img src="https://images.unsplash.com/photo-1593696140826-c58b021acf8b?q=80&w=800&auto=format" alt="Modern TV Stand" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1593696140826-c58b021acf8b?w=800&q=80" alt="Modern TV Stand" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Media Unit — Modern Stand</span></div>
       </div>
       
       <div class="witem witem-sq reveal" data-wcat="media">
-        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800&auto=format" alt="Living Room Setup" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80" alt="Living Room Setup" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Media Unit — Full Wall</span></div>
       </div>
 
@@ -899,16 +889,6 @@ for(let i=0;i<35;i++){
   p.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*10}s;opacity:${Math.random()*.4+.1}`;
   pc.appendChild(p);
 }
-
-// CURSOR
-const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
-(function animR(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animR)})();
-document.querySelectorAll('a,button').forEach(el=>{
-  el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
-  el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
-});
 
 // NAV
 const nav=document.getElementById('nav');
