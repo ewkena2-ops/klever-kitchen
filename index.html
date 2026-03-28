@@ -32,9 +32,8 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 48px;display:flex;justify-content:space-between;align-items:center;transition:all .4s}
 nav.scrolled{background:rgba(6,6,6,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.08)}
-.logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:4px;color:var(--gold);text-decoration:none;cursor:none;display:flex;align-items:center;gap:12px;}
-.logo img {height: 28px; width: auto; object-fit: contain;}
-.logo em{color:var(--cream);font-style:normal}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;cursor:none}
+.logo img{height:36px;width:auto;object-fit:contain}
 .nav-links{display:flex;gap:32px;list-style:none}
 .nav-links a{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--cream);text-decoration:none;opacity:.5;transition:opacity .3s,color .3s;position:relative;cursor:none}
 .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .3s}
@@ -161,7 +160,7 @@ section{position:relative;overflow:hidden}
 .kscard-name{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:2px;color:var(--cream)}
 .kscard-tag{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.7;text-transform:uppercase}
 
-/* WORKS */
+/* WORKS / VIDEOS */
 #works{padding:120px 8vw 100px;background:var(--warm)}
 .works-head h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,7vw,95px);line-height:.93;margin-top:16px}
 .works-head h2 span{color:var(--gold)}
@@ -170,8 +169,8 @@ section{position:relative;overflow:hidden}
 .wfbtn.active,.wfbtn:hover{opacity:1;color:var(--gold);border-color:rgba(201,168,76,.4)}
 .wgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px}
 .witem{position:relative;overflow:hidden;cursor:none;background:var(--warm2)}
-.witem img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s ease,filter .4s;filter:brightness(.88) saturate(.75)}
-.witem:hover img{transform:scale(1.07);filter:brightness(1) saturate(1)}
+.witem img, .witem video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s ease,filter .4s;filter:brightness(.88) saturate(.75)}
+.witem:hover img, .witem:hover video{transform:scale(1.07);filter:brightness(1) saturate(1)}
 .witem-ov{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(6,6,6,.8) 100%);opacity:0;transition:opacity .4s;z-index:1;display:flex;align-items:flex-end;padding:18px}
 .witem:hover .witem-ov{opacity:1}
 .wlabel{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
@@ -179,8 +178,20 @@ section{position:relative;overflow:hidden}
 .witem-wide{grid-column:span 2;aspect-ratio:16/9}
 .witem-sq{aspect-ratio:4/3}
 
+/* MATERIALS SECTION */
+#materials{padding:120px 8vw 100px}
+.mat-head h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,7vw,95px);line-height:.93;margin-top:16px}
+.mat-head h2 span{color:var(--gold)}
+.mat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:60px}
+.mat-card{background:var(--warm2);padding:40px 32px;position:relative;overflow:hidden;transition:background .4s}
+.mat-card:hover{background:var(--warm)}
+.mat-icon{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--gold);opacity:.2;margin-bottom:20px;line-height:1;transition:opacity .4s}
+.mat-card:hover .mat-icon{opacity:.6}
+.mat-title{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px;color:var(--cream);margin-bottom:12px}
+.mat-desc{font-style:italic;font-weight:300;font-size:15px;color:var(--cream);opacity:.5;line-height:1.7}
+
 /* MANUFACTURING */
-#mfg{padding:120px 8vw 100px}
+#mfg{padding:120px 8vw 100px;background:var(--warm)}
 .mfg-head h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,7vw,95px);line-height:.93;margin-top:16px}
 .mfg-head h2 span{color:var(--gold)}
 .mfg-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin:60px 0 80px}
@@ -192,20 +203,15 @@ section{position:relative;overflow:hidden}
 .img-slot{position:absolute;bottom:14px;right:14px;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.3;text-transform:uppercase}
 .steps-title{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:3px;color:var(--cream);opacity:.6;margin-bottom:36px}
 .sgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:2px;margin-bottom:80px}
-.scard{padding:32px 22px;background:var(--warm2);border-top:2px solid transparent;transition:border-color .4s,background .4s;position:relative;overflow:hidden}
-.scard:hover{border-color:var(--gold);background:var(--warm)}
+.scard{padding:32px 22px;background:rgba(6,6,6,.4);border-top:2px solid transparent;transition:border-color .4s,background .4s;position:relative;overflow:hidden}
+.scard:hover{border-color:var(--gold);background:rgba(6,6,6,.8)}
 .snum{font-family:'Bebas Neue',sans-serif;font-size:54px;color:var(--gold);opacity:.12;line-height:1;transition:opacity .4s}
 .scard:hover .snum{opacity:.4}
 .sname{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;color:var(--cream);margin:8px 0 6px}
 .sdesc{font-family:'Space Mono',monospace;font-size:9px;color:var(--cream);opacity:.3;line-height:1.6}
-.show-title{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:3px;color:var(--cream);opacity:.6;margin-bottom:36px}
-.show-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px}
-.show-item{aspect-ratio:3/2;background:var(--warm2);position:relative;overflow:hidden;cursor:none}
-.show-img{width:100%;height:100%;object-fit:cover;transition:transform .7s}
-.show-item:hover .show-img{transform:scale(1.08)}
 
 /* ABOUT */
-#about{padding:120px 8vw 100px;background:var(--warm)}
+#about{padding:120px 8vw 100px}
 .about-head h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,7vw,95px);line-height:.93;margin-top:16px}
 .about-head h2 span{color:var(--gold)}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin:60px 0 80px}
@@ -224,27 +230,21 @@ section{position:relative;overflow:hidden}
 .vcard:hover .vicon{opacity:.5}
 .vtitle{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--cream);margin-bottom:12px}
 .vtext{font-style:italic;font-weight:300;font-size:14px;color:var(--cream);opacity:.48;line-height:1.7}
+
 .crow{display:grid;grid-template-columns:1fr 1fr;gap:3px}
-.ccard{padding:48px 40px;background:rgba(6,6,6,.4);transition:background .4s}
-.ccard:hover{background:rgba(6,6,6,.7)}
+.ccard{padding:48px 40px;background:var(--warm2);transition:background .4s}
+.ccard:hover{background:var(--warm)}
 .ccard-l{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);opacity:.55;margin-bottom:20px}
 .ccard a,.ccard p{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream);font-weight:300;text-decoration:none;display:block;margin-bottom:6px;transition:color .3s;cursor:none}
 .ccard a:hover{color:var(--gold)}
 .srow{display:flex;gap:3px;margin-top:3px;flex-wrap:wrap}
-.soc{flex:1;min-width:120px;padding:28px 24px;background:rgba(6,6,6,.4);text-align:center;text-decoration:none;cursor:none;transition:background .3s,transform .3s;border-bottom:2px solid transparent}
-.soc:hover{background:rgba(6,6,6,.7);border-color:var(--gold);transform:translateY(-3px)}
+.soc{flex:1;min-width:120px;padding:28px 24px;background:var(--warm2);text-align:center;text-decoration:none;cursor:none;transition:background .3s,transform .3s;border-bottom:2px solid transparent}
+.soc:hover{background:var(--warm);border-color:var(--gold);transform:translateY(-3px)}
 .soc-n{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);opacity:.55;transition:opacity .3s}
 .soc:hover .soc-n{opacity:1}
-.glass-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-bottom:60px}
-.glass-card{padding:40px 32px;background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(10px);position:relative;overflow:hidden;transition:background .4s,border-color .4s}
-.glass-card:hover{background:rgba(201,168,76,.06);border-color:rgba(201,168,76,.3)}
-.glass-card::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at center,rgba(201,168,76,.05),transparent 60%);opacity:0;transition:opacity .5s}
-.glass-card:hover::before{opacity:1}
-.gc-num{font-family:'Bebas Neue',sans-serif;font-size:60px;color:var(--gold);line-height:1;margin-bottom:8px}
-.gc-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--cream);opacity:.4}
 
 /* CTA BAND */
-.cta-band{padding:120px 8vw;text-align:center;position:relative;overflow:hidden}
+.cta-band{padding:120px 8vw;text-align:center;position:relative;overflow:hidden;background:var(--warm)}
 .cta-band::before{content:'KLEVER';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,20vw,280px);color:var(--gold);opacity:.025;letter-spacing:12px;pointer-events:none;white-space:nowrap;animation:breathe 5s ease-in-out infinite}
 @keyframes breathe{0%,100%{opacity:.025;transform:translate(-50%,-50%) scale(1)}50%{opacity:.042;transform:translate(-50%,-50%) scale(1.02)}}
 .cta-band .sec-tag{justify-content:center}
@@ -256,8 +256,8 @@ section{position:relative;overflow:hidden}
 /* FOOTER */
 footer{padding:60px 8vw 36px;border-top:1px solid rgba(201,168,76,.07)}
 .ft{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;margin-bottom:48px;flex-wrap:wrap}
-.fb .logo{font-size:28px;display:flex;align-items:center;gap:12px;margin-bottom:12px;cursor:default}
-.fb .logo img{height: 32px; width: auto; object-fit: contain;}
+.fb .logo{display:flex;align-items:center;gap:12px;margin-bottom:16px;text-decoration:none;cursor:default}
+.fb .logo img{height:36px;width:auto;object-fit:contain}
 .fb p{font-style:italic;font-weight:300;font-size:13px;color:var(--cream);opacity:.3;max-width:220px;line-height:1.7}
 .fn{display:flex;gap:56px;flex-wrap:wrap}
 .fnc h4{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);opacity:.55;margin-bottom:16px}
@@ -271,18 +271,17 @@ footer{padding:60px 8vw 36px;border-top:1px solid rgba(201,168,76,.07)}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
 /* RESPONSIVE */
-@media(max-width:1100px){.sgrid{grid-template-columns:repeat(3,1fr)}.pgrid{grid-template-columns:repeat(2,1fr)}.ksubgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:1100px){.sgrid,.mat-grid{grid-template-columns:repeat(2,1fr)}.pgrid{grid-template-columns:repeat(2,1fr)}.ksubgrid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:768px){
   nav{padding:18px 24px}.nav-links,.nav-cta{display:none}.burger{display:flex}
   #home{padding:0 6vw}.hero-stats,.hero-badge{display:none}.hero-btns{flex-direction:column}
-  .pgrid,.ksubgrid,.wgrid{grid-template-columns:1fr}.mfg-intro,.about-grid{grid-template-columns:1fr;gap:40px}
-  .sgrid{grid-template-columns:repeat(2,1fr)}.show-grid{grid-template-columns:repeat(2,1fr)}
+  .pgrid,.ksubgrid,.wgrid,.mat-grid{grid-template-columns:1fr}.mfg-intro,.about-grid{grid-template-columns:1fr;gap:40px}
+  .sgrid{grid-template-columns:repeat(2,1fr)}
   .vgrid{grid-template-columns:1fr}.crow{grid-template-columns:1fr}.fn{gap:32px}
-  #products,#works,#mfg,#about{padding:80px 6vw 60px}
-  .glass-stats{grid-template-columns:1fr}
+  #products,#works,#materials,#mfg,#about{padding:80px 6vw 60px}
   .witem-wide{grid-column:span 1}
 }
-@media(max-width:480px){.sgrid{grid-template-columns:1fr}.show-grid{grid-template-columns:1fr}.srow{flex-wrap:wrap}}
+@media(max-width:480px){.sgrid{grid-template-columns:1fr}.srow{flex-wrap:wrap}}
 </style>
 </head>
 <body>
@@ -297,21 +296,22 @@ footer{padding:60px 8vw 36px;border-top:1px solid rgba(201,168,76,.07)}
   <a href="#home" onclick="closeMob()">Home</a>
   <a href="#products" onclick="closeMob()">Products</a>
   <a href="#works" onclick="closeMob()">Our Works</a>
-  <a href="#mfg" onclick="closeMob()">Manufacturing</a>
-  <a href="#about" onclick="closeMob()">About Us</a>
+  <a href="#materials" onclick="closeMob()">Materials</a>
+  <a href="#mfg" onclick="closeMob()">Process</a>
+  <a href="#about" onclick="closeMob()">Company</a>
 </div>
 
 <nav id="nav">
   <a href="#home" class="logo">
-    <img src="logo.png" alt="Klever Küche Logo">
-    <span>Klever<em>Küche</em></span>
+    <img src="logoo%20(2).png" alt="Klever Küche Logo">
   </a>
   <ul class="nav-links">
     <li><a href="#home" class="ni active" data-s="home">Home</a></li>
     <li><a href="#products" class="ni" data-s="products">Products</a></li>
     <li><a href="#works" class="ni" data-s="works">Our Works</a></li>
-    <li><a href="#mfg" class="ni" data-s="mfg">Manufacturing</a></li>
-    <li><a href="#about" class="ni" data-s="about">About Us</a></li>
+    <li><a href="#materials" class="ni" data-s="materials">Materials</a></li>
+    <li><a href="#mfg" class="ni" data-s="mfg">Process</a></li>
+    <li><a href="#about" class="ni" data-s="about">Company</a></li>
   </ul>
   <a href="https://forms.gle/Nske4YHdnzrzzH9K8" class="nav-cta" target="_blank">Get Quote</a>
   <div class="burger" id="burger"><span></span><span></span><span></span></div>
@@ -413,7 +413,7 @@ footer{padding:60px 8vw 36px;border-top:1px solid rgba(201,168,76,.07)}
           <div class="ptag">Collection / 02</div>
           <h3 class="pname">Wardrobe<br>Systems</h3>
           <p class="pdesc">Floor-to-ceiling fitted wardrobes with sleek black handles. Built for every bedroom style.</p>
-          <a href="#" class="plink"><span>Explore</span></a>
+          <a href="#works" class="plink"><span>Explore</span></a>
         </div>
       </div>
       <div class="pcard tilt reveal d2" data-cat="bathroom">
@@ -426,7 +426,7 @@ footer{padding:60px 8vw 36px;border-top:1px solid rgba(201,168,76,.07)}
           <div class="ptag">Collection / 03</div>
           <h3 class="pname">Bathroom<br>Vanities</h3>
           <p class="pdesc">Wellness temples and oases of calm. Your perfect private world, designed for pure pleasure.</p>
-          <a href="#" class="plink"><span>Explore</span></a>
+          <a href="#works" class="plink"><span>Explore</span></a>
         </div>
       </div>
       <div class="pcard tilt reveal d3" data-cat="media">
@@ -439,7 +439,7 @@ footer{padding:60px 8vw 36px;border-top:1px solid rgba(201,168,76,.07)}
           <div class="ptag">Collection / 04</div>
           <h3 class="pname">Media<br>Units</h3>
           <p class="pdesc">Flexible living concepts with efficient storage. Inspiring details for your vibrant home.</p>
-          <a href="#" class="plink"><span>Explore</span></a>
+          <a href="#works" class="plink"><span>Explore</span></a>
         </div>
       </div>
     </div>
@@ -471,7 +471,7 @@ footer{padding:60px 8vw 36px;border-top:1px solid rgba(201,168,76,.07)}
   <div class="grid-lines"></div>
   <div class="z1">
     <div class="works-head reveal">
-      <div class="sec-tag">/ 02 — Portfolio</div>
+      <div class="sec-tag">/ 02 — Portfolio & Tours</div>
       <h2>Our <span>Works</span></h2>
     </div>
     <div class="wfilter reveal">
@@ -483,6 +483,17 @@ footer{padding:60px 8vw 36px;border-top:1px solid rgba(201,168,76,.07)}
     </div>
 
     <div class="wgrid">
+      
+      <div class="witem witem-tall reveal" data-wcat="wardrobe">
+        <video src="0318.mp4" autoplay loop muted playsinline></video>
+        <div class="witem-ov"><span class="wlabel">Video Tour — Wardrobe</span></div>
+      </div>
+
+      <div class="witem witem-wide reveal d1" data-wcat="kitchen">
+        <video src="1211(8).mp4" autoplay loop muted playsinline></video>
+        <div class="witem-ov"><span class="wlabel">Showroom — Kitchen Setup</span></div>
+      </div>
+
       <div class="witem witem-sq reveal" data-wcat="kitchen">
         <img src="kitchen-gloss-island.jpg" alt="Modern gloss kitchen with island — Addis Ababa" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Kitchen — Modern Gloss</span></div>
@@ -503,20 +514,24 @@ footer{padding:60px 8vw 36px;border-top:1px solid rgba(201,168,76,.07)}
         <img src="kitchen-open-plan.jpg" alt="Open plan kitchen living space — Addis Ababa" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Kitchen — Open Plan Living</span></div>
       </div>
+      <div class="witem witem-sq reveal d1" data-wcat="kitchen">
+        <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=800&q=80" alt="Kitchen Detail" loading="lazy">
+        <div class="witem-ov"><span class="wlabel">Kitchen — Hardware Detail</span></div>
+      </div>
 
-      <div class="witem witem-tall reveal d1" data-wcat="wardrobe">
+      <div class="witem witem-tall reveal d2" data-wcat="wardrobe">
         <img src="wardrobe-full-wall.jpg" alt="Full wall wardrobe with black handles" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Wardrobe — Full Wall</span></div>
       </div>
-      <div class="witem witem-sq reveal d2" data-wcat="wardrobe">
+      <div class="witem witem-sq reveal" data-wcat="wardrobe">
         <img src="wardrobe-white-wall.jpg" alt="White wardrobe wall system" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Wardrobe — White Wall</span></div>
       </div>
-      <div class="witem witem-sq reveal" data-wcat="wardrobe">
+      <div class="witem witem-sq reveal d1" data-wcat="wardrobe">
         <img src="wardrobe-with-niche.jpg" alt="Wardrobe with open niche and desk" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Wardrobe — With Niche</span></div>
       </div>
-      <div class="witem witem-sq reveal d1" data-wcat="wardrobe">
+      <div class="witem witem-sq reveal d2" data-wcat="wardrobe">
         <img src="wardrobe-open-display.jpg" alt="Wardrobe with open display section" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Wardrobe — Open Display</span></div>
       </div>
@@ -529,16 +544,57 @@ footer{padding:60px 8vw 36px;border-top:1px solid rgba(201,168,76,.07)}
         <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80" alt="Luxury Bathroom Setup" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Bathroom — Luxury Setup</span></div>
       </div>
+      <div class="witem witem-sq reveal d2" data-wcat="bathroom">
+        <img src="https://images.unsplash.com/photo-1604709177227-3f3fb409d6c7?auto=format&fit=crop&w=800&q=80" alt="Bathroom Cabinet" loading="lazy">
+        <div class="witem-ov"><span class="wlabel">Bathroom — Custom Cabinets</span></div>
+      </div>
 
-      <div class="witem witem-wide reveal d2" data-wcat="media">
+      <div class="witem witem-wide reveal" data-wcat="media">
         <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&w=1200&q=80" alt="Minimalist Media Console" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Media Unit — Minimalist Console</span></div>
       </div>
-      <div class="witem witem-sq reveal d3" data-wcat="media">
+      <div class="witem witem-sq reveal d1" data-wcat="media">
         <img src="https://images.unsplash.com/photo-1593696140826-c58b021acf8b?auto=format&fit=crop&w=800&q=80" alt="Modern TV Stand" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Media Unit — Modern Stand</span></div>
       </div>
+      <div class="witem witem-sq reveal d2" data-wcat="media">
+        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80" alt="Living Room Setup" loading="lazy">
+        <div class="witem-ov"><span class="wlabel">Media Unit — Full Wall</span></div>
+      </div>
 
+    </div>
+  </div>
+</section>
+
+<section id="materials">
+  <div class="grid-lines"></div>
+  <div class="z1">
+    <div class="mat-head reveal">
+      <div class="sec-tag">/ 03 — Quality Standards</div>
+      <h2>Premium <span>Materials</span></h2>
+    </div>
+
+    <div class="mat-grid">
+      <div class="mat-card reveal">
+        <div class="mat-icon">▨</div>
+        <h3 class="mat-title">High-Density MDF</h3>
+        <p class="mat-desc">Our core material. Superior density and moisture-resistant options ensure your cabinets will never warp, sag, or degrade over time.</p>
+      </div>
+      <div class="mat-card reveal d1">
+        <div class="mat-icon">✧</div>
+        <h3 class="mat-title">Luxury Finishes</h3>
+        <p class="mat-desc">From ultra-modern High-Gloss Acrylic and UV coatings to elegant Matte PET surfaces. Perfectly sealed with premium PVC edge banding.</p>
+      </div>
+      <div class="mat-card reveal d2">
+        <div class="mat-icon">◧</div>
+        <h3 class="mat-title">Stone Countertops</h3>
+        <p class="mat-desc">We top our kitchens and vanities with highly durable Quartz, Granite, and custom stone surfaces that resist scratching and staining.</p>
+      </div>
+      <div class="mat-card reveal d3">
+        <div class="mat-icon">⊜</div>
+        <h3 class="mat-title">Premium Hardware</h3>
+        <p class="mat-desc">Smooth operation is guaranteed. We utilize world-class soft-close hinges, heavy-duty drawer runners, and precision handles.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -547,7 +603,7 @@ footer{padding:60px 8vw 36px;border-top:1px solid rgba(201,168,76,.07)}
   <div class="grid-lines"></div>
   <div class="z1">
     <div class="mfg-head reveal">
-      <div class="sec-tag">/ 03 — Process</div>
+      <div class="sec-tag">/ 04 — Process</div>
       <h2>Manu<span>facturing</span></h2>
     </div>
 
@@ -559,7 +615,7 @@ footer{padding:60px 8vw 36px;border-top:1px solid rgba(201,168,76,.07)}
         <p style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--gold);opacity:.55;font-style:normal;margin-top:28px;line-height:1.8">All orders follow a structured workflow ensuring traceability and minimal rework. Our machines meet international standards.</p>
       </div>
       <div class="mfg-visual from-right">
-        <img src="kitchen-arch-view.jpg" alt="Klever Küche showroom — Addis Ababa">
+        <img src="https://images.unsplash.com/photo-1605371924599-2d0365da1ae0?auto=format&fit=crop&w=1200&q=80" alt="Woodworking machinery">
       </div>
     </div>
 
@@ -572,22 +628,6 @@ footer{padding:60px 8vw 36px;border-top:1px solid rgba(201,168,76,.07)}
       <div class="scard reveal d4"><div class="snum">05</div><div class="sname">Sorting & Assembly</div><div class="sdesc">Inspected during assembly</div></div>
       <div class="scard reveal d5"><div class="snum">06</div><div class="sname">Finishing & Delivery</div><div class="sdesc">Packaging, delivery & installation</div></div>
     </div>
-
-    <div class="show-title reveal">/ Our Showroom</div>
-    <div class="show-grid">
-      <div class="show-item reveal">
-        <img class="show-img" src="kitchen-gloss-island.jpg" alt="Showroom kitchen 1">
-      </div>
-      <div class="show-item reveal d1">
-        <img class="show-img" src="kitchen-city-view.jpg" alt="Showroom kitchen 2">
-      </div>
-      <div class="show-item reveal d2">
-        <img class="show-img" src="wardrobe-with-niche.jpg" alt="Showroom wardrobe">
-      </div>
-      <div class="show-item reveal d3">
-        <img class="show-img" src="kitchen-wide-angle.jpg" alt="Showroom kitchen 3">
-      </div>
-    </div>
   </div>
 </section>
 
@@ -595,23 +635,8 @@ footer{padding:60px 8vw 36px;border-top:1px solid rgba(201,168,76,.07)}
   <div class="grid-lines"></div>
   <div class="z1">
     <div class="about-head reveal">
-      <div class="sec-tag">/ 04 — Company</div>
+      <div class="sec-tag">/ 05 — Company</div>
       <h2>About <span>Us</span></h2>
-    </div>
-
-    <div class="glass-stats">
-      <div class="glass-card reveal">
-        <div class="gc-num" data-count="7">0</div>
-        <div class="gc-label">Years Active</div>
-      </div>
-      <div class="glass-card reveal d1">
-        <div class="gc-num" data-count="100">0</div>
-        <div class="gc-label">Projects Completed+</div>
-      </div>
-      <div class="glass-card reveal d2">
-        <div class="gc-num" data-count="4">0</div>
-        <div class="gc-label">Main Collections</div>
-      </div>
     </div>
 
     <div class="about-grid">
@@ -675,8 +700,7 @@ footer{padding:60px 8vw 36px;border-top:1px solid rgba(201,168,76,.07)}
   <div class="ft">
     <div class="fb">
       <span class="logo">
-        <img src="logo.png" alt="Klever Küche Logo">
-        <span>Klever<em>Küche</em></span>
+        <img src="logoo%20(2).png" alt="Klever Küche Logo">
       </span>
       <p>Premium custom furniture manufacturing & installation in Addis Ababa since 2017.</p>
     </div>
@@ -691,9 +715,9 @@ footer{padding:60px 8vw 36px;border-top:1px solid rgba(201,168,76,.07)}
       <div class="fnc">
         <h4>Company</h4>
         <a href="#works">Our Works</a>
+        <a href="#materials">Materials</a>
         <a href="#mfg">Manufacturing</a>
         <a href="#about">About Us</a>
-        <a href="https://forms.gle/Nske4YHdnzrzzH9K8" target="_blank">Get Quote</a>
       </div>
       <div class="fnc">
         <h4>Follow</h4>
@@ -734,7 +758,7 @@ document.querySelectorAll('a,button').forEach(el=>{
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>{
   nav.classList.toggle('scrolled',window.scrollY>60);
-  const secs=['home','products','works','mfg','about'];
+  const secs=['home','products','works','materials','mfg','about'];
   let cur2='home';
   secs.forEach(id=>{const el=document.getElementById(id);if(el&&window.scrollY>=el.offsetTop-220)cur2=id;});
   document.querySelectorAll('.ni').forEach(a=>a.classList.toggle('active',a.dataset.s===cur2));
