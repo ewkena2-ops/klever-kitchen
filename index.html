@@ -33,8 +33,26 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 48px;display:flex;justify-content:space-between;align-items:center;transition:all .4s}
 nav.scrolled{background:rgba(6,6,6,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.08)}
 .logo{display:flex;align-items:center;gap:12px;text-decoration:none;cursor:none}
-/* LOGO FIX - CREAM BACKGROUND BADGE */
-.logo img{height:40px;width:auto;object-fit:contain;background:var(--cream);padding:6px 14px;border-radius:6px}
+
+/* ✨ SHINY PREMIUM LOGO BADGE (NAVBAR) ✨ */
+.logo img{
+  height:42px;
+  width:auto;
+  object-fit:contain;
+  /* Shiny Pearl Gradient */
+  background:linear-gradient(135deg, #ffffff 0%, #fdfbf7 40%, #e8e2d2 100%);
+  padding:6px 14px;
+  border-radius:8px;
+  /* Gold border and 3D glowing shadow */
+  border:1px solid rgba(201,168,76,0.4);
+  box-shadow:0 4px 15px rgba(201,168,76,0.15), inset 0 2px 3px rgba(255,255,255,0.9);
+  transition:transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s;
+}
+.logo:hover img {
+  transform: translateY(-2px);
+  box-shadow:0 6px 20px rgba(201,168,76,0.35), inset 0 2px 3px rgba(255,255,255,0.9);
+}
+
 .nav-links{display:flex;gap:32px;list-style:none}
 .nav-links a{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--cream);text-decoration:none;opacity:.5;transition:opacity .3s,color .3s;position:relative;cursor:none}
 .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .3s}
@@ -258,8 +276,19 @@ section{position:relative;overflow:hidden}
 footer{padding:60px 8vw 36px;border-top:1px solid rgba(201,168,76,.07)}
 .ft{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;margin-bottom:48px;flex-wrap:wrap}
 .fb .logo{display:flex;align-items:center;gap:12px;margin-bottom:16px;text-decoration:none;cursor:default}
-/* LOGO FIX - CREAM BACKGROUND BADGE */
-.fb .logo img{height:46px;width:auto;object-fit:contain;background:var(--cream);padding:8px 16px;border-radius:6px}
+
+/* ✨ SHINY PREMIUM LOGO BADGE (FOOTER) ✨ */
+.fb .logo img{
+  height:48px;
+  width:auto;
+  object-fit:contain;
+  background:linear-gradient(135deg, #ffffff 0%, #fdfbf7 40%, #e8e2d2 100%);
+  padding:8px 16px;
+  border-radius:8px;
+  border:1px solid rgba(201,168,76,0.4);
+  box-shadow:0 4px 15px rgba(201,168,76,0.15), inset 0 2px 3px rgba(255,255,255,0.9);
+}
+
 .fb p{font-style:italic;font-weight:300;font-size:13px;color:var(--cream);opacity:.3;max-width:220px;line-height:1.7}
 .fn{display:flex;gap:56px;flex-wrap:wrap}
 .fnc h4{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);opacity:.55;margin-bottom:16px}
@@ -305,7 +334,7 @@ footer{padding:60px 8vw 36px;border-top:1px solid rgba(201,168,76,.07)}
 
 <nav id="nav">
   <a href="#home" class="logo">
-    <img src="logoo%20(2).png" alt="Klever Küche Logo">
+    <img src="logo.png" alt="Klever Küche Logo">
   </a>
   <ul class="nav-links">
     <li><a href="#home" class="ni active" data-s="home">Home</a></li>
@@ -702,7 +731,7 @@ footer{padding:60px 8vw 36px;border-top:1px solid rgba(201,168,76,.07)}
   <div class="ft">
     <div class="fb">
       <span class="logo">
-        <img src="logoo%20(2).png" alt="Klever Küche Logo">
+        <img src="logo.png" alt="Klever Küche Logo">
       </span>
       <p>Premium custom furniture manufacturing & installation in Addis Ababa since 2017.</p>
     </div>
