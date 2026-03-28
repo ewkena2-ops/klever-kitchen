@@ -81,7 +81,7 @@ section{position:relative;overflow:hidden}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
 
 /* GLOBAL ROUNDED CORNERS */
-.pcard, .kscard, .witem, .mat-card, .scard, .show-item, .adetail, .vcard, .ccard, .soc, .glass-card {
+.pcard, .kscard, .mat-card, .scard, .show-item, .adetail, .vcard, .ccard, .soc, .glass-card {
   border-radius: 12px;
 }
 
@@ -190,36 +190,45 @@ section{position:relative;overflow:hidden}
 .wfbtn{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--cream);opacity:.4;padding:9px 18px;border:1px solid rgba(201,168,76,.1);border-radius:6px;cursor:none;transition:all .3s;background:transparent}
 .wfbtn.active,.wfbtn:hover{opacity:1;color:var(--gold);border-color:rgba(201,168,76,.4)}
 
-/* ✨ FIXED GALLERY GRID ✨ */
-.wgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.witem{position:relative;overflow:hidden;cursor:none;background:var(--warm2)}
-
-/* Absolute Positioning forces images AND videos to fill the box without breaking layout */
+/* ✨ THE MASONRY GRID FIX (Perfect Full-Bleed without Excel spacing) ✨ */
+.wgrid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 280px; /* Fixed row height prevents chaotic stretching */
+  gap: 16px;
+  grid-auto-flow: dense; /* Fills gaps automatically */
+}
+.witem {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: none;
+  background: var(--warm2);
+}
+/* Absolute Positioning stretches images/videos perfectly inside their boxes */
 .witem img, .witem video {
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover; /* This stretches everything beautifully to fill the square/rectangle */
-  display:block;
-  transition:transform .8s ease,filter .4s;
-  filter:brightness(.88) saturate(.75)
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  display: block;
+  transition: transform .8s ease, filter .4s;
+  filter: brightness(.88) saturate(.75);
 }
 .witem:hover img, .witem:hover video {
-  transform:scale(1.05);
-  filter:brightness(1) saturate(1)
+  transform: scale(1.05);
+  filter: brightness(1) saturate(1);
 }
-
 .witem-ov{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(6,6,6,.8) 100%);opacity:0;transition:opacity .4s;z-index:1;display:flex;align-items:flex-end;padding:24px}
 .witem:hover .witem-ov{opacity:1}
 .wlabel{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
 
-/* Aspect Ratios for Grid */
-.witem-tall{aspect-ratio:3/4}
-.witem-wide{grid-column:span 2;aspect-ratio:16/9}
-.witem-sq{aspect-ratio:4/3}
-/* New Vertical Video Class for Reels/TikToks */
-.witem-vertical{aspect-ratio:9/16}
+/* Grid Span Sizes */
+.witem-sq { grid-column: span 1; grid-row: span 1; }
+.witem-wide { grid-column: span 2; grid-row: span 1; }
+.witem-tall { grid-column: span 1; grid-row: span 2; }
+.witem-large { grid-column: span 2; grid-row: span 2; }
 
 /* MATERIALS SECTION */
 #materials{padding:120px 8vw 100px}
@@ -384,20 +393,29 @@ footer{background:var(--black)}
   nav{padding:18px 24px}.nav-links,.nav-cta{display:none}.burger{display:flex}
   #home{padding:0 6vw}.hero-stats,.hero-badge{display:none}.hero-btns{flex-direction:column}
   
-  /* Mobile Grid fixes - Perfect padding */
-  .pgrid,.ksubgrid,.wgrid,.mat-grid{grid-template-columns:1fr; gap:16px}
+  .pgrid,.ksubgrid,.mat-grid{grid-template-columns:1fr; gap:16px}
   .mfg-intro,.about-grid{grid-template-columns:1fr;gap:40px}
   .sgrid{grid-template-columns:repeat(2,1fr); gap:12px}
   .vgrid,.crow{grid-template-columns:1fr; gap:16px}
   #products,#works,#materials,#mfg,#about{padding:80px 6vw 60px}
   
-  /* PERFECT MOBILE IMAGE PROPORTIONS */
-  .witem-wide, .witem-tall, .witem-sq, .witem-vertical { aspect-ratio: auto; height: 60vh; grid-column: span 1; }
+  /* PERFECT MOBILE GALLERY PROPORTIONS */
+  .wgrid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
+  .witem-large { grid-column: span 2; grid-row: span 2; }
+  .witem-wide { grid-column: span 2; grid-row: span 1; }
+  .witem-tall { grid-column: span 1; grid-row: span 2; }
+  .witem-sq { grid-column: span 1; grid-row: span 1; }
   
   .bottom-socials{padding: 30px 6vw; gap:12px}
   .sticker{width: 48px; height: 48px; font-size: 20px;}
 }
-@media(max-width:480px){.sgrid{grid-template-columns:1fr}.srow{flex-wrap:wrap}}
+@media(max-width:480px){
+  .sgrid{grid-template-columns:1fr}.srow{flex-wrap:wrap}
+  /* Mobile stack for works */
+  .wgrid { grid-template-columns: 1fr; grid-auto-rows: 280px; }
+  .witem-large, .witem-wide, .witem-tall, .witem-sq { grid-column: span 1; }
+  .witem-tall, .witem-large { grid-row: span 2; } /* Keeps Vertical Videos Tall on Phones! */
+}
 </style>
 </head>
 <body>
@@ -419,7 +437,7 @@ footer{background:var(--black)}
 
 <nav id="nav">
   <a href="#home" class="logo">
-    <img src="logo.png" alt="Klever Küche Logo">
+    <img src="logoo%20(2).png" alt="Klever Küche Logo">
   </a>
   <ul class="nav-links">
     <li><a href="#home" class="ni active" data-s="home">Home</a></li>
@@ -435,7 +453,7 @@ footer{background:var(--black)}
 
 <section id="home">
   <div class="hero-bg">
-    <img src="images/kitchen-gloss-island.jpg" alt="Klever Küche — Modern Custom Kitchen Addis Ababa" loading="eager">
+    <img src="kitchen-gloss-island.jpg" alt="Klever Küche — Modern Custom Kitchen Addis Ababa" loading="eager">
   </div>
   <div class="grid-lines"></div>
   <div class="orb" style="width:500px;height:500px;background:radial-gradient(circle,rgba(201,168,76,.09),transparent);top:-100px;right:-100px;animation-delay:0s"></div>
@@ -507,7 +525,7 @@ footer{background:var(--black)}
 
     <div class="pgrid">
       <div class="pcard tilt reveal" data-cat="kitchen">
-        <div class="pcard-img" style="background-image:url('images/kitchen-arch-view.jpg')"></div>
+        <div class="pcard-img" style="background-image:url('kitchen-arch-view.jpg')"></div>
         <div class="pcard-overlay"></div>
         <div class="pcard-glow" style="background:radial-gradient(circle at 50% 80%,rgba(201,168,76,.15),transparent 70%)"></div>
         <div class="pcard-num">01</div>
@@ -520,7 +538,7 @@ footer{background:var(--black)}
         </div>
       </div>
       <div class="pcard tilt reveal d1" data-cat="wardrobe">
-        <div class="pcard-img" style="background-image:url('images/wardrobe-full-wall.jpg')"></div>
+        <div class="pcard-img" style="background-image:url('wardrobe-full-wall.jpg')"></div>
         <div class="pcard-overlay"></div>
         <div class="pcard-glow" style="background:radial-gradient(circle at 50% 80%,rgba(201,168,76,.1),transparent 70%)"></div>
         <div class="pcard-num">02</div>
@@ -546,7 +564,7 @@ footer{background:var(--black)}
         </div>
       </div>
       <div class="pcard tilt reveal d3" data-cat="media">
-        <div class="pcard-img" style="background-image:url('https://images.unsplash.com/photo-1600607686527-6fb886090705?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="pcard-img" style="background-image:url('https://images.unsplash.com/photo-1593696140826-c58b021acf8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')"></div>
         <div class="pcard-overlay"></div>
         <div class="pcard-glow" style="background:radial-gradient(circle at 50% 80%,rgba(245,240,232,.06),transparent 70%)"></div>
         <div class="pcard-num">04</div>
@@ -564,17 +582,17 @@ footer{background:var(--black)}
       <div class="sec-tag reveal" style="margin:60px 0 32px">/ Kitchen Styles</div>
       <div class="ksubgrid">
         <div class="kscard reveal">
-          <div class="kscard-img" style="background-image:url('images/kitchen-gloss-island.jpg')"></div>
+          <div class="kscard-img" style="background-image:url('kitchen-gloss-island.jpg')"></div>
           <div class="kscard-ov"></div>
           <div class="kscard-c"><div class="kscard-tag">Style / 01</div><div class="kscard-name">Modern Gloss</div></div>
         </div>
         <div class="kscard reveal d1">
-          <div class="kscard-img" style="background-image:url('images/kitchen-city-view.jpg')"></div>
+          <div class="kscard-img" style="background-image:url('kitchen-city-view.jpg')"></div>
           <div class="kscard-ov"></div>
           <div class="kscard-c"><div class="kscard-tag">Style / 02</div><div class="kscard-name">Open Plan</div></div>
         </div>
         <div class="kscard reveal d2">
-          <div class="kscard-img" style="background-image:url('images/kitchen-open-plan.jpg')"></div>
+          <div class="kscard-img" style="background-image:url('kitchen-open-plan.jpg')"></div>
           <div class="kscard-ov"></div>
           <div class="kscard-c"><div class="kscard-tag">Style / 03</div><div class="kscard-name">Handle Less</div></div>
         </div>
@@ -600,62 +618,71 @@ footer{background:var(--black)}
 
     <div class="wgrid">
       
-      <div class="witem witem-vertical reveal" data-wcat="wardrobe">
-        <video src="0318.mp4" autoplay loop muted playsinline style="object-fit: cover;"></video>
+      <div class="witem witem-tall reveal" data-wcat="wardrobe">
+        <video src="0318.mp4" autoplay loop muted playsinline></video>
         <div class="witem-ov"><span class="wlabel">Video Tour — Wardrobe</span></div>
       </div>
 
-      <div class="witem witem-vertical reveal d1" data-wcat="kitchen">
-        <video src="1211(8).mp4" autoplay loop muted playsinline style="object-fit: cover;"></video>
+      <div class="witem witem-tall reveal d1" data-wcat="kitchen">
+        <video src="1211(8).mp4" autoplay loop muted playsinline></video>
         <div class="witem-ov"><span class="wlabel">Showroom — Kitchen Setup</span></div>
       </div>
 
-      <div class="witem witem-sq reveal d2" data-wcat="kitchen">
-        <img src="images/kitchen-gloss-island.jpg" alt="Modern gloss kitchen with island — Addis Ababa" loading="lazy">
-        <div class="witem-ov"><span class="wlabel">Kitchen — Modern Gloss</span></div>
+      <div class="witem witem-large reveal d2" data-wcat="kitchen">
+        <img src="kitchen-open-plan.jpg" alt="Open plan kitchen living space — Addis Ababa" loading="lazy">
+        <div class="witem-ov"><span class="wlabel">Kitchen — Open Plan Living</span></div>
       </div>
-      <div class="witem witem-sq reveal d3" data-wcat="kitchen">
-        <img src="images/kitchen-arch-view.jpg" alt="Kitchen full view with arch — Addis Ababa" loading="lazy">
-        <div class="witem-ov"><span class="wlabel">Kitchen — Full View</span></div>
-      </div>
-      <div class="witem witem-sq reveal" data-wcat="kitchen">
-        <img src="images/kitchen-wide-angle.jpg" alt="Kitchen wide angle — Addis Ababa" loading="lazy">
+      
+      <div class="witem witem-wide reveal d3" data-wcat="kitchen">
+        <img src="kitchen-wide-angle.jpg" alt="Kitchen wide angle — Addis Ababa" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Kitchen — Wide Angle</span></div>
       </div>
-      <div class="witem witem-sq reveal d1" data-wcat="kitchen">
-        <img src="images/kitchen-city-view.jpg" alt="Kitchen with city view — Addis Ababa" loading="lazy">
-        <div class="witem-ov"><span class="wlabel">Kitchen — City View</span></div>
+
+      <div class="witem witem-sq reveal" data-wcat="kitchen">
+        <img src="kitchen-gloss-island.jpg" alt="Modern gloss kitchen with island — Addis Ababa" loading="lazy">
+        <div class="witem-ov"><span class="wlabel">Kitchen — Modern Gloss</span></div>
       </div>
-      <div class="witem witem-wide reveal d2" data-wcat="kitchen">
-        <img src="images/kitchen-open-plan.jpg" alt="Open plan kitchen living space — Addis Ababa" loading="lazy">
-        <div class="witem-ov"><span class="wlabel">Kitchen — Open Plan Living</span></div>
+      
+      <div class="witem witem-sq reveal d1" data-wcat="kitchen">
+        <img src="kitchen-arch-view.jpg" alt="Kitchen full view with arch — Addis Ababa" loading="lazy">
+        <div class="witem-ov"><span class="wlabel">Kitchen — Full View</span></div>
+      </div>
+      
+      <div class="witem witem-sq reveal d2" data-wcat="kitchen">
+        <img src="kitchen-city-view.jpg" alt="Kitchen with city view — Addis Ababa" loading="lazy">
+        <div class="witem-ov"><span class="wlabel">Kitchen — City View</span></div>
       </div>
 
       <div class="witem witem-tall reveal d3" data-wcat="wardrobe">
-        <img src="images/wardrobe-full-wall.jpg" alt="Full wall wardrobe with black handles" loading="lazy">
+        <img src="wardrobe-full-wall.jpg" alt="Full wall wardrobe with black handles" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Wardrobe — Full Wall</span></div>
       </div>
+      
       <div class="witem witem-sq reveal" data-wcat="wardrobe">
-        <img src="images/wardrobe-white-wall.jpg" alt="White wardrobe wall system" loading="lazy">
+        <img src="wardrobe-white-wall.jpg" alt="White wardrobe wall system" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Wardrobe — White Wall</span></div>
       </div>
+      
       <div class="witem witem-sq reveal d1" data-wcat="wardrobe">
-        <img src="images/wardrobe-with-niche.jpg" alt="Wardrobe with open niche and desk" loading="lazy">
+        <img src="wardrobe-with-niche.jpg" alt="Wardrobe with open niche and desk" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Wardrobe — With Niche</span></div>
       </div>
+      
       <div class="witem witem-sq reveal d2" data-wcat="wardrobe">
-        <img src="images/wardrobe-open-display.jpg" alt="Wardrobe with open display section" loading="lazy">
+        <img src="wardrobe-open-display.jpg" alt="Wardrobe with open display section" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Wardrobe — Open Display</span></div>
       </div>
 
-      <div class="witem witem-sq reveal d3" data-wcat="bathroom">
-        <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern Bathroom Vanity" loading="lazy">
-        <div class="witem-ov"><span class="wlabel">Bathroom — Modern Vanity</span></div>
-      </div>
-      <div class="witem witem-tall reveal" data-wcat="bathroom">
+      <div class="witem witem-tall reveal d3" data-wcat="bathroom">
         <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Luxury Bathroom Setup" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Bathroom — Luxury Setup</span></div>
       </div>
+
+      <div class="witem witem-sq reveal" data-wcat="bathroom">
+        <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern Bathroom Vanity" loading="lazy">
+        <div class="witem-ov"><span class="wlabel">Bathroom — Modern Vanity</span></div>
+      </div>
+      
       <div class="witem witem-sq reveal d1" data-wcat="bathroom">
         <img src="https://images.unsplash.com/photo-1604709177227-3f3fb409d6c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Bathroom Cabinet" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Bathroom — Custom Cabinets</span></div>
@@ -665,10 +692,12 @@ footer{background:var(--black)}
         <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Minimalist Media Console" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Media Unit — Minimalist Console</span></div>
       </div>
+      
       <div class="witem witem-sq reveal d3" data-wcat="media">
         <img src="https://images.unsplash.com/photo-1593696140826-c58b021acf8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern TV Stand" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Media Unit — Modern Stand</span></div>
       </div>
+      
       <div class="witem witem-sq reveal" data-wcat="media">
         <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Living Room Setup" loading="lazy">
         <div class="witem-ov"><span class="wlabel">Media Unit — Full Wall</span></div>
@@ -727,7 +756,7 @@ footer{background:var(--black)}
         <p style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--gold);opacity:.55;font-style:normal;margin-top:28px;line-height:1.8">All orders follow a structured workflow ensuring traceability and minimal rework. Our machines meet international standards.</p>
       </div>
       <div class="mfg-visual from-right">
-        <img src="images/kitchen-city-view.jpg" alt="Klever Küche — Overlooking Addis Ababa">
+        <img src="kitchen-city-view.jpg" alt="Klever Küche — Overlooking Addis Ababa">
       </div>
     </div>
 
@@ -827,7 +856,7 @@ footer{background:var(--black)}
   <div class="ft">
     <div class="fb">
       <span class="logo">
-        <img src="logo.png" alt="Klever Küche Logo">
+        <img src="logoo%20(2).png" alt="Klever Küche Logo">
       </span>
       <p>Premium custom furniture manufacturing & installation in Addis Ababa since 2017.</p>
     </div>
