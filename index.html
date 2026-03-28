@@ -184,31 +184,23 @@ section{position:relative;overflow:hidden}
 .wfilter{display:flex;gap:3px;margin:40px 0;flex-wrap:wrap}
 .wfbtn{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--cream);opacity:.4;padding:9px 18px;border:1px solid rgba(201,168,76,.1);cursor:none;transition:all .3s;background:transparent}
 .wfbtn.active,.wfbtn:hover{opacity:1;color:var(--gold);border-color:rgba(201,168,76,.4)}
+
+/* ✨ FIXED GALLERY GRID (NO MORE EXCEL LOOK!) ✨ */
 .wgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px}
 .witem{position:relative;overflow:hidden;cursor:none;background:var(--warm2)}
 
-/* Image Cards */
-.witem img {width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s ease,filter .4s;filter:brightness(.88) saturate(.75)}
-.witem:hover img {transform:scale(1.07);filter:brightness(1) saturate(1)}
-
-/* ✨ CINEMA MODE FOR VIDEOS (FIX FOR 360p) ✨ */
-.witem-video {
-  background: #030303; /* Pure dark cinematic background */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px; /* Creates the border so video doesn't stretch */
+/* Make videos fill the space just like images do */
+.witem img, .witem video {
+  width:100%;
+  height:100%;
+  object-fit:cover; /* This stretches it beautifully to fill the square/rectangle */
+  display:block;
+  transition:transform .8s ease,filter .4s;
+  filter:brightness(.88) saturate(.75)
 }
-.witem-video video {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* Prevents blurry stretching */
-  border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-.witem-video:hover video {
-  transform: scale(1.05); /* Gentle 3D pop on hover */
+.witem:hover img, .witem:hover video {
+  transform:scale(1.07);
+  filter:brightness(1) saturate(1)
 }
 
 .witem-ov{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(6,6,6,.8) 100%);opacity:0;transition:opacity .4s;z-index:1;display:flex;align-items:flex-end;padding:18px}
@@ -322,16 +314,23 @@ footer{padding:60px 8vw 36px;border-top:1px solid rgba(201,168,76,.07)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
-/* RESPONSIVE */
+/* ✨ RESPONSIVE MOBILE FIXES ✨ */
 @media(max-width:1100px){.sgrid,.mat-grid{grid-template-columns:repeat(2,1fr)}.pgrid{grid-template-columns:repeat(2,1fr)}.ksubgrid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:768px){
   nav{padding:18px 24px}.nav-links,.nav-cta{display:none}.burger{display:flex}
   #home{padding:0 6vw}.hero-stats,.hero-badge{display:none}.hero-btns{flex-direction:column}
+  
+  /* Mobile Grid fixes */
   .pgrid,.ksubgrid,.wgrid,.mat-grid{grid-template-columns:1fr}.mfg-intro,.about-grid{grid-template-columns:1fr;gap:40px}
   .sgrid{grid-template-columns:repeat(2,1fr)}
   .vgrid{grid-template-columns:1fr}.crow{grid-template-columns:1fr}.fn{gap:32px}
   #products,#works,#materials,#mfg,#about{padding:80px 6vw 60px}
-  .witem-wide{grid-column:span 1}
+  
+  /* Prevent weird stretching on mobile */
+  .witem-wide, .witem-tall, .witem-sq { aspect-ratio: auto; height: 50vh; grid-column: span 1; }
+  
+  /* Hide side social stickers to save space on phones */
+  .social-stickers { display: none; }
 }
 @media(max-width:480px){.sgrid{grid-template-columns:1fr}.srow{flex-wrap:wrap}}
 </style>
@@ -342,6 +341,29 @@ footer{padding:60px 8vw 36px;border-top:1px solid rgba(201,168,76,.07)}
 
 <div id="cur"></div>
 <div id="cur-ring"></div>
+
+<div class="social-stickers">
+  <a href="https://www.instagram.com/klever.kuche" class="sticker sticker-ig" target="_blank">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    <span class="sticker-tooltip">Instagram</span>
+  </a>
+  <a href="https://www.tiktok.com/@kleverkuche24" class="sticker sticker-tk" target="_blank">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.27 8.27 0 004.84 1.55V6.79a4.85 4.85 0 01-1.07-.1z"/></svg>
+    <span class="sticker-tooltip">TikTok</span>
+  </a>
+  <a href="https://t.me/Klever_Kuche" class="sticker sticker-tg" target="_blank">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+    <span class="sticker-tooltip">Telegram</span>
+  </a>
+  <a href="https://wa.me/251963999992" class="sticker sticker-wa" target="_blank">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span class="sticker-tooltip">WhatsApp</span>
+  </a>
+  <a href="mailto:kleverkitchen24@gmail.com" class="sticker sticker-mail">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="#060606"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+    <span class="sticker-tooltip">Email Us</span>
+  </a>
+</div>
 
 <div class="mob-menu" id="mobMenu">
   <span class="mob-close" id="mobClose">✕ CLOSE</span>
@@ -536,12 +558,12 @@ footer{padding:60px 8vw 36px;border-top:1px solid rgba(201,168,76,.07)}
 
     <div class="wgrid">
       
-      <div class="witem witem-tall witem-video reveal" data-wcat="wardrobe">
+      <div class="witem witem-tall reveal" data-wcat="wardrobe">
         <video src="0318.mp4" autoplay loop muted playsinline></video>
         <div class="witem-ov"><span class="wlabel">Video Tour — Wardrobe</span></div>
       </div>
 
-      <div class="witem witem-wide witem-video reveal d1" data-wcat="kitchen">
+      <div class="witem witem-wide reveal d1" data-wcat="kitchen">
         <video src="1211(8).mp4" autoplay loop muted playsinline></video>
         <div class="witem-ov"><span class="wlabel">Showroom — Kitchen Setup</span></div>
       </div>
