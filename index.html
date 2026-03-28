@@ -39,11 +39,9 @@ nav.scrolled{background:rgba(6,6,6,.96);backdrop-filter:blur(20px);border-bottom
   height:42px;
   width:auto;
   object-fit:contain;
-  /* Shiny Pearl Gradient */
   background:linear-gradient(135deg, #ffffff 0%, #fdfbf7 40%, #e8e2d2 100%);
   padding:6px 14px;
   border-radius:8px;
-  /* Gold border and 3D glowing shadow */
   border:1px solid rgba(201,168,76,0.4);
   box-shadow:0 4px 15px rgba(201,168,76,0.15), inset 0 2px 3px rgba(255,255,255,0.9);
   transition:transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s;
@@ -188,8 +186,31 @@ section{position:relative;overflow:hidden}
 .wfbtn.active,.wfbtn:hover{opacity:1;color:var(--gold);border-color:rgba(201,168,76,.4)}
 .wgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px}
 .witem{position:relative;overflow:hidden;cursor:none;background:var(--warm2)}
-.witem img, .witem video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s ease,filter .4s;filter:brightness(.88) saturate(.75)}
-.witem:hover img, .witem:hover video{transform:scale(1.07);filter:brightness(1) saturate(1)}
+
+/* Image Cards */
+.witem img {width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s ease,filter .4s;filter:brightness(.88) saturate(.75)}
+.witem:hover img {transform:scale(1.07);filter:brightness(1) saturate(1)}
+
+/* ✨ CINEMA MODE FOR VIDEOS (FIX FOR 360p) ✨ */
+.witem-video {
+  background: #030303; /* Pure dark cinematic background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px; /* Creates the border so video doesn't stretch */
+}
+.witem-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Prevents blurry stretching */
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.witem-video:hover video {
+  transform: scale(1.05); /* Gentle 3D pop on hover */
+}
+
 .witem-ov{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(6,6,6,.8) 100%);opacity:0;transition:opacity .4s;z-index:1;display:flex;align-items:flex-end;padding:18px}
 .witem:hover .witem-ov{opacity:1}
 .wlabel{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
@@ -515,12 +536,12 @@ footer{padding:60px 8vw 36px;border-top:1px solid rgba(201,168,76,.07)}
 
     <div class="wgrid">
       
-      <div class="witem witem-tall reveal" data-wcat="wardrobe">
+      <div class="witem witem-tall witem-video reveal" data-wcat="wardrobe">
         <video src="0318.mp4" autoplay loop muted playsinline></video>
         <div class="witem-ov"><span class="wlabel">Video Tour — Wardrobe</span></div>
       </div>
 
-      <div class="witem witem-wide reveal d1" data-wcat="kitchen">
+      <div class="witem witem-wide witem-video reveal d1" data-wcat="kitchen">
         <video src="1211(8).mp4" autoplay loop muted playsinline></video>
         <div class="witem-ov"><span class="wlabel">Showroom — Kitchen Setup</span></div>
       </div>
@@ -646,7 +667,7 @@ footer{padding:60px 8vw 36px;border-top:1px solid rgba(201,168,76,.07)}
         <p style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--gold);opacity:.55;font-style:normal;margin-top:28px;line-height:1.8">All orders follow a structured workflow ensuring traceability and minimal rework. Our machines meet international standards.</p>
       </div>
       <div class="mfg-visual from-right">
-        <img src="https://images.unsplash.com/photo-1605371924599-2d0365da1ae0?auto=format&fit=crop&w=1200&q=80" alt="Woodworking machinery">
+        <img src="kitchen-city-view.jpg" alt="Klever Küche — Overlooking Addis Ababa">
       </div>
     </div>
 
