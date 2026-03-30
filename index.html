@@ -3,875 +3,831 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Klever Küche — Premium Custom Furniture, Addis Ababa</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<title>KLEVER KITCHEN — Supermatt Collection</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+/* ╔══════════════════════════════════
+   TOKENS
+   Cream · Terracotta · Charcoal
+══════════════════════════════════╗ */
 :root{
-  --cream:#f5f0e8;--black:#060606;--gold:#c9a84c;--gold2:#e8c96a;
-  --warm:#0e0b07;--warm2:#181410;--glass:rgba(255,255,255,0.04);
-  --glass-border:rgba(201,168,76,0.15);
+  --bg:   #F3EDE3;
+  --bg2:  #E9E1D4;
+  --bg3:  #DDD5C6;
+  --ink:  #1A1510;
+  --ink2: #2A2318;
+  --ink3: #3A3228;
+  --tc:   #CC4A08; /* terracotta */
+  --tc2:  #E8632A; /* light terracotta */
+  --sage: #7A9E78;
+  --gold: #B07A1C;
+  --char: #232323; /* charcoal */
+  --ice:  #F8F5F0;
 }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--black);color:var(--cream);font-family:'Cormorant Garamond',serif;overflow-x:hidden;}
+body{background:var(--bg);color:var(--ink);font-family:'DM Mono',monospace;font-weight:300;overflow-x:hidden;cursor:none}
 
-/* NOISE */
-body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");pointer-events:none;z-index:8000;opacity:.5}
+/* ══ LOADER ══════════════════════ */
+#ldr{position:fixed;inset:0;z-index:9999;background:var(--ink);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;transition:opacity .6s .1s,visibility .6s .1s}
+#ldr.gone{opacity:0;visibility:hidden}
+.ldr-logo{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,8vw,100px);letter-spacing:8px;color:var(--bg)}
+.ldr-bar{width:200px;height:1px;background:rgba(255,255,255,.1);position:relative;overflow:hidden}
+.ldr-bar::after{content:'';position:absolute;inset:0;background:var(--tc);transform-origin:left;transform:scaleX(0);animation:ldrfill 1.8s cubic-bezier(.86,0,.07,1) forwards}
+@keyframes ldrfill{to{transform:scaleX(1)}}
+.ldr-pct{font-size:10px;letter-spacing:4px;color:rgba(255,255,255,.3)}
 
-/* PARTICLES */
-#particles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.particle{position:absolute;width:2px;height:2px;background:var(--gold);border-radius:50%;opacity:0;animation:particleFly linear infinite}
-@keyframes particleFly{0%{opacity:0;transform:translateY(100vh) scale(0)}10%{opacity:.6}90%{opacity:.15}100%{opacity:0;transform:translateY(-20px) scale(.5)}}
+/* ══ CURSOR ══════════════════════ */
+#cur{position:fixed;width:10px;height:10px;background:var(--tc);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s,border-radius .2s}
+#cur2{position:fixed;width:34px;height:34px;border:1px solid rgba(204,74,8,.4);border-radius:50%;pointer-events:none;z-index:9997;transform:translate(-50%,-50%);transition:width .3s,height .3s,opacity .3s}
+body.hov #cur{width:52px;height:52px;background:transparent;border:1px solid var(--tc);border-radius:50%}
+body.hov #cur2{opacity:0}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 48px;display:flex;justify-content:space-between;align-items:center;transition:all .4s}
-nav.scrolled{background:rgba(6,6,6,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.08)}
-.logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+/* ══ NOISE ═══════════════════════ */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9000;opacity:.25;
+background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E")}
 
-/* ✨ SHINY PREMIUM LOGO BADGE ✨ */
-.logo img{
-  height:42px;
-  width:auto;
-  object-fit:contain;
-  background:linear-gradient(135deg, #ffffff 0%, #fdfbf7 40%, #e8e2d2 100%);
-  padding:6px 14px;
-  border-radius:8px;
-  border:1px solid rgba(201,168,76,0.4);
-  box-shadow:0 4px 15px rgba(201,168,76,0.15), inset 0 2px 3px rgba(255,255,255,0.9);
-  transition:transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s;
-}
-.logo:hover img {
-  transform: translateY(-2px);
-  box-shadow:0 6px 20px rgba(201,168,76,0.35), inset 0 2px 3px rgba(255,255,255,0.9);
-}
+/* ══ FLOATING SOCIALS ════════════ */
+.sbar{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:600;display:flex;flex-direction:column;gap:6px}
+.sb{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;text-decoration:none;cursor:none;position:relative;transition:transform .3s cubic-bezier(.34,1.56,.64,1);animation:sbin .6s cubic-bezier(.34,1.56,.64,1) both;border:1px solid rgba(0,0,0,.08)}
+.sb:hover{transform:scale(1.3) translateX(-4px)!important}
+.sb-ig{background:linear-gradient(135deg,#f09433,#dc2743,#bc1888);animation-delay:.1s}
+.sb-tk{background:#000;animation-delay:.17s}
+.sb-tg{background:#229ED9;animation-delay:.24s}
+.sb-wa{background:#25D366;animation-delay:.31s}
+.sb-em{background:var(--tc);animation-delay:.38s}
+.sb-tip{position:absolute;right:54px;top:50%;transform:translateY(-50%) translateX(6px);background:var(--ink);border:1px solid rgba(204,74,8,.2);padding:4px 9px;white-space:nowrap;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--tc2);opacity:0;pointer-events:none;transition:.18s;border-radius:4px}
+.sb:hover .sb-tip{opacity:1;transform:translateY(-50%) translateX(0)}
+@keyframes sbin{from{opacity:0;transform:translateX(44px)}to{opacity:1;transform:none}}
 
-.nav-links{display:flex;gap:32px;list-style:none}
-.nav-links a{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--cream);text-decoration:none;opacity:.5;transition:opacity .3s,color .3s;position:relative;}
-.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .3s}
-.nav-links a:hover,.nav-links a.active{opacity:1;color:var(--gold)}
-.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
-.nav-cta{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--black);background:var(--gold);padding:11px 22px;text-decoration:none;border-radius:6px;transition:background .3s,transform .3s}
-.nav-cta:hover{background:var(--gold2);transform:translateY(-1px)}
-.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
-.burger span{width:24px;height:1px;background:var(--gold);transition:.3s}
-.mob-menu{display:none;position:fixed;inset:0;background:rgba(6,6,6,.98);backdrop-filter:blur(30px);z-index:999;flex-direction:column;justify-content:center;align-items:center;gap:36px}
-.mob-menu.open{display:flex}
-.mob-menu a{font-family:'Bebas Neue',sans-serif;font-size:52px;letter-spacing:4px;color:var(--cream);text-decoration:none;transition:color .3s;}
-.mob-menu a:hover{color:var(--gold)}
-.mob-close{position:absolute;top:28px;right:48px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--gold);cursor:pointer;opacity:.6}
+/* ══ NAV ═════════════════════════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:800;padding:18px 48px;display:flex;justify-content:space-between;align-items:center;transition:all .4s}
+nav.sc{background:rgba(243,237,227,.97);backdrop-filter:blur(24px);border-bottom:1px solid rgba(26,21,16,.08)}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:6px;text-decoration:none;cursor:none;display:flex;gap:0;align-items:center}
+.logo .l1{color:var(--tc)}
+.logo .l2{color:var(--ink)}
+.logo .l3{color:var(--sage);font-size:12px;margin-left:3px}
+.nl{display:flex;gap:28px;list-style:none}
+.nl a{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--ink);opacity:.45;text-decoration:none;transition:.3s;cursor:none;position:relative}
+.nl a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--tc);transform:scaleX(0);transition:.3s;transform-origin:left}
+.nl a:hover,.nl a.on{opacity:1;color:var(--tc)}
+.nl a:hover::after,.nl a.on::after{transform:scaleX(1)}
+.ncta{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--ice);background:var(--ink);padding:10px 18px;text-decoration:none;cursor:none;transition:.3s}
+.ncta:hover{background:var(--tc)}
+.brg{display:none;flex-direction:column;gap:4px;cursor:none}
+.brg span{width:22px;height:1px;background:var(--ink);transition:.3s}
+.mob{display:none;position:fixed;inset:0;background:var(--ink);z-index:999;flex-direction:column;justify-content:center;align-items:center;gap:28px}
+.mob.on{display:flex}
+.mob a{font-family:'Bebas Neue',sans-serif;font-size:56px;letter-spacing:4px;color:var(--bg);text-decoration:none;cursor:none;transition:.3s;opacity:0;animation:mIn .4s ease both}
+@keyframes mIn{to{opacity:1}}
+.mob a:hover{color:var(--tc)}
+.mobx{position:absolute;top:22px;right:44px;font-size:9px;letter-spacing:3px;color:var(--tc);cursor:none;opacity:.6}
 
-/* SHARED */
+/* ══ SHARED ══════════════════════ */
 section{position:relative;overflow:hidden}
-.z1{position:relative;z-index:1}
-.grid-lines{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(201,168,76,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.025) 1px,transparent 1px);background-size:80px 80px}
-.sec-tag{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);opacity:.7;display:flex;align-items:center;gap:16px;margin-bottom:20px}
-.sec-tag::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--gold),transparent);opacity:.2}
-.reveal{opacity:0;transform:translateY(36px);transition:opacity .9s ease,transform .9s ease}
-.reveal.vis{opacity:1;transform:translateY(0)}
-.from-left{opacity:0;transform:translateX(-40px);transition:opacity .9s ease,transform .9s ease}
-.from-left.vis{opacity:1;transform:translateX(0)}
-.from-right{opacity:0;transform:translateX(40px);transition:opacity .9s ease,transform .9s ease}
-.from-right.vis{opacity:1;transform:translateX(0)}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+.z1{position:relative;z-index:2}
+/* dotted grid */
+.dotgrid{position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:radial-gradient(circle,rgba(26,21,16,.1) 1px,transparent 1px);
+  background-size:32px 32px}
+/* dark section dotgrid */
+.dotgrid-light{position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:radial-gradient(circle,rgba(255,255,255,.08) 1px,transparent 1px);
+  background-size:32px 32px}
+.stag{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--tc);display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.stag::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--tc),transparent);opacity:.25}
 
-/* GLOBAL ROUNDED CORNERS */
-.pcard, .kscard, .mat-card, .scard, .show-item, .adetail, .vcard, .ccard, .soc, .glass-card {
-  border-radius: 12px;
-}
+/* REVEALS */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .85s ease,transform .85s cubic-bezier(.16,1,.3,1)}
+.rvX{opacity:0;transform:perspective(800px) rotateX(-34deg) translateY(36px) scale(.97);transition:opacity .85s ease,transform .85s cubic-bezier(.16,1,.3,1)}
+.rvL{opacity:0;transform:perspective(800px) rotateY(32deg) translateX(-28px);transition:opacity .85s ease,transform .85s cubic-bezier(.16,1,.3,1)}
+.rvR{opacity:0;transform:perspective(800px) rotateY(-32deg) translateX(28px);transition:opacity .85s ease,transform .85s cubic-bezier(.16,1,.3,1)}
+.rvZ{opacity:0;transform:scale(.88) rotate(-1deg);transition:opacity .85s ease,transform .85s cubic-bezier(.16,1,.3,1)}
+.vis{opacity:1!important;transform:none!important}
+.d1{transition-delay:.07s}.d2{transition-delay:.14s}.d3{transition-delay:.21s}
+.d4{transition-delay:.28s}.d5{transition-delay:.35s}.d6{transition-delay:.42s}
+.d7{transition-delay:.49s}.d8{transition-delay:.56s}
 
-/* ORB */
-.orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;animation:orbf 9s ease-in-out infinite}
-@keyframes orbf{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.05)}}
-
-/* BUTTONS */
-.btn{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:16px 36px;text-decoration:none;position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:10px;transition:color .4s;border-radius:6px;}
-.btn-gold{color:var(--black);background:var(--gold)}
-.btn-gold::before{content:'';position:absolute;inset:0;background:var(--gold2);transform:translateX(-100%);transition:transform .4s cubic-bezier(.25,.46,.45,.94)}
-.btn-gold:hover::before{transform:translateX(0)}
-.btn-outline{color:var(--gold);border:1px solid rgba(201,168,76,.4)}
-.btn-outline::before{content:'';position:absolute;inset:0;background:var(--gold);transform:translateX(-100%);transition:transform .4s cubic-bezier(.25,.46,.45,.94)}
-.btn-outline:hover{color:var(--black)}
-.btn-outline:hover::before{transform:translateX(0)}
+/* BTN */
+.btn{font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:14px 28px;text-decoration:none;cursor:none;position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:8px;transition:color .35s}
 .btn span{position:relative;z-index:1}
+.btn-dark{color:var(--ice);background:var(--ink)}
+.btn-dark::before{content:'';position:absolute;inset:0;background:var(--tc);transform:translateX(-101%);transition:.42s cubic-bezier(.25,.46,.45,.94)}
+.btn-dark:hover::before{transform:translateX(0)}
+.btn-tc{color:var(--ice);background:var(--tc)}
+.btn-tc::before{content:'';position:absolute;inset:0;background:var(--tc2);transform:translateX(-101%);transition:.42s cubic-bezier(.25,.46,.45,.94)}
+.btn-tc:hover::before{transform:translateX(0)}
+.btn-out{color:var(--ink);border:1px solid rgba(26,21,16,.3)}
+.btn-out::before{content:'';position:absolute;inset:0;background:var(--ink);transform:translateX(-101%);transition:.42s cubic-bezier(.25,.46,.45,.94)}
+.btn-out:hover{color:var(--ice)}
+.btn-out:hover::before{transform:translateX(0)}
 
-/* HERO */
-#home{height:100vh;min-height:700px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:0 10vw;position:relative}
-.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
-.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.22) saturate(.7)}
-.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,rgba(6,6,6,.85) 40%,rgba(6,6,6,.3) 100%)}
-.hero-eyebrow{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;opacity:0;animation:fadeUp 1s .4s both}
-.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(68px,13vw,175px);line-height:.9;letter-spacing:2px;opacity:0;animation:fadeUp 1s .6s both}
-.hero-title .g{color:var(--gold)}
-.hero-title .o{-webkit-text-stroke:1px rgba(201,168,76,.4);color:transparent}
-.hero-sub{font-style:italic;font-weight:300;font-size:clamp(15px,1.8vw,19px);color:var(--cream);opacity:0;animation:fadeUp 1s .85s both;margin-top:24px;max-width:460px;line-height:1.75}
-.hero-sub strong{color:var(--gold);font-style:normal}
-.hero-btns{display:flex;gap:16px;margin-top:44px;opacity:0;animation:fadeUp 1s 1.05s both;flex-wrap:wrap}
-.hero-badge{position:absolute;right:8vw;top:50%;transform:translateY(-50%);width:140px;height:140px;border-radius:50%;border:1px solid rgba(201,168,76,.2);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4px;opacity:0;animation:spin-badge 20s linear infinite, fadeIn 1s 1.4s both;background:rgba(8,8,8,.6);backdrop-filter:blur(10px)}
-@keyframes spin-badge{from{transform:translateY(-50%) rotate(0)}to{transform:translateY(-50%) rotate(360deg)}}
-.badge-num{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--gold);line-height:1}
-.badge-label{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--cream);opacity:.5}
-.hero-stats{position:absolute;bottom:10vh;right:8vw;display:flex;gap:48px;opacity:0;animation:fadeIn 1s 1.3s both}
-.stat-n{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--gold);line-height:1}
-.stat-l{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--cream);opacity:.4;margin-top:4px}
-.scroll-hint{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeIn 1s 1.6s both}
-.scroll-hint span{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);opacity:.5}
-.scroll-line{width:1px;height:50px;background:linear-gradient(var(--gold),transparent);animation:scrollAnim 2s ease-in-out infinite}
-@keyframes scrollAnim{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-
-/* MARQUEE */
-.mq{padding:48px 0;overflow:hidden;border-top:1px solid rgba(201,168,76,.07);border-bottom:1px solid rgba(201,168,76,.07)}
-.mq-track{display:flex;animation:mq 24s linear infinite;white-space:nowrap}
-.mq-track:hover{animation-play-state:paused}
-.mi{font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:4px;padding:0 44px;flex-shrink:0;color:var(--cream);opacity:.07;transition:opacity .3s}
-.mi.ac{color:var(--gold);opacity:.3}
-.mi:hover{opacity:.5!important}
-.mdot{font-size:10px;color:var(--gold);opacity:.3;align-self:center;flex-shrink:0}
-@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* PRODUCTS */
-#products{padding:120px 8vw 100px}
-.prod-head h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,7vw,95px);line-height:.93;margin-top:16px}
-.prod-head h2 span{color:var(--gold)}
-.prod-tabs{display:flex;gap:3px;margin:48px 0;flex-wrap:wrap}
-.ptab{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--cream);opacity:.4;padding:10px 20px;border:1px solid rgba(201,168,76,.1);cursor:pointer;border-radius:6px;transition:all .3s;background:transparent}
-.ptab.active,.ptab:hover{opacity:1;color:var(--gold);border-color:rgba(201,168,76,.4);background:rgba(201,168,76,.05)}
-.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.pcard{position:relative;overflow:hidden;aspect-ratio:3/4;background:var(--warm2);transition:transform .4s; cursor:pointer;}
-.pcard:hover{transform:scale(.98)}
-.pcard-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .9s cubic-bezier(.25,.46,.45,.94)}
-.pcard:hover .pcard-img{transform:scale(1.09)}
-.pcard-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 0%,rgba(6,6,6,.93) 100%);z-index:2;transition:opacity .5s}
-.pcard:hover .pcard-overlay{opacity:.75}
-.pcard-glow{position:absolute;inset:0;z-index:1;opacity:0;transition:opacity .5s}
-.pcard:hover .pcard-glow{opacity:1}
-.pcard-num{position:absolute;top:-15px;right:-5px;z-index:2;font-family:'Bebas Neue',sans-serif;font-size:170px;color:var(--gold);opacity:.04;line-height:1;pointer-events:none;transition:opacity .5s,transform .5s}
-.pcard:hover .pcard-num{opacity:.1;transform:scale(1.04) translateY(-8px)}
-.bracket{position:absolute;width:20px;height:20px;z-index:5;opacity:.2;transition:all .4s}
-.pcard:hover .bracket{opacity:.7;width:28px;height:28px}
-.btl{top:14px;left:14px;border-top:1px solid var(--gold);border-left:1px solid var(--gold)}
-.btr{top:14px;right:14px;border-top:1px solid var(--gold);border-right:1px solid var(--gold)}
-.pcontent{position:absolute;bottom:0;left:0;right:0;z-index:3;padding:40px 32px}
-.ptag{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;opacity:.8;transform:translateY(8px);transition:transform .5s}
-.pcard:hover .ptag{transform:translateY(0)}
-.pname{font-family:'Bebas Neue',sans-serif;font-size:clamp(30px,3.5vw,52px);letter-spacing:2px;color:var(--cream);line-height:1;margin-bottom:12px;transform:translateY(8px);transition:transform .5s .04s}
-.pcard:hover .pname{transform:translateY(0)}
-.pdesc{font-style:italic;font-weight:300;font-size:14px;color:var(--cream);opacity:0;line-height:1.7;max-height:0;overflow:hidden;transition:opacity .5s .1s,max-height .5s}
-.pcard:hover .pdesc{opacity:.7;max-height:80px}
-.plink{display:inline-flex;align-items:center;gap:10px;margin-top:16px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);text-decoration:none;opacity:0;transform:translateX(-10px);transition:opacity .4s .15s,transform .4s .15s}
-.plink::after{content:'→';transition:transform .3s}
-.plink:hover::after{transform:translateX(5px)}
-.pcard:hover .plink{opacity:1;transform:translateX(0)}
-.pcard::after{content:'';position:absolute;inset:0;z-index:4;border:1px solid var(--gold);border-radius:12px;opacity:0;pointer-events:none;transition:opacity .4s}
-.pcard:hover::after{opacity:.18}
-.tilt{transform-style:preserve-3d;transition:transform .1s ease}
-
-/* Kitchen sub */
-.ksub{margin-top:80px;display:none}
-.ksubgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.kscard{position:relative;overflow:hidden;aspect-ratio:1;background:var(--warm)}
-.kscard-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .7s}
-.kscard:hover .kscard-img{transform:scale(1.1)}
-.kscard-ov{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(6,6,6,.85) 100%);z-index:1}
-.kscard-c{position:absolute;bottom:24px;left:24px;right:24px;z-index:2}
-.kscard-name{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:2px;color:var(--cream)}
-.kscard-tag{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.7;text-transform:uppercase}
-
-/* WORKS / VIDEOS */
-#works{padding:120px 8vw 100px;background:var(--warm)}
-.works-head h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,7vw,95px);line-height:.93;margin-top:16px}
-.works-head h2 span{color:var(--gold)}
-.wfilter{display:flex;gap:3px;margin:40px 0;flex-wrap:wrap}
-.wfbtn{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--cream);opacity:.4;padding:9px 18px;border:1px solid rgba(201,168,76,.1);border-radius:6px;cursor:pointer;transition:all .3s;background:transparent}
-.wfbtn.active,.wfbtn:hover{opacity:1;color:var(--gold);border-color:rgba(201,168,76,.4)}
-
-/* ✨ FIXED MASONRY GALLERY GRID ✨ */
-.wgrid{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 280px; 
-  gap: 16px;
-  grid-auto-flow: dense; 
+/* ╔══════════════════════════════════
+   WORLD 1 — HERO
+   Full-bleed split: text left, Nobilia image right
+══════════════════════════════════╗ */
+#home{
+  min-height:100vh;display:grid;
+  grid-template-columns:55% 45%;
+  position:relative;padding-top:80px;
 }
-.witem {
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
-  background: var(--warm2);
+/* amber line divider */
+#home::after{content:'';position:absolute;top:10%;bottom:10%;left:55%;width:1px;background:linear-gradient(180deg,transparent,var(--tc),transparent);opacity:.2;z-index:3}
+
+.h-left{display:flex;flex-direction:column;justify-content:center;padding:60px 6vw 60px 7vw;position:relative;z-index:2}
+.h-right{position:relative;overflow:hidden;background:var(--bg2)}
+
+/* hero image with overlay */
+.h-img{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  transition:transform .1s ease;
 }
-/* Absolute Positioning stretches images/videos perfectly inside their boxes */
-.witem img, .witem video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover !important; /* Forces images and video to fill the space without black borders */
-  display: block;
-  transition: transform .8s ease, filter .4s;
-  filter: brightness(.88) saturate(.75);
-}
-.witem:hover img, .witem:hover video {
-  transform: scale(1.05);
-  filter: brightness(1) saturate(1);
-}
-.witem-ov{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(6,6,6,.8) 100%);opacity:0;transition:opacity .4s;z-index:1;display:flex;align-items:flex-end;padding:24px; pointer-events:none;}
-.witem:hover .witem-ov{opacity:1}
-.wlabel{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
-
-/* Grid Span Sizes */
-.witem-sq { grid-column: span 1; grid-row: span 1; }
-.witem-wide { grid-column: span 2; grid-row: span 1; }
-.witem-tall { grid-column: span 1; grid-row: span 2; }
-.witem-large { grid-column: span 2; grid-row: span 2; }
-
-/* MATERIALS SECTION */
-#materials{padding:120px 8vw 100px}
-.mat-head h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,7vw,95px);line-height:.93;margin-top:16px}
-.mat-head h2 span{color:var(--gold)}
-.mat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:60px}
-.mat-card{background:var(--warm2);padding:40px 32px;position:relative;overflow:hidden;transition:background .4s}
-.mat-card:hover{background:var(--warm)}
-.mat-icon{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--gold);opacity:.2;margin-bottom:20px;line-height:1;transition:opacity .4s}
-.mat-card:hover .mat-icon{opacity:.6}
-.mat-title{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px;color:var(--cream);margin-bottom:12px}
-.mat-desc{font-style:italic;font-weight:300;font-size:15px;color:var(--cream);opacity:.5;line-height:1.7}
-
-/* MANUFACTURING */
-#mfg{padding:120px 8vw 100px;background:var(--warm)}
-.mfg-head h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,7vw,95px);line-height:.93;margin-top:16px}
-.mfg-head h2 span{color:var(--gold)}
-.mfg-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin:60px 0 80px}
-.mfg-text p{font-style:italic;font-weight:300;font-size:18px;line-height:1.85;color:var(--cream);opacity:.78;margin-bottom:20px}
-.mfg-text strong{color:var(--gold);font-style:normal}
-.mfg-visual{position:relative;overflow:hidden;aspect-ratio:4/3;background:var(--warm2)}
-.mfg-visual img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
-.mfg-visual:hover img{transform:scale(1.05)}
-.img-slot{position:absolute;bottom:14px;right:14px;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--gold);opacity:.3;text-transform:uppercase}
-.steps-title{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:3px;color:var(--cream);opacity:.6;margin-bottom:36px}
-.sgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:80px}
-.scard{padding:32px 22px;background:rgba(6,6,6,.4);border-top:2px solid transparent;transition:border-color .4s,background .4s;position:relative;overflow:hidden}
-.scard:hover{border-color:var(--gold);background:rgba(6,6,6,.8)}
-.snum{font-family:'Bebas Neue',sans-serif;font-size:54px;color:var(--gold);opacity:.12;line-height:1;transition:opacity .4s}
-.scard:hover .snum{opacity:.4}
-.sname{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;color:var(--cream);margin:8px 0 6px}
-.sdesc{font-family:'Space Mono',monospace;font-size:9px;color:var(--cream);opacity:.3;line-height:1.6}
-
-/* ABOUT */
-#about{padding:120px 8vw 100px}
-.about-head h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,7vw,95px);line-height:.93;margin-top:16px}
-.about-head h2 span{color:var(--gold)}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin:60px 0 80px}
-.about-text h3{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:3px;color:var(--gold);margin-bottom:24px}
-.about-text p{font-style:italic;font-weight:300;font-size:18px;line-height:1.85;color:var(--cream);opacity:.78;margin-bottom:18px}
-.about-text strong{color:var(--gold);font-style:normal}
-.about-details{display:flex;flex-direction:column;gap:18px}
-.adetail{padding:24px 28px;background:rgba(6,6,6,.5);border-left:2px solid rgba(201,168,76,.2);transition:border-color .3s}
-.adetail:hover{border-color:var(--gold)}
-.adet-l{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);opacity:.55;margin-bottom:6px}
-.adet-v{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--cream);font-weight:300}
-.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:80px}
-.vcard{padding:48px 36px;background:rgba(6,6,6,.4);border-top:1px solid rgba(201,168,76,.1);transition:background .4s,border-color .4s}
-.vcard:hover{background:rgba(6,6,6,.7);border-color:rgba(201,168,76,.4)}
-.vicon{font-family:'Bebas Neue',sans-serif;font-size:50px;color:var(--gold);opacity:.14;line-height:1;margin-bottom:16px;transition:opacity .4s}
-.vcard:hover .vicon{opacity:.5}
-.vtitle{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--cream);margin-bottom:12px}
-.vtext{font-style:italic;font-weight:300;font-size:14px;color:var(--cream);opacity:.48;line-height:1.7}
-
-.crow{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.ccard{padding:48px 40px;background:var(--warm2);transition:background .4s}
-.ccard:hover{background:var(--warm)}
-.ccard-l{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);opacity:.55;margin-bottom:20px}
-.ccard a,.ccard p{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream);font-weight:300;text-decoration:none;display:block;margin-bottom:6px;transition:color .3s;}
-.ccard a:hover{color:var(--gold)}
-
-/* CTA BAND */
-.cta-band{padding:120px 8vw;text-align:center;position:relative;overflow:hidden;background:var(--warm)}
-.cta-band::before{content:'KLEVER';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,20vw,280px);color:var(--gold);opacity:.025;letter-spacing:12px;pointer-events:none;white-space:nowrap;animation:breathe 5s ease-in-out infinite}
-@keyframes breathe{0%,100%{opacity:.025;transform:translate(-50%,-50%) scale(1)}50%{opacity:.042;transform:translate(-50%,-50%) scale(1.02)}}
-.cta-band .sec-tag{justify-content:center}
-.cta-band .sec-tag::after{display:none}
-.cta-band h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,110px);line-height:.93;margin:20px 0 24px}
-.cta-band h2 span{color:var(--gold)}
-.cta-band p{font-style:italic;font-weight:300;font-size:20px;color:var(--cream);opacity:.4;margin-bottom:48px}
-
-/* FOOTER & BOTTOM SOCIALS */
-footer{background:var(--black)}
-
-.bottom-socials {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  padding: 40px 8vw;
-  border-top: 1px solid rgba(201,168,76,.07);
-  border-bottom: 1px solid rgba(201,168,76,.07);
-  flex-wrap: wrap;
-}
-.sticker {
-  width: 56px;
-  height: 56px;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  font-size: 24px;
-  position: relative;
-  transition: transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s;
-}
-.sticker:hover {
-  transform: translateY(-8px) scale(1.1);
-  z-index: 10;
-}
-.sticker-ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);box-shadow:0 4px 15px rgba(220,39,67,.2)}
-.sticker-tk{background:#010101;border:1px solid rgba(255,255,255,.1);box-shadow:0 4px 15px rgba(0,0,0,.4)}
-.sticker-tg{background:#229ED9;box-shadow:0 4px 15px rgba(34,158,217,.2)}
-.sticker-wa{background:#25D366;box-shadow:0 4px 15px rgba(37,211,102,.2)}
-.sticker-mail{background:var(--gold);box-shadow:0 4px 15px rgba(201,168,76,.2)}
-
-.sticker-tooltip {
-  position: absolute;
-  bottom: 110%; 
-  left: 50%;
-  background: rgba(8,8,8,.9);
-  border: 1px solid var(--glass-border);
-  padding: 6px 12px;
-  border-radius: 6px;
-  white-space: nowrap;
-  font-family: 'Space Mono',monospace;
-  font-size: 9px;
-  letter-spacing: 2px;
-  color: var(--gold);
-  text-transform: uppercase;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .2s, transform .2s;
-  transform: translateX(-50%) translateY(10px);
-}
-.sticker:hover .sticker-tooltip {
-  opacity: 1;
-  transform: translateX(-50%) translateY(-5px);
+.h-img-overlay{position:absolute;inset:0;background:linear-gradient(270deg,rgba(243,237,227,0) 0%,rgba(243,237,227,.15) 100%);z-index:1}
+/* scrolling image caption */
+.h-img-tag{
+  position:absolute;bottom:24px;right:24px;z-index:2;
+  font-size:8px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--ink);opacity:.5;
+  background:rgba(243,237,227,.85);padding:6px 12px;backdrop-filter:blur(8px);
 }
 
-.ft{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;padding:60px 8vw;flex-wrap:wrap}
-.fb .logo{display:flex;align-items:center;gap:12px;margin-bottom:16px;text-decoration:none;}
+/* hero text */
+.h-eyebrow{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--tc);margin-bottom:20px;display:flex;align-items:center;gap:10px;opacity:0;animation:fU 1s .5s both}
+.h-eyebrow::before{content:'';width:28px;height:1px;background:var(--tc);opacity:.5}
+.h-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,8.5vw,140px);line-height:.88;letter-spacing:1px;opacity:0;animation:fU 1s .7s both}
+.h-title .t1{display:block;color:var(--ink)}
+.h-title .t2{display:block;color:var(--tc);letter-spacing:3px}
+.h-title .t3{display:block;color:transparent;-webkit-text-stroke:1.5px var(--ink3);opacity:.3}
+/* wave underline on t2 */
+.h-title .t2{position:relative;display:inline-block}
+.h-title .t2::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--tc),var(--tc2),var(--sage));animation:wv 2s ease-in-out infinite alternate}
+@keyframes wv{from{transform:scaleX(.3);transform-origin:left}to{transform:scaleX(1);transform-origin:left}}
 
-/* ✨ SHINY PREMIUM LOGO BADGE (FOOTER) ✨ */
-.fb .logo img{
-  height:48px;
-  width:auto;
-  object-fit:contain;
-  background:linear-gradient(135deg, #ffffff 0%, #fdfbf7 40%, #e8e2d2 100%);
-  padding:8px 16px;
-  border-radius:8px;
-  border:1px solid rgba(201,168,76,0.4);
-  box-shadow:0 4px 15px rgba(201,168,76,0.15), inset 0 2px 3px rgba(255,255,255,0.9);
+.h-sub{font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(14px,1.5vw,18px);line-height:1.85;color:var(--ink);opacity:0;animation:fU 1s .9s both;margin-top:20px;max-width:420px}
+.h-sub strong{font-style:normal;font-family:'DM Mono',monospace;font-size:.85em;letter-spacing:2px;color:var(--tc)}
+.h-btns{display:flex;gap:10px;margin-top:32px;flex-wrap:wrap;opacity:0;animation:fU 1s 1.05s both}
+/* stats */
+.h-stats{display:flex;gap:0;margin-top:44px;border-top:1px solid rgba(26,21,16,.1);opacity:0;animation:fU 1s 1.2s both}
+.hstat{padding:18px 24px 18px 0;margin-right:24px;border-right:1px solid rgba(26,21,16,.08)}
+.hstat:last-child{border:none}
+.hstat-n{font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--tc);line-height:1}
+.hstat-l{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--ink);opacity:.45;margin-top:2px}
+
+.scrollind{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;z-index:3;opacity:0;animation:fI 1s 1.7s both}
+.scrollind span{font-size:7px;letter-spacing:4px;text-transform:uppercase;color:var(--ink);opacity:.35}
+.scl{width:1px;height:44px;background:linear-gradient(var(--tc),transparent);animation:scla 2s ease-in-out infinite}
+@keyframes scla{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@keyframes fU{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes fI{from{opacity:0}to{opacity:1}}
+
+/* ╔══════════════════════════════════
+   MARQUEE — dark bg skewed
+══════════════════════════════════╗ */
+.mqs{background:var(--ink);overflow:hidden;padding:0;transform:skewY(-1deg);margin:-8px 0;position:relative;z-index:5}
+.mqs-in{transform:skewY(1deg);padding:12px 0;display:flex;flex-direction:column}
+.mqrow{overflow:hidden;padding:5px 0}
+.mqt{display:flex;white-space:nowrap;animation:mq1 28s linear infinite}
+.mqt.rv2{animation:mq2 24s linear infinite}
+.mqt:hover,.mqt.rv2:hover{animation-play-state:paused}
+.mi{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:5px;padding:0 32px;flex-shrink:0;color:var(--bg);opacity:.12;transition:.3s;cursor:default}
+.mi:hover{opacity:.45}
+.mi.ac{color:var(--tc);opacity:.4}
+.mi.ac:hover{opacity:.75}
+.mdot{font-size:8px;color:var(--tc);opacity:.35;align-self:center;flex-shrink:0}
+@keyframes mq1{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes mq2{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+
+/* ╔══════════════════════════════════
+   WORLD 2 — COLLECTION FLIP CARDS
+   Horizontal drag, rotateX flip
+══════════════════════════════════╗ */
+#collection{padding:100px 0 80px;background:var(--bg2)}
+.w2h{padding:0 7vw;margin-bottom:48px}
+.w2h h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,6vw,90px);line-height:.9;margin-top:12px;color:var(--ink)}
+.w2h h2 .tc{color:var(--tc)}
+.w2h p{font-family:'Instrument Serif',serif;font-style:italic;font-size:16px;opacity:.5;margin-top:10px;max-width:420px;line-height:1.75}
+
+/* horizontal drag */
+.htrack{display:flex;gap:3px;padding:0 7vw 0;overflow-x:auto;cursor:grab;user-select:none;-webkit-user-select:none;scrollbar-width:none}
+.htrack:active{cursor:grabbing}
+.htrack::-webkit-scrollbar{display:none}
+
+/* rotateX flip card */
+.fc{flex-shrink:0;width:280px;perspective:1200px;cursor:none}
+.fci{width:100%;aspect-ratio:2/3;transform-style:preserve-3d;transition:transform .88s cubic-bezier(.16,1,.3,1)}
+.fc:hover .fci{transform:rotateX(-180deg)}
+.fcf,.fcb{position:absolute;inset:0;backface-visibility:hidden;overflow:hidden}
+.fcf{background:var(--bg3)}
+.fcf img{width:100%;height:100%;object-fit:cover;transition:transform .7s,filter .4s}
+.fc:hover .fcf img{transform:scale(1.06);filter:brightness(.75) saturate(.6)}
+/* gradient overlay on front */
+.fcf::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,21,16,.92) 100%)}
+/* front label */
+.fcfl{position:absolute;bottom:0;left:0;right:0;padding:22px 18px;z-index:2}
+.fcfl-tag{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--tc2);margin-bottom:4px}
+.fcfl-name{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:var(--ice)}
+.fcfl-sub{font-size:8px;letter-spacing:2px;color:rgba(255,255,255,.4);margin-top:2px}
+/* corner brackets */
+.bk{position:absolute;width:18px;height:18px;opacity:.2;transition:all .4s}
+.fc:hover .bk{opacity:.7;width:24px;height:24px}
+.bktl{top:12px;left:12px;border-top:1px solid var(--tc);border-left:1px solid var(--tc)}
+.bkbr{bottom:12px;right:12px;border-bottom:1px solid var(--tc2);border-right:1px solid var(--tc2)}
+/* back */
+.fcb{background:var(--ink2);transform:rotateX(-180deg);display:flex;flex-direction:column;padding:22px 18px;gap:10px;border:1px solid rgba(204,74,8,.12)}
+.fcb-hd{display:flex;justify-content:space-between;align-items:flex-start}
+.fcb-name{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--tc2);letter-spacing:.3px}
+.fcb-num{font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--tc);opacity:.12;line-height:1}
+.fcb-code{font-size:7px;letter-spacing:2px;color:rgba(255,255,255,.3);margin-top:-5px}
+.spec-list{display:flex;flex-direction:column;gap:5px;flex:1}
+.spec-r{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.spec-r:last-child{border:none}
+.sk{font-size:7px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35)}
+.sv{font-size:7px;letter-spacing:1px;color:var(--tc2);text-align:right}
+.sw-g{display:grid;grid-template-columns:repeat(5,1fr);gap:3px}
+.sw{width:100%;aspect-ratio:1;border-radius:3px;cursor:none;transition:.18s;position:relative}
+.sw:hover{transform:scale(1.25);box-shadow:0 0 8px rgba(204,74,8,.3)}
+.sw::after{content:attr(title);position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);background:var(--ink);color:var(--tc2);font-size:6px;letter-spacing:1px;padding:2px 5px;white-space:nowrap;opacity:0;pointer-events:none;transition:.15s}
+.sw:hover::after{opacity:1}
+.fcb-cta{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--ink);background:var(--tc);padding:9px;text-align:center;text-decoration:none;cursor:none;transition:.3s;margin-top:auto}
+.fcb-cta:hover{background:var(--tc2)}
+.drag-hint{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--ink);opacity:.3;text-align:center;margin-top:18px}
+
+/* ╔══════════════════════════════════
+   WORLD 3 — GALLERY
+   Nobilia photos, bento grid, dark bg
+══════════════════════════════════╗ */
+#gallery{padding:100px 7vw 80px;background:var(--ink)}
+.w3h{margin-bottom:52px}
+.w3h h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,6vw,90px);line-height:.9;margin-top:12px;color:var(--bg)}
+.w3h h2 .tc{color:var(--tc)}
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:2px}
+.bw{position:relative;overflow:hidden;cursor:none;background:var(--ink2)}
+.bw img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .85s cubic-bezier(.25,.46,.45,.94),filter .4s;filter:brightness(.88) saturate(.75)}
+.bw:hover img{transform:scale(1.06);filter:brightness(1) saturate(1)}
+.bw-ov{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;background:linear-gradient(180deg,transparent 40%,rgba(26,21,16,.9) 100%);opacity:0;transition:.35s}
+.bw:hover .bw-ov{opacity:1}
+.bw-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--bg)}
+.bw-tag{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--tc2)}
+/* placeholder tile */
+.bph{position:relative;overflow:hidden;cursor:none;background:var(--ink3);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;transition:.35s}
+.bph:hover{background:#2A2318}
+.bph::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 18px,rgba(204,74,8,.015) 18px,rgba(204,74,8,.015) 19px)}
+.bph-n{font-family:'Bebas Neue',sans-serif;font-size:60px;color:var(--tc);opacity:.07;line-height:1;transition:.35s}
+.bph:hover .bph-n{opacity:.2}
+.bph-l{font-size:7px;letter-spacing:3px;text-transform:uppercase;color:var(--tc);opacity:.2}
+/* bento layout */
+.b1{grid-column:span 7;aspect-ratio:16/9}
+.b2{grid-column:span 5;aspect-ratio:4/3}
+.b3{grid-column:span 4;aspect-ratio:3/4}
+.b4{grid-column:span 4;aspect-ratio:4/3}
+.b5{grid-column:span 4;aspect-ratio:4/3}
+.b6{grid-column:span 5;aspect-ratio:16/9}
+.b7{grid-column:span 4;aspect-ratio:3/4}
+.b8{grid-column:span 3;aspect-ratio:4/3}
+.b9{grid-column:span 6;aspect-ratio:16/9}
+.b10{grid-column:span 6;aspect-ratio:16/9}
+
+/* ╔══════════════════════════════════
+   WORLD 4 — MATERIAL SELECTOR
+   Full split with wipe
+══════════════════════════════════╗ */
+#materials{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;background:var(--bg)}
+.mat-left{position:relative;overflow:hidden;background:var(--bg3)}
+.mat-img{width:100%;height:100%;min-height:100vh;object-fit:cover;transition:filter .6s ease}
+.mat-wipe{position:absolute;inset:0;background:var(--bg);z-index:2;transform:scaleX(0);transform-origin:left}
+.mat-grad{position:absolute;inset:0;background:linear-gradient(90deg,rgba(243,237,227,.2),transparent 60%);z-index:1;pointer-events:none}
+.mat-info{position:absolute;bottom:0;left:0;right:0;padding:40px;z-index:3;background:linear-gradient(transparent,rgba(26,21,16,.95))}
+.mi-tag{font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--tc);opacity:.7;margin-bottom:6px}
+.mi-name{font-family:'Bebas Neue',sans-serif;font-size:54px;letter-spacing:2px;color:var(--bg);line-height:1}
+.mi-sub{font-size:8px;letter-spacing:2px;color:rgba(255,255,255,.4);margin-top:4px}
+/* right panel */
+.mat-right{padding:56px 44px;display:flex;flex-direction:column;overflow-y:auto;max-height:100vh}
+.mat-right::-webkit-scrollbar{width:2px}
+.mat-right::-webkit-scrollbar-thumb{background:var(--tc)}
+.mr-head{margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid rgba(26,21,16,.1)}
+.mr-title{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--ink)}
+.mr-sub{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--ink);opacity:.4;margin-top:4px}
+.mrow{display:flex;align-items:center;gap:12px;padding:10px;cursor:none;transition:.25s;border-left:2px solid transparent;margin-bottom:2px}
+.mrow:hover,.mrow.on{background:rgba(204,74,8,.05);border-left-color:var(--tc)}
+.mdot{width:30px;height:30px;border-radius:4px;flex-shrink:0;border:1px solid rgba(26,21,16,.1);transition:.2s}
+.mrow:hover .mdot,.mrow.on .mdot{transform:scale(1.12);box-shadow:0 0 10px rgba(204,74,8,.2)}
+.minfo{flex:1}
+.mname{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--ink)}
+.mdesc{font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--ink);opacity:.35;margin-top:1px}
+.mbadge{font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--tc);opacity:0;transition:.25s;flex-shrink:0}
+.mrow.on .mbadge{opacity:.7}
+/* props strip */
+.mat-props{padding:14px 7vw;background:var(--bg2);display:flex;flex-wrap:wrap;gap:6px;min-height:50px}
+.dprop{font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--ink);opacity:.5;padding:4px 9px;border:1px solid rgba(26,21,16,.15);transition:.25s}
+.dprop:hover{border-color:var(--tc);opacity:.9;color:var(--tc)}
+
+/* ╔══════════════════════════════════
+   WORLD 5 — MODELS editorial list
+══════════════════════════════════╗ */
+#models{padding:100px 7vw 80px;background:var(--bg)}
+.w5h h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,6vw,90px);line-height:.9;margin-top:12px;color:var(--ink)}
+.w5h h2 .tc{color:var(--tc)}
+.mlist{margin-top:48px;border-top:1px solid rgba(26,21,16,.12)}
+.mline{
+  display:grid;grid-template-columns:56px 180px 1fr auto;gap:0;
+  padding:22px 0;border-bottom:1px solid rgba(26,21,16,.07);
+  cursor:none;position:relative;overflow:hidden;transition:background .25s;
 }
+.mline:hover{background:rgba(204,74,8,.03)}
+.mline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--tc),var(--sage));transform:scaleY(0);transform-origin:bottom;transition:.4s cubic-bezier(.16,1,.3,1)}
+.mline:hover::before{transform:scaleY(1)}
+.ml-n{font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--tc);opacity:.12;line-height:1;transition:.3s;padding-top:2px}
+.mline:hover .ml-n{opacity:.55}
+.ml-h{padding:0 20px}
+.ml-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:var(--ink)}
+.ml-code{font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--tc);opacity:.5;margin-top:3px}
+.ml-b .ml-desc{font-family:'Instrument Serif',serif;font-style:italic;font-size:14px;line-height:1.7;color:var(--ink);opacity:.55}
+.ml-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.mlt{font-size:7px;letter-spacing:1px;text-transform:uppercase;color:var(--ink);opacity:.35;padding:3px 7px;border:1px solid rgba(26,21,16,.12)}
+.ml-cta{display:flex;align-items:flex-start;padding-top:4px}
+.ml-cta a{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--tc);opacity:0;transition:.3s;text-decoration:none;cursor:none;white-space:nowrap;display:block}
+.ml-cta a::after{content:' →'}
+.mline:hover .ml-cta a{opacity:.8}
+.ml-b{padding-right:32px}
 
-.fb p{font-style:italic;font-weight:300;font-size:13px;color:var(--cream);opacity:.3;max-width:220px;line-height:1.7}
-.fn{display:flex;gap:56px;flex-wrap:wrap}
-.fnc h4{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);opacity:.55;margin-bottom:16px}
-.fnc a{display:block;font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--cream);opacity:.38;text-decoration:none;margin-bottom:8px;transition:opacity .3s,color .3s}
-.fnc a:hover{opacity:1;color:var(--gold)}
-.fb2{display:flex;justify-content:space-between;align-items:center;padding:24px 8vw;border-top:1px solid rgba(201,168,76,.05);flex-wrap:wrap;gap:16px}
-.fcopy{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--cream);opacity:.18}
+/* ╔══════════════════════════════════
+   WORLD 6 — PROCESS
+   Dark bg, number cards
+══════════════════════════════════╗ */
+#process{padding:100px 7vw 80px;background:var(--ink)}
+.w6h h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,6vw,90px);line-height:.9;margin-top:12px;color:var(--bg)}
+.w6h h2 .tc{color:var(--tc)}
+.pcards{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:48px}
+.pcard{padding:36px 26px;background:var(--ink2);border-top:2px solid transparent;transition:border-color .35s,background .35s;cursor:none;position:relative;overflow:hidden}
+.pcard::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% -20%,rgba(204,74,8,.07),transparent 70%);opacity:0;transition:.35s}
+.pcard:hover::after{opacity:1}
+.pcard:hover{border-color:var(--tc);background:var(--ink3)}
+.pc-n{font-family:'Bebas Neue',sans-serif;font-size:80px;line-height:1;transition:.35s}
+.pcard:nth-child(odd) .pc-n{color:var(--tc);opacity:.1}
+.pcard:nth-child(even) .pc-n{color:var(--sage);opacity:.1}
+.pcard:hover .pc-n{opacity:.5}
+.pc-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:var(--bg);margin:10px 0 5px}
+.pc-desc{font-size:9px;letter-spacing:1px;color:rgba(255,255,255,.3);line-height:1.65}
 
-/* ANIMATIONS */
-@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+/* ╔══════════════════════════════════
+   WORLD 7 — ABOUT
+   Warm cream, neon outline text
+══════════════════════════════════╗ */
+#about{padding:100px 7vw 80px;background:var(--bg2)}
+.w7h h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,6vw,90px);line-height:.9;margin-top:12px;color:var(--ink)}
+.w7h h2 .tc{color:var(--tc)}
+/* big outline word */
+.neon-out{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(60px,9vw,130px);
+  color:transparent;
+  -webkit-text-stroke:1.5px var(--tc);
+  line-height:.9;letter-spacing:3px;
+  opacity:.15;
+}
+/* glass stats */
+.gstats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin:48px 0}
+.gstat{padding:28px 22px;background:rgba(255,255,255,.5);border:1px solid rgba(26,21,16,.1);transition:.35s;cursor:none;backdrop-filter:blur(12px)}
+.gstat:hover{background:rgba(204,74,8,.06);border-color:rgba(204,74,8,.3)}
+.gs-n{font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--tc);line-height:1;margin-bottom:5px}
+.gs-l{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--ink);opacity:.4}
+/* grid */
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+.atext p{font-family:'Instrument Serif',serif;font-style:italic;font-size:18px;line-height:1.85;color:var(--ink);opacity:.7;margin-bottom:15px}
+.atext strong{font-style:normal;font-family:'DM Mono',monospace;font-size:.8em;letter-spacing:2px;color:var(--tc)}
+.adets{display:flex;flex-direction:column;gap:8px}
+.adet{padding:16px 18px;background:rgba(255,255,255,.6);border-left:2px solid rgba(204,74,8,.2);transition:.3s}
+.adet:hover{border-color:var(--tc);background:rgba(204,74,8,.04)}
+.adl{font-size:7px;letter-spacing:4px;text-transform:uppercase;color:var(--tc);opacity:.5;margin-bottom:3px}
+.adv{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;color:var(--ink)}
+/* contact */
+.crow{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:52px}
+.cc{padding:36px 32px;background:rgba(255,255,255,.5);transition:.35s}
+.cc:hover{background:rgba(204,74,8,.04)}
+.ccl{font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--tc);opacity:.5;margin-bottom:14px}
+.cc a,.cc p{font-family:'Instrument Serif',serif;font-style:italic;font-size:18px;color:var(--ink);text-decoration:none;display:block;margin-bottom:5px;transition:.3s;cursor:none;opacity:.75}
+.cc a:hover{color:var(--tc);opacity:1}
+.srow{display:flex;gap:2px;margin-top:2px;flex-wrap:wrap}
+.sr{flex:1;min-width:80px;padding:18px 12px;background:rgba(255,255,255,.4);text-align:center;text-decoration:none;cursor:none;transition:.3s;border-bottom:2px solid transparent}
+.sr:hover{background:rgba(204,74,8,.06);border-color:var(--tc);transform:translateY(-3px)}
+.srn{font-size:7px;letter-spacing:3px;text-transform:uppercase;color:var(--tc);opacity:.45;transition:.3s}
+.sr:hover .srn{opacity:1}
 
-/* ✨ RESPONSIVE MOBILE FIXES ✨ */
-@media(max-width:1100px){.sgrid,.mat-grid{grid-template-columns:repeat(2,1fr)}.pgrid{grid-template-columns:repeat(2,1fr)}.ksubgrid{grid-template-columns:repeat(2,1fr)}}
+/* ╔══════════════════════════════════
+   CTA WORLD — dark ink + terracotta
+══════════════════════════════════╗ */
+.cta-world{
+  min-height:80vh;background:var(--ink);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:80px 7vw;position:relative;overflow:hidden;
+}
+.cta-world::before{content:'KLEVER';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,20vw,260px);color:var(--tc);opacity:.03;letter-spacing:14px;white-space:nowrap;pointer-events:none;animation:breathe 5s ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:.03;transform:translate(-50%,-50%) scale(1)}50%{opacity:.05;transform:translate(-50%,-50%) scale(1.01)}}
+.cta-big{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,9vw,120px);line-height:.9;color:var(--bg);position:relative;z-index:2;margin-bottom:20px}
+.cta-big .tc{color:var(--tc)}
+.cta-p{font-family:'Instrument Serif',serif;font-style:italic;font-size:19px;color:var(--bg);opacity:.38;margin-bottom:44px;position:relative;z-index:2;max-width:440px}
+/* pulse rings */
+.cr{position:absolute;border-radius:50%;border:1px solid rgba(204,74,8,.06);pointer-events:none;animation:rp 5s ease-in-out infinite}
+@keyframes rp{0%,100%{transform:scale(1);opacity:.35}50%{transform:scale(1.04);opacity:.08}}
+
+/* ══ FOOTER ══════════════════════ */
+footer{padding:48px 7vw 28px;border-top:1px solid rgba(26,21,16,.1);background:var(--bg)}
+.ft{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;margin-bottom:36px;flex-wrap:wrap}
+.fb .logo{font-size:20px;display:block;margin-bottom:10px;cursor:default}
+.fb p{font-size:11px;color:var(--ink);opacity:.35;max-width:190px;line-height:1.7}
+.fn{display:flex;gap:44px;flex-wrap:wrap}
+.fnc h4{font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--tc);opacity:.5;margin-bottom:13px}
+.fnc a{display:block;font-size:12px;color:var(--ink);opacity:.35;text-decoration:none;margin-bottom:7px;cursor:none;transition:.3s}
+.fnc a:hover{opacity:1;color:var(--tc)}
+.fb2{display:flex;justify-content:space-between;align-items:center;padding-top:18px;border-top:1px solid rgba(26,21,16,.07);flex-wrap:wrap;gap:12px}
+.fcopy{font-size:8px;letter-spacing:2px;color:var(--ink);opacity:.25}
+
+/* ══ RESPONSIVE ══════════════════ */
+@media(max-width:1000px){
+  #home{grid-template-columns:1fr}.h-right{display:none}
+  #materials{grid-template-columns:1fr}.mat-left{display:none}
+  .agrid{grid-template-columns:1fr;gap:40px}
+  .gstats{grid-template-columns:repeat(2,1fr)}
+  .mline{grid-template-columns:40px 1fr}.ml-b,.ml-cta{display:none}
+  .pcards{grid-template-columns:repeat(2,1fr)}
+  .crow{grid-template-columns:1fr}
+  .bento{grid-template-columns:repeat(6,1fr)}
+  .b1{grid-column:span 4}.b2{grid-column:span 2}
+  .b3{grid-column:span 3}.b4{grid-column:span 3}.b5{grid-column:span 3}
+  .b6{grid-column:span 3}.b7{grid-column:span 2}.b8{grid-column:span 2}.b9{grid-column:span 3}.b10{grid-column:span 3}
+}
 @media(max-width:768px){
-  nav{padding:18px 24px}.nav-links,.nav-cta{display:none}.burger{display:flex}
-  #home{padding:0 6vw}.hero-stats,.hero-badge{display:none}.hero-btns{flex-direction:column}
-  
-  .pgrid,.ksubgrid,.mat-grid{grid-template-columns:1fr; gap:16px}
-  .mfg-intro,.about-grid{grid-template-columns:1fr;gap:40px}
-  .sgrid{grid-template-columns:repeat(2,1fr); gap:12px}
-  .vgrid,.crow{grid-template-columns:1fr; gap:16px}
-  #products,#works,#materials,#mfg,#about{padding:80px 6vw 60px}
-  
-  /* PERFECT MOBILE GALLERY PROPORTIONS */
-  .wgrid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
-  .witem-large { grid-column: span 2; grid-row: span 2; }
-  .witem-wide { grid-column: span 2; grid-row: span 1; }
-  .witem-tall { grid-column: span 1; grid-row: span 2; }
-  .witem-sq { grid-column: span 1; grid-row: span 1; }
-  
-  .bottom-socials{padding: 30px 6vw; gap:12px}
-  .sticker{width: 48px; height: 48px; font-size: 20px;}
+  nav{padding:15px 20px}.nl,.ncta{display:none}.brg{display:flex}
+  #home{grid-template-columns:1fr}.h-btns{flex-direction:column}.h-stats{display:none}
+  .pcards{grid-template-columns:1fr}
+  .gstats{grid-template-columns:1fr}
+  .sbar{right:8px}.sb{width:36px;height:36px}
+  .fn{gap:24px}.ft{flex-direction:column}
+  #collection,#gallery,#materials,#models,#process,#about{padding:80px 5vw 60px}
+  .mat-right{max-height:none;padding:36px 24px}
+  .htrack{padding:0 5vw}
+  .fc{width:260px}
+  .bento{grid-template-columns:1fr 1fr}
+  .b1,.b2,.b3,.b4,.b5,.b6,.b7,.b8,.b9,.b10{grid-column:span 1;aspect-ratio:4/3}
 }
 @media(max-width:480px){
-  .sgrid{grid-template-columns:1fr}.srow{flex-wrap:wrap}
-  /* Mobile stack for works */
-  .wgrid { grid-template-columns: 1fr; grid-auto-rows: 280px; }
-  .witem-large, .witem-wide, .witem-tall, .witem-sq { grid-column: span 1; }
-  /* Ensures vertical videos and tall images stay tall on mobile phones */
-  .witem-tall, .witem-large { grid-row: span 2; } 
+  .bento{grid-template-columns:1fr}
+  .b1,.b2,.b3,.b4,.b5,.b6,.b7,.b8,.b9,.b10{grid-column:span 1}
 }
 </style>
 </head>
 <body>
 
-<div id="particles"></div>
-
-<div class="mob-menu" id="mobMenu">
-  <span class="mob-close" id="mobClose">✕ CLOSE</span>
-  <a href="#home" onclick="closeMob()">Home</a>
-  <a href="#products" onclick="closeMob()">Products</a>
-  <a href="#works" onclick="closeMob()">Our Works</a>
-  <a href="#materials" onclick="closeMob()">Materials</a>
-  <a href="#mfg" onclick="closeMob()">Process</a>
-  <a href="#about" onclick="closeMob()">Company</a>
+<!-- LOADER -->
+<div id="ldr">
+  <div class="ldr-logo" id="ldrTxt">KLEVER</div>
+  <div class="ldr-bar"></div>
+  <div class="ldr-pct" id="ldrPct">0%</div>
 </div>
 
+<!-- CURSOR -->
+<div id="cur"></div><div id="cur2"></div>
+
+<!-- SOCIALS -->
+<div class="sbar">
+  <a href="https://www.instagram.com/klever.kuche" class="sb sb-ig" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg><span class="sb-tip">Instagram</span></a>
+  <a href="https://www.tiktok.com/@kleverkuche24" class="sb sb-tk" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="#fff"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.27 8.27 0 004.84 1.55V6.79a4.85 4.85 0 01-1.07-.1z"/></svg><span class="sb-tip">TikTok</span></a>
+  <a href="https://t.me/Klever_Kuche" class="sb sb-tg" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg><span class="sb-tip">Telegram</span></a>
+  <a href="https://wa.me/251963999992" class="sb sb-wa" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><span class="sb-tip">WhatsApp</span></a>
+  <a href="mailto:kleverkitchen24@gmail.com" class="sb sb-em"><svg width="14" height="14" viewBox="0 0 24 24" fill="#F3EDE3"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><span class="sb-tip">Email</span></a>
+</div>
+
+<!-- MOB -->
+<div class="mob" id="mob">
+  <span class="mobx" id="mobx">✕ CLOSE</span>
+  <a href="#home" onclick="cM()" style="animation-delay:.04s">Home</a>
+  <a href="#collection" onclick="cM()" style="animation-delay:.08s">Collection</a>
+  <a href="#gallery" onclick="cM()" style="animation-delay:.12s">Gallery</a>
+  <a href="#materials" onclick="cM()" style="animation-delay:.16s">Materials</a>
+  <a href="#models" onclick="cM()" style="animation-delay:.2s">Models</a>
+  <a href="#about" onclick="cM()" style="animation-delay:.24s">About</a>
+</div>
+
+<!-- NAV -->
 <nav id="nav">
-  <a href="#home" class="logo">
-    <img src="logoo%20(2).png" alt="Klever Küche Logo">
-  </a>
-  <ul class="nav-links">
-    <li><a href="#home" class="ni active" data-s="home">Home</a></li>
-    <li><a href="#products" class="ni" data-s="products">Products</a></li>
-    <li><a href="#works" class="ni" data-s="works">Our Works</a></li>
+  <a href="#home" class="logo"><span class="l1">KLEVER</span><span class="l2">KITCHEN</span><span class="l3">®</span></a>
+  <ul class="nl">
+    <li><a href="#home" class="ni on" data-s="home">Home</a></li>
+    <li><a href="#collection" class="ni" data-s="collection">Collection</a></li>
+    <li><a href="#gallery" class="ni" data-s="gallery">Gallery</a></li>
     <li><a href="#materials" class="ni" data-s="materials">Materials</a></li>
-    <li><a href="#mfg" class="ni" data-s="mfg">Process</a></li>
-    <li><a href="#about" class="ni" data-s="about">Company</a></li>
+    <li><a href="#models" class="ni" data-s="models">Models</a></li>
+    <li><a href="#about" class="ni" data-s="about">About</a></li>
   </ul>
-  <a href="https://forms.gle/Nske4YHdnzrzzH9K8" class="nav-cta" target="_blank">Get Quote</a>
-  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+  <a href="https://forms.gle/Nske4YHdnzrzzH9K8" class="ncta" target="_blank">Get Quote</a>
+  <div class="brg" id="brg"><span></span><span></span><span></span></div>
 </nav>
 
+<!-- ═══ WORLD 1: HERO ═══ -->
 <section id="home">
-  <div class="hero-bg">
-    <img src="kitchen-gloss-island.jpg" alt="Klever Küche — Modern Custom Kitchen Addis Ababa" loading="eager">
-  </div>
-  <div class="grid-lines"></div>
-  <div class="orb" style="width:500px;height:500px;background:radial-gradient(circle,rgba(201,168,76,.09),transparent);top:-100px;right:-100px;animation-delay:0s"></div>
+  <div class="dotgrid"></div>
 
-  <div class="z1">
-    <div class="hero-eyebrow">Klever Küche — Addis Ababa, Ethiopia · Est. 2017</div>
-    <h1 class="hero-title">
-      Premium<br><span class="g">Custom</span><br><span class="o">Furniture</span>
+  <div class="h-left z1">
+    <div class="h-eyebrow">Klever Kitchen · Addis Ababa · Est. 2017 E.C.</div>
+    <h1 class="h-title">
+      <span class="t1 scr" data-f="FLAT FACE">████████</span>
+      <span class="t2 scr" data-f="SUPERMATT">█████████</span>
+      <span class="t3 scr" data-f="COLLECTION">██████████</span>
     </h1>
-    <p class="hero-sub">Manufacturing & installing <strong>modular kitchens</strong>, wardrobes & custom MDF furniture — built with CNC precision, delivered to your door.</p>
-    <div class="hero-btns">
-      <a href="#products" class="btn btn-gold"><span>Explore Products →</span></a>
-      <a href="https://forms.gle/Nske4YHdnzrzzH9K8" class="btn btn-outline" target="_blank"><span>Free Quote</span></a>
+    <p class="h-sub">European-grade <strong>supermatt lacquer fronts</strong> built and installed in Addis Ababa — pure flat panel faces, zero visible hardware, anti-fingerprint coated, push-to-open precision.</p>
+    <div class="h-btns">
+      <a href="#collection" class="btn btn-dark"><span>View Collection →</span></a>
+      <a href="https://forms.gle/Nske4YHdnzrzzH9K8" class="btn btn-out" target="_blank"><span>Free Quote</span></a>
+    </div>
+    <div class="h-stats">
+      <div class="hstat"><div class="hstat-n" data-count="12">0</div><div class="hstat-l">Finishes</div></div>
+      <div class="hstat"><div class="hstat-n" data-count="9">0</div><div class="hstat-l">Models</div></div>
+      <div class="hstat"><div class="hstat-n" data-count="7">0</div><div class="hstat-l">Years</div></div>
     </div>
   </div>
 
-  <div class="hero-badge z1">
-    <div class="badge-num">7+</div>
-    <div class="badge-label">Years of<br>Excellence</div>
+  <div class="h-right">
+    <!-- Real Nobilia SENSO 491 handleless kitchen — no people -->
+    <div class="h-img" id="heroImg" style="background-image:url('https://www.nobilia.de/fileadmin/_processed_/c/5/csm_stage_grifflos_409410_25_Senso_491_M_01_db40c84408.webp')"></div>
+    <div class="h-img-overlay"></div>
+    <div class="h-img-tag">SENSO 491 — Handleless · Supermatt</div>
   </div>
 
-  <div class="hero-stats z1">
-    <div><div class="stat-n" data-count="100">0</div><div class="stat-l">Projects+</div></div>
-    <div><div class="stat-n" data-count="3">0</div><div class="stat-l">Collections</div></div>
-    <div><div class="stat-n" data-count="6">0</div><div class="stat-l">Process Steps</div></div>
-  </div>
-
-  <div class="scroll-hint z1">
-    <span>Scroll</span><div class="scroll-line"></div>
-  </div>
+  <div class="scrollind z1"><span>Scroll</span><div class="scl"></div></div>
 </section>
 
-<div class="mq">
-  <div class="mq-track">
-    <span class="mi ac">KITCHENS</span><span class="mdot">◆</span>
-    <span class="mi">WARDROBES</span><span class="mdot">◆</span>
-    <span class="mi ac">MEDIA UNITS</span><span class="mdot">◆</span>
-    <span class="mi">BATHROOMS</span><span class="mdot">◆</span>
-    <span class="mi ac">KLEVER KÜCHE</span><span class="mdot">◆</span>
-    <span class="mi">CNC PRECISION</span><span class="mdot">◆</span>
-    <span class="mi ac">ADDIS ABABA</span><span class="mdot">◆</span>
-    <span class="mi">CUSTOM MDF</span><span class="mdot">◆</span>
-    <span class="mi ac">KITCHENS</span><span class="mdot">◆</span>
-    <span class="mi">WARDROBES</span><span class="mdot">◆</span>
-    <span class="mi ac">MEDIA UNITS</span><span class="mdot">◆</span>
-    <span class="mi">BATHROOMS</span><span class="mdot">◆</span>
-    <span class="mi ac">KLEVER KÜCHE</span><span class="mdot">◆</span>
-    <span class="mi">CNC PRECISION</span><span class="mdot">◆</span>
-    <span class="mi ac">ADDIS ABABA</span><span class="mdot">◆</span>
-    <span class="mi">CUSTOM MDF</span><span class="mdot">◆</span>
+<!-- MARQUEE -->
+<div class="mqs">
+  <div class="mqs-in">
+    <div class="mqrow"><div class="mqt"><span class="mi ac">SUPERMATT</span><span class="mdot">◆</span><span class="mi">FLAT FACE</span><span class="mdot">◆</span><span class="mi ac">TOUCH 332</span><span class="mdot">◆</span><span class="mi">ALPINE WHITE</span><span class="mdot">◆</span><span class="mi ac">SENSO 491</span><span class="mdot">◆</span><span class="mi">LINE N</span><span class="mdot">◆</span><span class="mi ac">EASYTOUCH</span><span class="mdot">◆</span><span class="mi">PUSH TO OPEN</span><span class="mdot">◆</span><span class="mi ac">KLEVER KÜCHE</span><span class="mdot">◆</span><span class="mi">ADDIS ABABA</span><span class="mdot">◆</span><span class="mi ac">SUPERMATT</span><span class="mdot">◆</span><span class="mi">FLAT FACE</span><span class="mdot">◆</span><span class="mi ac">TOUCH 332</span><span class="mdot">◆</span><span class="mi">ALPINE WHITE</span><span class="mdot">◆</span><span class="mi ac">SENSO 491</span><span class="mdot">◆</span><span class="mi">LINE N</span><span class="mdot">◆</span><span class="mi ac">EASYTOUCH</span><span class="mdot">◆</span><span class="mi">PUSH TO OPEN</span><span class="mdot">◆</span><span class="mi ac">KLEVER KÜCHE</span><span class="mdot">◆</span><span class="mi">ADDIS ABABA</span><span class="mdot">◆</span></div></div>
+    <div class="mqrow"><div class="mqt rv2"><span class="mi">ANTI-FINGERPRINT</span><span class="mdot">◆</span><span class="mi ac">STRUCTURA</span><span class="mdot">◆</span><span class="mi">CONCRETE LOOK</span><span class="mdot">◆</span><span class="mi ac">SOFTLINE 505</span><span class="mdot">◆</span><span class="mi">SENSO 494</span><span class="mdot">◆</span><span class="mi ac">NORDIC</span><span class="mdot">◆</span><span class="mi">JADE PREMIUM</span><span class="mdot">◆</span><span class="mi ac">LINE ONE</span><span class="mdot">◆</span><span class="mi">CNC PRECISION</span><span class="mdot">◆</span><span class="mi ac">ZERO HARDWARE</span><span class="mdot">◆</span><span class="mi">ANTI-FINGERPRINT</span><span class="mdot">◆</span><span class="mi ac">STRUCTURA</span><span class="mdot">◆</span><span class="mi">CONCRETE LOOK</span><span class="mdot">◆</span><span class="mi ac">SOFTLINE 505</span><span class="mdot">◆</span><span class="mi">SENSO 494</span><span class="mdot">◆</span><span class="mi ac">NORDIC</span><span class="mdot">◆</span><span class="mi">JADE PREMIUM</span><span class="mdot">◆</span><span class="mi ac">LINE ONE</span><span class="mdot">◆</span><span class="mi">CNC PRECISION</span><span class="mdot">◆</span><span class="mi ac">ZERO HARDWARE</span><span class="mdot">◆</span></div></div>
   </div>
 </div>
 
-<section id="products">
-  <div class="grid-lines"></div>
-  <div class="z1">
-    <div class="prod-head reveal">
-      <div class="sec-tag">/ 01 — Collections</div>
-      <h2>Our <span>Products</span></h2>
-    </div>
+<!-- ═══ WORLD 2: COLLECTION ═══ -->
+<section id="collection">
+  <div class="dotgrid"></div>
+  <div class="w2h z1">
+    <div class="stag rv">/ 01 — Supermatt Collection</div>
+    <h2 class="rv">Hover to <span class="tc">Flip</span></h2>
+    <p class="rv">Each card flips on the X-axis — front shows the Nobilia finish, back reveals full specs and colour swatches.</p>
+  </div>
+  <div class="htrack z1" id="htrack">
 
-    <div class="prod-tabs reveal">
-      <button class="ptab active" data-f="all">All</button>
-      <button class="ptab" data-f="kitchen">Kitchens</button>
-      <button class="ptab" data-f="wardrobe">Wardrobes</button>
-      <button class="ptab" data-f="bathroom">Bathrooms</button>
-      <button class="ptab" data-f="media">Media Units</button>
-    </div>
-
-    <div class="pgrid">
-      <div class="pcard tilt reveal" data-cat="kitchen">
-        <div class="pcard-img" style="background-image:url('kitchen-arch-view.jpg')"></div>
-        <div class="pcard-overlay"></div>
-        <div class="pcard-glow" style="background:radial-gradient(circle at 50% 80%,rgba(201,168,76,.15),transparent 70%)"></div>
-        <div class="pcard-num">01</div>
-        <div class="bracket btl"></div><div class="bracket btr"></div>
-        <div class="pcontent">
-          <div class="ptag">Collection / 01</div>
-          <h3 class="pname">Kitchen<br>Collection</h3>
-          <p class="pdesc">Modern, glossy & handleless designs with island bars. The heart of your home, crafted to perfection.</p>
-          <a href="#" class="plink" onclick="showKSub(event)"><span>Explore Styles</span></a>
-        </div>
-      </div>
-      <div class="pcard tilt reveal d1" data-cat="wardrobe">
-        <div class="pcard-img" style="background-image:url('wardrobe-full-wall.jpg')"></div>
-        <div class="pcard-overlay"></div>
-        <div class="pcard-glow" style="background:radial-gradient(circle at 50% 80%,rgba(201,168,76,.1),transparent 70%)"></div>
-        <div class="pcard-num">02</div>
-        <div class="bracket btl"></div><div class="bracket btr"></div>
-        <div class="pcontent">
-          <div class="ptag">Collection / 02</div>
-          <h3 class="pname">Wardrobe<br>Systems</h3>
-          <p class="pdesc">Floor-to-ceiling fitted wardrobes with sleek black handles. Built for every bedroom style.</p>
-          <a href="#works" class="plink"><span>Explore</span></a>
-        </div>
-      </div>
-      <div class="pcard tilt reveal d2" data-cat="bathroom">
-        <div class="pcard-img" style="background-image:url('https://images.unsplash.com/photo-1620626011761-996317b8d101')"></div>
-        <div class="pcard-overlay"></div>
-        <div class="pcard-glow" style="background:radial-gradient(circle at 50% 80%,rgba(100,150,200,.1),transparent 70%)"></div>
-        <div class="pcard-num">03</div>
-        <div class="bracket btl"></div><div class="bracket btr"></div>
-        <div class="pcontent">
-          <div class="ptag">Collection / 03</div>
-          <h3 class="pname">Bathroom<br>Vanities</h3>
-          <p class="pdesc">Wellness temples and oases of calm. Your perfect private world, designed for pure pleasure.</p>
-          <a href="#works" class="plink"><span>Explore</span></a>
-        </div>
-      </div>
-      <div class="pcard tilt reveal d3" data-cat="media">
-        <div class="pcard-img" style="background-image:url('https://images.unsplash.com/photo-1593696140826-c58b021acf8b')"></div>
-        <div class="pcard-overlay"></div>
-        <div class="pcard-glow" style="background:radial-gradient(circle at 50% 80%,rgba(245,240,232,.06),transparent 70%)"></div>
-        <div class="pcard-num">04</div>
-        <div class="bracket btl"></div><div class="bracket btr"></div>
-        <div class="pcontent">
-          <div class="ptag">Collection / 04</div>
-          <h3 class="pname">Media<br>Units</h3>
-          <p class="pdesc">Flexible living concepts with efficient storage. Inspiring details for your vibrant home.</p>
-          <a href="#works" class="plink"><span>Explore</span></a>
-        </div>
+    <!-- SENSO 491 -->
+    <div class="fc rvX d1">
+      <div class="fci">
+        <div class="fcf"><img src="https://www.nobilia.de/fileadmin/_processed_/c/5/csm_stage_grifflos_409410_25_Senso_491_M_01_db40c84408.webp" alt="SENSO 491"><div class="bk bktl"></div><div class="bk bkbr"></div><div class="fcfl"><div class="fcfl-tag">Supermatt · LINE N</div><div class="fcfl-name">SENSO 491</div><div class="fcfl-sub">Handleless · Push-to-Open</div></div></div>
+        <div class="fcb"><div class="fcb-hd"><div><div class="fcb-name">SENSO 491</div><div class="fcb-code">Supermatt · Anti-FP</div></div><div class="fcb-num">01</div></div><div class="spec-list"><div class="spec-r"><span class="sk">Surface</span><span class="sv">Supermatt Lacquer</span></div><div class="spec-r"><span class="sk">Opening</span><span class="sv">Push-to-Open</span></div><div class="spec-r"><span class="sk">Anti-FP</span><span class="sv">✓ Yes</span></div><div class="spec-r"><span class="sk">Profile</span><span class="sv">LINE N Handleless</span></div><div class="spec-r"><span class="sk">Front</span><span class="sv">Flat Face 19mm</span></div></div><div class="sw-g"><div class="sw" style="background:#f5f5f0" title="Alpine White"></div><div class="sw" style="background:#ede8dc" title="Ivory"></div><div class="sw" style="background:#808078" title="Slate Grey"></div><div class="sw" style="background:#1c1c18" title="Black"></div><div class="sw" style="background:#c8a060" title="Oak"></div></div><a href="https://forms.gle/Nske4YHdnzrzzH9K8" class="fcb-cta" target="_blank">Request This Finish</a></div>
       </div>
     </div>
 
-    <div class="ksub" id="ksub">
-      <div class="sec-tag reveal" style="margin:60px 0 32px">/ Kitchen Styles</div>
-      <div class="ksubgrid">
-        <div class="kscard reveal">
-          <div class="kscard-img" style="background-image:url('kitchen-gloss-island.jpg')"></div>
-          <div class="kscard-ov"></div>
-          <div class="kscard-c"><div class="kscard-tag">Style / 01</div><div class="kscard-name">Modern Gloss</div></div>
-        </div>
-        <div class="kscard reveal d1">
-          <div class="kscard-img" style="background-image:url('kitchen-city-view.jpg')"></div>
-          <div class="kscard-ov"></div>
-          <div class="kscard-c"><div class="kscard-tag">Style / 02</div><div class="kscard-name">Open Plan</div></div>
-        </div>
-        <div class="kscard reveal d2">
-          <div class="kscard-img" style="background-image:url('kitchen-open-plan.jpg')"></div>
-          <div class="kscard-ov"></div>
-          <div class="kscard-c"><div class="kscard-tag">Style / 03</div><div class="kscard-name">Handle Less</div></div>
-        </div>
+    <!-- LASER 463 LINE N -->
+    <div class="fc rvX d2">
+      <div class="fci">
+        <div class="fcf"><img src="https://www.nobilia.de/fileadmin/_processed_/b/4/csm_line_n_laser_463_1015_640_8f34eaa307.webp" alt="LASER 463"><div class="bk bktl"></div><div class="bk bkbr"></div><div class="fcfl"><div class="fcfl-tag">Matt · LINE N</div><div class="fcfl-name">LASER 463</div><div class="fcfl-sub">LINE N Handleless Profile</div></div></div>
+        <div class="fcb"><div class="fcb-hd"><div><div class="fcb-name">LASER 463</div><div class="fcb-code">Matt · LINE N Profile</div></div><div class="fcb-num">02</div></div><div class="spec-list"><div class="spec-r"><span class="sk">Surface</span><span class="sv">Matt Lacquer</span></div><div class="spec-r"><span class="sk">Profile</span><span class="sv">LINE N Recessed</span></div><div class="spec-r"><span class="sk">Opening</span><span class="sv">Push-to-Open</span></div><div class="spec-r"><span class="sk">Edge</span><span class="sv">PVC Polymer Same-colour</span></div><div class="spec-r"><span class="sk">Style</span><span class="sv">Modern · Linear</span></div></div><div class="sw-g"><div class="sw" style="background:#f5f5f0" title="White"></div><div class="sw" style="background:#d4c8b0" title="Sand"></div><div class="sw" style="background:#909090" title="Satin Grey"></div><div class="sw" style="background:#505050" title="Slate Grey"></div><div class="sw" style="background:#1a1a1a" title="Black"></div></div><a href="https://forms.gle/Nske4YHdnzrzzH9K8" class="fcb-cta" target="_blank">Request This Finish</a></div>
       </div>
+    </div>
+
+    <!-- SENSO 490 -->
+    <div class="fc rvX d3">
+      <div class="fci">
+        <div class="fcf"><img src="https://www.nobilia.de/fileadmin/_processed_/0/d/csm_line_n_senso_490_1015_640_ac5fb86106.webp" alt="SENSO 490"><div class="bk bktl"></div><div class="bk bkbr"></div><div class="fcfl"><div class="fcfl-tag">Supermatt · Anti-FP</div><div class="fcfl-name">SENSO 490</div><div class="fcfl-sub">EASYTOUCH · Anti-fingerprint</div></div></div>
+        <div class="fcb"><div class="fcb-hd"><div><div class="fcb-name">SENSO 490</div><div class="fcb-code">Supermatt · EASYTOUCH</div></div><div class="fcb-num">03</div></div><div class="spec-list"><div class="spec-r"><span class="sk">Surface</span><span class="sv">Supermatt Lacquer</span></div><div class="spec-r"><span class="sk">Opening</span><span class="sv">EASYTOUCH Push</span></div><div class="spec-r"><span class="sk">Anti-FP</span><span class="sv">✓ Premium AF</span></div><div class="spec-r"><span class="sk">Front</span><span class="sv">Flat Face 22mm</span></div><div class="spec-r"><span class="sk">Best For</span><span class="sv">High traffic · Families</span></div></div><div class="sw-g"><div class="sw" style="background:#f5f5f0" title="White"></div><div class="sw" style="background:#c8c8c0" title="Light Concrete"></div><div class="sw" style="background:#808078" title="Grey"></div><div class="sw" style="background:#1c1c18" title="Black"></div><div class="sw" style="background:#90a878" title="Sage"></div></div><a href="https://forms.gle/Nske4YHdnzrzzH9K8" class="fcb-cta" target="_blank">Request This Finish</a></div>
+      </div>
+    </div>
+
+    <!-- LASER 412 LINE ONE -->
+    <div class="fc rvX d1">
+      <div class="fci">
+        <div class="fcf"><img src="https://www.nobilia.de/fileadmin/_processed_/5/0/csm_line_n_31407_25_Laser_412_M_bfc753aa8c.webp" alt="LASER 412 LINE One"><div class="bk bktl"></div><div class="bk bkbr"></div><div class="fcfl"><div class="fcfl-tag">LINE One · New 2025</div><div class="fcfl-name">LASER 412</div><div class="fcfl-sub">LINE One — Single-track below worktop</div></div></div>
+        <div class="fcb"><div class="fcb-hd"><div><div class="fcb-name">LASER 412</div><div class="fcb-code">LINE One · 2025 New</div></div><div class="fcb-num">04</div></div><div class="spec-list"><div class="spec-r"><span class="sk">Profile</span><span class="sv">LINE One Single-track</span></div><div class="spec-r"><span class="sk">Position</span><span class="sv">Below worktop</span></div><div class="spec-r"><span class="sk">Mechanism</span><span class="sv">Push-to-Open</span></div><div class="spec-r"><span class="sk">Aesthetic</span><span class="sv">Ultra-minimalist</span></div><div class="spec-r"><span class="sk">Year</span><span class="sv">New 2025 Collection</span></div></div><div class="sw-g"><div class="sw" style="background:#f5f5f0" title="White"></div><div class="sw" style="background:#ede8dc" title="Cream"></div><div class="sw" style="background:#808078" title="Grey"></div><div class="sw" style="background:#d4b880" title="Oak Veneer"></div><div class="sw" style="background:#1c1c18" title="Black"></div></div><a href="https://forms.gle/Nske4YHdnzrzzH9K8" class="fcb-cta" target="_blank">Request This Finish</a></div>
+      </div>
+    </div>
+
+    <!-- SENSO 492 coral -->
+    <div class="fc rvX d2">
+      <div class="fci">
+        <div class="fcf"><img src="https://www.nobilia.de/fileadmin/_processed_/e/8/csm_line_n_senso_492_1920_914_gesamtueberblick_dc1f112300.webp" alt="SENSO 492 Coral"><div class="bk bktl"></div><div class="bk bkbr"></div><div class="fcfl"><div class="fcfl-tag">Supermatt · Bold Colour</div><div class="fcfl-name">SENSO 492</div><div class="fcfl-sub">Coral · LINE N Curved End</div></div></div>
+        <div class="fcb"><div class="fcb-hd"><div><div class="fcb-name">SENSO 492</div><div class="fcb-code">Coral · Curve Cabinet</div></div><div class="fcb-num">05</div></div><div class="spec-list"><div class="spec-r"><span class="sk">Surface</span><span class="sv">Supermatt Lacquer</span></div><div class="spec-r"><span class="sk">Feature</span><span class="sv">LINE N Curve end-cab</span></div><div class="spec-r"><span class="sk">Style</span><span class="sv">Organic · Bold</span></div><div class="spec-r"><span class="sk">Anti-FP</span><span class="sv">✓ Yes</span></div><div class="spec-r"><span class="sk">New</span><span class="sv">Curve 2025</span></div></div><div class="sw-g"><div class="sw" style="background:#E8632A" title="Coral"></div><div class="sw" style="background:#d45010" title="Deep Coral"></div><div class="sw" style="background:#90a878" title="Sage"></div><div class="sw" style="background:#5060a0" title="Slate Blue"></div><div class="sw" style="background:#a06040" title="Terracotta"></div></div><a href="https://forms.gle/Nske4YHdnzrzzH9K8" class="fcb-cta" target="_blank">Request This Finish</a></div>
+      </div>
+    </div>
+
+    <!-- SOFTLINE 505 -->
+    <div class="fc rvX d3">
+      <div class="fci">
+        <div class="fcf"><img src="https://www.nobilia.de/fileadmin/_processed_/e/d/csm_line_n_31202_25_Softline_505_P_42ffac63c0.webp" alt="SOFTLINE 505"><div class="bk bktl"></div><div class="bk bkbr"></div><div class="fcfl"><div class="fcfl-tag">Supermatt · Lighting</div><div class="fcfl-name">SOFTLINE 505</div><div class="fcfl-sub">Illuminated Recessed Handle</div></div></div>
+        <div class="fcb"><div class="fcb-hd"><div><div class="fcb-name">SOFTLINE 505</div><div class="fcb-code">Light Edition · 2025</div></div><div class="fcb-num">06</div></div><div class="spec-list"><div class="spec-r"><span class="sk">Surface</span><span class="sv">Supermatt Lacquer</span></div><div class="spec-r"><span class="sk">Feature</span><span class="sv">LED Recessed Handle</span></div><div class="spec-r"><span class="sk">Light Type</span><span class="sv">Single/Double/Vertical</span></div><div class="spec-r"><span class="sk">Style</span><span class="sv">Accent lighting</span></div><div class="spec-r"><span class="sk">Mood</span><span class="sv">Cosy · Premium</span></div></div><div class="sw-g"><div class="sw" style="background:#f5f5f0" title="White"></div><div class="sw" style="background:#a0a098" title="Concrete"></div><div class="sw" style="background:#808078" title="Grey"></div><div class="sw" style="background:#1c1c18" title="Black"></div><div class="sw" style="background:#d4b880" title="Oak"></div></div><a href="https://forms.gle/Nske4YHdnzrzzH9K8" class="fcb-cta" target="_blank">Request This Finish</a></div>
+      </div>
+    </div>
+
+    <!-- EASYTOUCH 966 Fjord Blue -->
+    <div class="fc rvX d1">
+      <div class="fci">
+        <div class="fcf"><img src="https://www.nobilia.de/fileadmin/_processed_/7/1/csm_LineN_30660_21_Easytouch_966_P_R1_2b621905ce.webp" alt="EASYTOUCH 966 Fjord Blue"><div class="bk bktl"></div><div class="bk bkbr"></div><div class="fcfl"><div class="fcfl-tag">Supermatt · Bold</div><div class="fcfl-name">EASYTOUCH 966</div><div class="fcfl-sub">Fjord Blue Ultramatt</div></div></div>
+        <div class="fcb"><div class="fcb-hd"><div><div class="fcb-name">EASYTOUCH 966</div><div class="fcb-code">Fjord Blue Ultramatt</div></div><div class="fcb-num">07</div></div><div class="spec-list"><div class="spec-r"><span class="sk">Surface</span><span class="sv">Ultramatt Lacquer</span></div><div class="spec-r"><span class="sk">Opening</span><span class="sv">EASYTOUCH Push</span></div><div class="spec-r"><span class="sk">Anti-FP</span><span class="sv">✓ Premium AF</span></div><div class="spec-r"><span class="sk">Colour</span><span class="sv">Fjord Blue</span></div><div class="spec-r"><span class="sk">Statement</span><span class="sv">Bold Scandi</span></div></div><div class="sw-g"><div class="sw" style="background:#2a4878" title="Fjord Blue"></div><div class="sw" style="background:#183050" title="Deep Navy"></div><div class="sw" style="background:#5060a0" title="Slate Blue"></div><div class="sw" style="background:#90a878" title="Sage"></div><div class="sw" style="background:#1c1c18" title="Black"></div></div><a href="https://forms.gle/Nske4YHdnzrzzH9K8" class="fcb-cta" target="_blank">Request This Finish</a></div>
+      </div>
+    </div>
+
+    <!-- SENSO 496 Black Premium -->
+    <div class="fc rvX d2">
+      <div class="fci">
+        <div class="fcf"><img src="https://www.nobilia.de/fileadmin/_processed_/8/d/csm_LineN_30876_24_Senso_496_P_395f3a5669.webp" alt="SENSO 496 Black Premium"><div class="bk bktl"></div><div class="bk bkbr"></div><div class="fcfl"><div class="fcfl-tag">Premium Matt · Dark</div><div class="fcfl-name">SENSO 496</div><div class="fcfl-sub">Black Premium Matt</div></div></div>
+        <div class="fcb"><div class="fcb-hd"><div><div class="fcb-name">SENSO 496</div><div class="fcb-code">Black Premium Matt</div></div><div class="fcb-num">08</div></div><div class="spec-list"><div class="spec-r"><span class="sk">Surface</span><span class="sv">Premium Matt</span></div><div class="spec-r"><span class="sk">Opening</span><span class="sv">LINE N · EASYTOUCH</span></div><div class="spec-r"><span class="sk">Anti-FP</span><span class="sv">✓ Premium</span></div><div class="spec-r"><span class="sk">Front</span><span class="sv">Flat Face 22mm</span></div><div class="spec-r"><span class="sk">Drama</span><span class="sv">Max contrast</span></div></div><div class="sw-g"><div class="sw" style="background:#1a1a18" title="Black Premium"></div><div class="sw" style="background:#2a2a28" title="Onyx"></div><div class="sw" style="background:#383530" title="Dark Bronze"></div><div class="sw" style="background:#282030" title="Graphite"></div><div class="sw" style="background:#1a1c18" title="Jet Black"></div></div><a href="https://forms.gle/Nske4YHdnzrzzH9K8" class="fcb-cta" target="_blank">Request This Finish</a></div>
+      </div>
+    </div>
+
+  </div>
+  <p class="drag-hint z1">← drag to explore all 8 models →</p>
+</section>
+
+<!-- ═══ WORLD 3: GALLERY ═══ -->
+<section id="gallery">
+  <div class="dotgrid-light"></div>
+  <div class="w3h z1">
+    <div class="stag rv" style="color:var(--tc2)">/ 02 — Gallery</div>
+    <h2 class="rv">NOBILIA <span class="tc scr" data-f="GALLERY">███████</span></h2>
+    <p class="rv" style="color:rgba(243,237,227,.45);font-family:'Instrument Serif',serif;font-style:italic;font-size:16px;margin-top:10px;max-width:400px;line-height:1.75">Real Nobilia handleless kitchen photography. Replace placeholder tiles with your Klever projects.</p>
+  </div>
+  <div class="bento z1">
+    <div class="bw b1 rvX">
+      <img src="https://www.nobilia.de/fileadmin/_processed_/c/5/csm_stage_grifflos_409410_25_Senso_491_M_01_db40c84408.webp" alt="SENSO 491 handleless">
+      <div class="bw-ov"><div class="bw-tag">SENSO 491 · Supermatt</div><div class="bw-name">Handleless Stage</div></div>
+    </div>
+    <div class="bw b2 rvX d1">
+      <img src="https://www.nobilia.de/fileadmin/_processed_/0/d/csm_line_n_senso_490_1015_640_ac5fb86106.webp" alt="SENSO 490">
+      <div class="bw-ov"><div class="bw-tag">SENSO 490 · EASYTOUCH AF</div><div class="bw-name">Anti-Fingerprint</div></div>
+    </div>
+    <div class="bw b3 rvX d2">
+      <img src="https://www.nobilia.de/fileadmin/_processed_/b/4/csm_line_n_laser_463_1015_640_8f34eaa307.webp" alt="LASER 463">
+      <div class="bw-ov"><div class="bw-tag">LASER 463 · LINE N</div><div class="bw-name">Recessed Handle</div></div>
+    </div>
+    <div class="bw b4 rvX d3">
+      <img src="https://www.nobilia.de/fileadmin/_processed_/5/0/csm_line_n_31407_25_Laser_412_M_bfc753aa8c.webp" alt="LASER 412 LINE One">
+      <div class="bw-ov"><div class="bw-tag">LASER 412 · LINE One</div><div class="bw-name">New 2025</div></div>
+    </div>
+    <div class="bw b5 rvX">
+      <img src="https://www.nobilia.de/fileadmin/_processed_/e/d/csm_line_n_31202_25_Softline_505_P_42ffac63c0.webp" alt="SOFTLINE 505 lighting">
+      <div class="bw-ov"><div class="bw-tag">SOFTLINE 505 · LED</div><div class="bw-name">Illuminated Handle</div></div>
+    </div>
+    <div class="bw b6 rvX d1">
+      <img src="https://www.nobilia.de/fileadmin/_processed_/e/8/csm_line_n_senso_492_1920_914_gesamtueberblick_dc1f112300.webp" alt="SENSO 492 Coral">
+      <div class="bw-ov"><div class="bw-tag">SENSO 492 · Coral</div><div class="bw-name">LINE N Curve</div></div>
+    </div>
+    <div class="bw b7 rvX d2">
+      <img src="https://www.nobilia.de/fileadmin/_processed_/7/1/csm_LineN_30660_21_Easytouch_966_P_R1_2b621905ce.webp" alt="EASYTOUCH 966 Fjord Blue">
+      <div class="bw-ov"><div class="bw-tag">EASYTOUCH 966 · Fjord Blue</div><div class="bw-name">Ultramatt</div></div>
+    </div>
+    <div class="bw b8 rvX d3">
+      <img src="https://www.nobilia.de/fileadmin/_processed_/2/b/csm_LineN_30973_23_Senso_494_R2_M_004d5857b0.webp" alt="SENSO 494 Jade">
+      <div class="bw-ov"><div class="bw-tag">SENSO 494 · Jade</div><div class="bw-name">Premium Matt</div></div>
+    </div>
+    <div class="bw b9 rvX">
+      <img src="https://www.nobilia.de/fileadmin/_processed_/8/d/csm_LineN_30876_24_Senso_496_P_395f3a5669.webp" alt="SENSO 496 Black">
+      <div class="bw-ov"><div class="bw-tag">SENSO 496 · Black Premium</div><div class="bw-name">Maximum Contrast</div></div>
+    </div>
+    <div class="bw b10 rvX d1">
+      <img src="https://www.nobilia.de/fileadmin/_processed_/d/f/csm_LineN_31003_24_Structura_406_P_81c2d068be.webp" alt="STRUCTURA 406 Oak">
+      <div class="bw-ov"><div class="bw-tag">STRUCTURA 406 · Oak Como</div><div class="bw-name">Natural Wood Look</div></div>
     </div>
   </div>
 </section>
 
-<section id="works">
-  <div class="grid-lines"></div>
-  <div class="z1">
-    <div class="works-head reveal">
-      <div class="sec-tag">/ 02 — Portfolio & Tours</div>
-      <h2>Our <span>Works</span></h2>
-    </div>
-    <div class="wfilter reveal">
-      <button class="wfbtn active" data-wf="all">All Projects</button>
-      <button class="wfbtn" data-wf="kitchen">Kitchens</button>
-      <button class="wfbtn" data-wf="wardrobe">Wardrobes</button>
-      <button class="wfbtn" data-wf="bathroom">Bathrooms</button>
-      <button class="wfbtn" data-wf="media">Media Units</button>
-    </div>
-
-    <div class="wgrid">
-      
-      <div class="witem witem-tall reveal" data-wcat="wardrobe">
-        <video src="0318.mp4" autoplay loop muted playsinline></video>
-        <div class="witem-ov"><span class="wlabel">Video Tour — Wardrobe</span></div>
-      </div>
-
-      <div class="witem witem-tall reveal d1" data-wcat="kitchen">
-        <video src="1211(8).mp4" autoplay loop muted playsinline></video>
-        <div class="witem-ov"><span class="wlabel">Showroom — Kitchen Setup</span></div>
-      </div>
-
-      <div class="witem witem-large reveal d2" data-wcat="kitchen">
-        <img src="kitchen-open-plan.jpg" alt="Open plan kitchen living space — Addis Ababa" loading="lazy">
-        <div class="witem-ov"><span class="wlabel">Kitchen — Open Plan Living</span></div>
-      </div>
-      
-      <div class="witem witem-wide reveal d3" data-wcat="kitchen">
-        <img src="kitchen-wide-angle.jpg" alt="Kitchen wide angle — Addis Ababa" loading="lazy">
-        <div class="witem-ov"><span class="wlabel">Kitchen — Wide Angle</span></div>
-      </div>
-
-      <div class="witem witem-sq reveal" data-wcat="kitchen">
-        <img src="kitchen-gloss-island.jpg" alt="Modern gloss kitchen with island — Addis Ababa" loading="lazy">
-        <div class="witem-ov"><span class="wlabel">Kitchen — Modern Gloss</span></div>
-      </div>
-      
-      <div class="witem witem-sq reveal d1" data-wcat="kitchen">
-        <img src="kitchen-arch-view.jpg" alt="Kitchen full view with arch — Addis Ababa" loading="lazy">
-        <div class="witem-ov"><span class="wlabel">Kitchen — Full View</span></div>
-      </div>
-      
-      <div class="witem witem-sq reveal d2" data-wcat="kitchen">
-        <img src="kitchen-city-view.jpg" alt="Kitchen with city view — Addis Ababa" loading="lazy">
-        <div class="witem-ov"><span class="wlabel">Kitchen — City View</span></div>
-      </div>
-
-      <div class="witem witem-tall reveal d3" data-wcat="wardrobe">
-        <img src="wardrobe-full-wall.jpg" alt="Full wall wardrobe with black handles" loading="lazy">
-        <div class="witem-ov"><span class="wlabel">Wardrobe — Full Wall</span></div>
-      </div>
-      
-      <div class="witem witem-sq reveal" data-wcat="wardrobe">
-        <img src="wardrobe-white-wall.jpg" alt="White wardrobe wall system" loading="lazy">
-        <div class="witem-ov"><span class="wlabel">Wardrobe — White Wall</span></div>
-      </div>
-      
-      <div class="witem witem-sq reveal d1" data-wcat="wardrobe">
-        <img src="wardrobe-with-niche.jpg" alt="Wardrobe with open niche and desk" loading="lazy">
-        <div class="witem-ov"><span class="wlabel">Wardrobe — With Niche</span></div>
-      </div>
-      
-      <div class="witem witem-sq reveal d2" data-wcat="wardrobe">
-        <img src="wardrobe-open-display.jpg" alt="Wardrobe with open display section" loading="lazy">
-        <div class="witem-ov"><span class="wlabel">Wardrobe — Open Display</span></div>
-      </div>
-
-      <div class="witem witem-tall reveal d3" data-wcat="bathroom">
-        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a" alt="Luxury Bathroom Setup" loading="lazy">
-        <div class="witem-ov"><span class="wlabel">Bathroom — Luxury Setup</span></div>
-      </div>
-
-      <div class="witem witem-sq reveal" data-wcat="bathroom">
-        <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101" alt="Modern Bathroom Vanity" loading="lazy">
-        <div class="witem-ov"><span class="wlabel">Bathroom — Modern Vanity</span></div>
-      </div>
-      
-      <div class="witem witem-sq reveal d1" data-wcat="bathroom">
-        <img src="https://images.unsplash.com/photo-1604709177227-3f3fb409d6c7" alt="Bathroom Cabinet" loading="lazy">
-        <div class="witem-ov"><span class="wlabel">Bathroom — Custom Cabinets</span></div>
-      </div>
-
-      <div class="witem witem-wide reveal d2" data-wcat="media">
-        <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd64bd0b" alt="Minimalist Media Console" loading="lazy">
-        <div class="witem-ov"><span class="wlabel">Media Unit — Minimalist Console</span></div>
-      </div>
-      
-      <div class="witem witem-sq reveal d3" data-wcat="media">
-        <img src="https://images.unsplash.com/photo-1593696140826-c58b021acf8b" alt="Modern TV Stand" loading="lazy">
-        <div class="witem-ov"><span class="wlabel">Media Unit — Modern Stand</span></div>
-      </div>
-      
-      <div class="witem witem-sq reveal" data-wcat="media">
-        <img src="https://images.unsplash.com/photo-1499933374294-4584851497cc" alt="Living Room Setup" loading="lazy">
-        <div class="witem-ov"><span class="wlabel">Media Unit — Full Wall</span></div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
+<!-- ═══ WORLD 4: MATERIALS ═══ -->
 <section id="materials">
-  <div class="grid-lines"></div>
-  <div class="z1">
-    <div class="mat-head reveal">
-      <div class="sec-tag">/ 03 — Quality Standards</div>
-      <h2>Premium <span>Materials</span></h2>
+  <div class="mat-left">
+    <img class="mat-img" id="matImg" src="https://www.nobilia.de/fileadmin/_processed_/c/5/csm_stage_grifflos_409410_25_Senso_491_M_01_db40c84408.webp" alt="">
+    <div class="mat-grad"></div>
+    <div class="mat-wipe" id="matWipe"></div>
+    <div class="mat-info">
+      <div class="mi-tag" id="matTag">SENSO 491 · Supermatt LINE N</div>
+      <div class="mi-name scr" id="matName" data-f="Alpine White">Alpine White</div>
+      <div class="mi-sub" id="matSub">Anti-fingerprint · Push-to-Open · Flat Face 19mm</div>
     </div>
+  </div>
+  <div class="mat-right">
+    <div class="mr-head">
+      <div class="mr-title">/ 03 — Finishes</div>
+      <div class="mr-sub">Click any row to preview in-space</div>
+    </div>
+    <div id="matList"></div>
+  </div>
+</section>
+<div class="mat-props" id="matProps"></div>
 
-    <div class="mat-grid">
-      <div class="mat-card reveal">
-        <div class="mat-icon">▨</div>
-        <h3 class="mat-title">High-Density MDF</h3>
-        <p class="mat-desc">Our core material. Superior density and moisture-resistant options ensure your cabinets will never warp, sag, or degrade over time.</p>
-      </div>
-      <div class="mat-card reveal d1">
-        <div class="mat-icon">✧</div>
-        <h3 class="mat-title">Luxury Finishes</h3>
-        <p class="mat-desc">From ultra-modern High-Gloss Acrylic and UV coatings to elegant Matte PET surfaces. Perfectly sealed with premium PVC edge banding.</p>
-      </div>
-      <div class="mat-card reveal d2">
-        <div class="mat-icon">◧</div>
-        <h3 class="mat-title">Stone Countertops</h3>
-        <p class="mat-desc">We top our kitchens and vanities with highly durable Quartz, Granite, and custom stone surfaces that resist scratching and staining.</p>
-      </div>
-      <div class="mat-card reveal d3">
-        <div class="mat-icon">⊜</div>
-        <h3 class="mat-title">Premium Hardware</h3>
-        <p class="mat-desc">Smooth operation is guaranteed. We utilize world-class soft-close hinges, heavy-duty drawer runners, and precision handles.</p>
-      </div>
+<!-- ═══ WORLD 5: MODELS ═══ -->
+<section id="models">
+  <div class="dotgrid"></div>
+  <div class="w5h z1">
+    <div class="stag rv">/ 04 — All Models</div>
+    <h2 class="rv">Klever × <span class="tc">Nobilia</span></h2>
+    <p class="rv" style="font-family:'Instrument Serif',serif;font-style:italic;font-size:16px;opacity:.5;margin-top:10px;max-width:520px;line-height:1.75">Klever Kitchen manufactures and installs these European-grade supermatt models in Addis Ababa — same materials, CNC precision, full installation.</p>
+  </div>
+  <div class="mlist z1">
+    <div class="mline rvL"><div class="ml-n">01</div><div class="ml-h"><div class="ml-name">TOUCH 332</div><div class="ml-code">Alpine White Supermatt</div></div><div class="ml-b"><p class="ml-desc">The purest flat-face expression. Alpine white supermatt lacquer with LINE N handleless profile. Anti-fingerprint coated. Pairs with stone worktops.</p><div class="ml-tags"><span class="mlt">Supermatt</span><span class="mlt">Push-to-Open</span><span class="mlt">Anti-FP</span><span class="mlt">19mm</span></div></div><div class="ml-cta"><a href="https://forms.gle/Nske4YHdnzrzzH9K8" target="_blank">Request</a></div></div>
+    <div class="mline rvL d1"><div class="ml-n">02</div><div class="ml-h"><div class="ml-name">TOUCH 334</div><div class="ml-code">Slate Grey Supermatt</div></div><div class="ml-b"><p class="ml-desc">Cool slate grey for urban kitchens. Works with concrete carcases and stainless appliances. Handleless LINE N profile. Anti-fingerprint.</p><div class="ml-tags"><span class="mlt">Slate Grey</span><span class="mlt">LINE N</span><span class="mlt">Urban</span></div></div><div class="ml-cta"><a href="https://forms.gle/Nske4YHdnzrzzH9K8" target="_blank">Request</a></div></div>
+    <div class="mline rvL d2"><div class="ml-n">03</div><div class="ml-h"><div class="ml-name">SENSO 490–496</div><div class="ml-code">EASYTOUCH · Anti-FP Range</div></div><div class="ml-b"><p class="ml-desc">The EASYTOUCH SENSO range — push mechanism, premium anti-fingerprint. Available from white through coral, jade, fjord blue, and black.</p><div class="ml-tags"><span class="mlt">EASYTOUCH</span><span class="mlt">Premium AF</span><span class="mlt">Multiple Colours</span></div></div><div class="ml-cta"><a href="https://forms.gle/Nske4YHdnzrzzH9K8" target="_blank">Request</a></div></div>
+    <div class="mline rvR"><div class="ml-n">04</div><div class="ml-h"><div class="ml-name">LASER 412</div><div class="ml-code">LINE One · New 2025</div></div><div class="ml-b"><p class="ml-desc">LINE One single-track recessed handle below worktop with push-to-open. Ultra-minimalist. The latest evolution of handleless design.</p><div class="ml-tags"><span class="mlt">LINE One</span><span class="mlt">2025 New</span><span class="mlt">Ultra-minimal</span></div></div><div class="ml-cta"><a href="https://forms.gle/Nske4YHdnzrzzH9K8" target="_blank">Request</a></div></div>
+    <div class="mline rvR d1"><div class="ml-n">05</div><div class="ml-h"><div class="ml-name">SOFTLINE 505</div><div class="ml-code">LED Illuminated Handle</div></div><div class="ml-b"><p class="ml-desc">Illuminated recessed handles — single-track, double-track or vertical. Emphasise clean lines and create a cosy atmosphere.</p><div class="ml-tags"><span class="mlt">LED Handle</span><span class="mlt">Lighting</span><span class="mlt">Supermatt</span></div></div><div class="ml-cta"><a href="https://forms.gle/Nske4YHdnzrzzH9K8" target="_blank">Request</a></div></div>
+    <div class="mline rvR d2"><div class="ml-n">06</div><div class="ml-h"><div class="ml-name">STRUCTURA 406</div><div class="ml-code">Oak Como · Wood Look</div></div><div class="ml-b"><p class="ml-desc">Eiche Como oak reproduction — natural warm wood look with handleless LINE N. Industrial meets organic. A popular combination with dark worktops.</p><div class="ml-tags"><span class="mlt">Oak Look</span><span class="mlt">Warm</span><span class="mlt">LINE N</span></div></div><div class="ml-cta"><a href="https://forms.gle/Nske4YHdnzrzzH9K8" target="_blank">Request</a></div></div>
+    <div class="mline rvL"><div class="ml-n">07</div><div class="ml-h"><div class="ml-name">EASYTOUCH 966</div><div class="ml-code">Fjord Blue Ultramatt</div></div><div class="ml-b"><p class="ml-desc">Bold Fjord Blue ultramatt — Scandi drama with zero hardware. EASYTOUCH push mechanism. Premium AF coating. Statement kitchen.</p><div class="ml-tags"><span class="mlt">Fjord Blue</span><span class="mlt">Ultramatt</span><span class="mlt">EASYTOUCH</span></div></div><div class="ml-cta"><a href="https://forms.gle/Nske4YHdnzrzzH9K8" target="_blank">Request</a></div></div>
+    <div class="mline rvL d1"><div class="ml-n">08</div><div class="ml-h"><div class="ml-name">SENSO 494</div><div class="ml-code">Jade Premium Matt</div></div><div class="ml-b"><p class="ml-desc">Jade premium matt — deep earthy green with a premium matt finish. Organic feel meets structured handleless design. 2024 award winner.</p><div class="ml-tags"><span class="mlt">Jade</span><span class="mlt">Premium Matt</span><span class="mlt">Award Winner</span></div></div><div class="ml-cta"><a href="https://forms.gle/Nske4YHdnzrzzH9K8" target="_blank">Request</a></div></div>
+    <div class="mline rvL d2"><div class="ml-n">09</div><div class="ml-h"><div class="ml-name">SENSO 492</div><div class="ml-code">Coral · LINE N Curve</div></div><div class="ml-b"><p class="ml-desc">Coral supermatt with Curve end cabinets — organic contours meet structured LINE N. Seamless transition from wall to island to tall unit.</p><div class="ml-tags"><span class="mlt">Coral</span><span class="mlt">Curve Cabinets</span><span class="mlt">2025 New</span></div></div><div class="ml-cta"><a href="https://forms.gle/Nske4YHdnzrzzH9K8" target="_blank">Request</a></div></div>
+  </div>
+</section>
+
+<!-- ═══ WORLD 6: PROCESS ═══ -->
+<section id="process">
+  <div class="dotgrid-light"></div>
+  <div class="w6h z1">
+    <div class="stag rv" style="color:var(--tc2)">/ 05 — How We Build</div>
+    <h2 class="rv">THE <span class="tc">PROCESS</span></h2>
+    <div class="pcards">
+      <div class="pcard rvX"><div class="pc-n">01</div><div class="pc-name">Design & CAD</div><div class="pc-desc">Full cutting diagrams and 3D renders before a single panel is cut. Every millimetre planned.</div></div>
+      <div class="pcard rvX d1"><div class="pc-n">02</div><div class="pc-name">CNC Cutting</div><div class="pc-desc">Precision panel saw with ±0.1mm tolerance. Supermatt lacquer surfaces protected throughout.</div></div>
+      <div class="pcard rvX d2"><div class="pc-n">03</div><div class="pc-name">Edge Banding</div><div class="pc-desc">Colour-matched PVC/ABS banding laser-glued. Flat face panel edges sealed perfectly same-colour.</div></div>
+      <div class="pcard rvX d3"><div class="pc-n">04</div><div class="pc-name">Drilling</div><div class="pc-desc">CNC drilling for hinges, dowels, EASYTOUCH push mechanisms and LINE N recessed tracks.</div></div>
+      <div class="pcard rvX d4"><div class="pc-n">05</div><div class="pc-name">Assembly</div><div class="pc-desc">Quality-inspected at every stage. Supermatt surfaces protected until final installation.</div></div>
+      <div class="pcard rvX d5"><div class="pc-n">06</div><div class="pc-name">Installation</div><div class="pc-desc">Our team delivers, fits, and levels every unit in Addis Ababa. First measurement to final fit.</div></div>
     </div>
   </div>
 </section>
 
-<section id="mfg">
-  <div class="grid-lines"></div>
-  <div class="z1">
-    <div class="mfg-head reveal">
-      <div class="sec-tag">/ 04 — Process</div>
-      <h2>Manu<span>facturing</span></h2>
-    </div>
-
-    <div class="mfg-intro">
-      <div class="mfg-text from-left">
-        <p>We use <strong>state-of-the-art CNC machines</strong> to craft every piece of furniture with precision and consistency.</p>
-        <p>Advanced equipment lets us deliver high-quality products efficiently while maintaining the exacting standards our customers expect.</p>
-        <p>Combining <strong>technology with skilled craftsmanship</strong> ensures furniture that is durable, functional, and elegantly designed.</p>
-        <p style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--gold);opacity:.55;font-style:normal;margin-top:28px;line-height:1.8">All orders follow a structured workflow ensuring traceability and minimal rework. Our machines meet international standards.</p>
-      </div>
-      <div class="mfg-visual from-right">
-        <img src="kitchen-city-view.jpg" alt="Klever Küche — Overlooking Addis Ababa">
-      </div>
-    </div>
-
-    <div class="steps-title reveal">/ Production Workflow</div>
-    <div class="sgrid">
-      <div class="scard reveal"><div class="snum">01</div><div class="sname">Design & Engineering</div><div class="sdesc">CAD cutting diagrams prepared to spec</div></div>
-      <div class="scard reveal d1"><div class="snum">02</div><div class="sname">Cutting</div><div class="sdesc">CNC / panel saw precision cutting</div></div>
-      <div class="scard reveal d2"><div class="snum">03</div><div class="sname">Edge Banding</div><div class="sdesc">PVC / ABS panel sealing</div></div>
-      <div class="scard reveal d3"><div class="snum">04</div><div class="sname">Drilling & Nesting</div><div class="sdesc">Hardware-ready panel prep</div></div>
-      <div class="scard reveal d4"><div class="snum">05</div><div class="sname">Sorting & Assembly</div><div class="sdesc">Inspected during assembly</div></div>
-      <div class="scard reveal d5"><div class="snum">06</div><div class="sname">Finishing & Delivery</div><div class="sdesc">Packaging, delivery & installation</div></div>
-    </div>
-  </div>
-</section>
-
+<!-- ═══ WORLD 7: ABOUT ═══ -->
 <section id="about">
-  <div class="grid-lines"></div>
-  <div class="z1">
-    <div class="about-head reveal">
-      <div class="sec-tag">/ 05 — Company</div>
-      <h2>About <span>Us</span></h2>
+  <div class="dotgrid"></div>
+  <div class="w7h z1">
+    <div class="stag rv">/ 06 — Company</div>
+    <div class="neon-out rv">KLEVER</div>
+    <h2 class="rv" style="margin-top:8px">About <span class="tc">Us</span></h2>
+    <div class="gstats">
+      <div class="gstat rvX"><div class="gs-n" data-count="7">0</div><div class="gs-l">Years Active</div></div>
+      <div class="gstat rvX d1"><div class="gs-n" data-count="12">0</div><div class="gs-l">Supermatt Finishes</div></div>
+      <div class="gstat rvX d2"><div class="gs-n" data-count="9">0</div><div class="gs-l">Collection Models</div></div>
+      <div class="gstat rvX d3"><div class="gs-n" data-count="100">0</div><div class="gs-l">Projects+</div></div>
     </div>
-
-    <div class="about-grid">
-      <div class="about-text from-left">
-        <h3>Klever Addis Trading P.L.C.</h3>
-        <p>We are a <strong>modern furniture manufacturer</strong> based in Addis Ababa, established in <strong>2017 EC</strong>. We specialize in modular kitchens, wardrobes, bathroom vanities and custom MDF/wood projects.</p>
-        <p>Our factory uses <strong>CNC routers, edgebanders, nesting and assembly lines</strong> to deliver high quality products meeting international standards.</p>
-        <p>From first measurement to final installation — every detail handled with precision and care for your home or office.</p>
+    <div class="agrid">
+      <div class="atext rvL">
+        <p><strong>Klever Addis Trading P.L.C.</strong> brings European-grade supermatt kitchen systems to Ethiopia. Founded 2017 EC in Addis Ababa.</p>
+        <p>We manufacture and install <strong>flat-face handleless fronts</strong> — the same supermatt lacquer systems from Nobilia Germany — using CNC routers, edgebanders, and push-to-open hardware.</p>
+        <p>Every project <strong>fully custom</strong>: your space, your finish, your layout. Designed, built, and installed by our own team.</p>
       </div>
-      <div class="about-details from-right">
-        <div class="adetail"><div class="adet-l">Company</div><div class="adet-v">Klever Addis Trading P.L.C.</div></div>
-        <div class="adetail"><div class="adet-l">Founded</div><div class="adet-v">2017 Ethiopian Calendar</div></div>
-        <div class="adetail"><div class="adet-l">Location</div><div class="adet-v">Megenagna 24, Addis Ababa</div></div>
-        <div class="adetail"><div class="adet-l">Specialization</div><div class="adet-v">Kitchens · Wardrobes · Bathrooms · MDF</div></div>
-        <div class="adetail"><div class="adet-l">Technology</div><div class="adet-v">CNC Routers · Edgebanders · Nesting</div></div>
+      <div class="adets rvR">
+        <div class="adet"><div class="adl">Company</div><div class="adv">Klever Addis Trading P.L.C.</div></div>
+        <div class="adet"><div class="adl">Founded</div><div class="adv">2017 Ethiopian Calendar</div></div>
+        <div class="adet"><div class="adl">Location</div><div class="adv">Megenagna 24, Addis Ababa</div></div>
+        <div class="adet"><div class="adl">Specialization</div><div class="adv">Supermatt · Handleless · Custom MDF</div></div>
+        <div class="adet"><div class="adl">Technology</div><div class="adv">CNC · EASYTOUCH · LINE N · LINE One</div></div>
       </div>
     </div>
-
-    <div class="vgrid">
-      <div class="vcard reveal"><div class="vicon">◈</div><div class="vtitle">Precision Craft</div><p class="vtext">Every panel cut by CNC with millimeter accuracy. No compromises.</p></div>
-      <div class="vcard reveal d1"><div class="vicon">◉</div><div class="vtitle">Custom Design</div><p class="vtext">Each project tailored to your space, taste and lifestyle. Nothing generic.</p></div>
-      <div class="vcard reveal d2"><div class="vicon">◐</div><div class="vtitle">Full Service</div><p class="vtext">Design, manufacture, deliver and install. One company, end-to-end.</p></div>
-    </div>
-
     <div class="crow">
-      <div class="ccard reveal">
-        <div class="ccard-l">Contact</div>
+      <div class="cc rvL">
+        <div class="ccl">Contact</div>
         <a href="mailto:kleverkitchen24@gmail.com">kleverkitchen24@gmail.com</a>
         <a href="tel:+251963999992">+251 963 999 992</a>
         <a href="tel:+251963999994">+251 963 999 994</a>
         <a href="tel:+251963999996">+251 963 999 996</a>
       </div>
-      <div class="ccard reveal">
-        <div class="ccard-l">Find Us</div>
-        <p>Megenagna 24</p>
-        <p>Addis Ababa, Ethiopia</p>
-        <a href="https://forms.gle/Nske4YHdnzrzzH9K8" target="_blank" style="margin-top:20px;display:inline-block;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:12px 24px;border-radius:6px;transition:background .3s,color .3s" onmouseover="this.style.background='var(--gold)';this.style.color='#060606'" onmouseout="this.style.background='';this.style.color='var(--gold)'">Get Free Quote →</a>
+      <div class="cc rvR">
+        <div class="ccl">Find Us</div>
+        <p>Megenagna 24, Addis Ababa</p>
+        <a href="https://forms.gle/Nske4YHdnzrzzH9K8" target="_blank" style="margin-top:14px;display:inline-block;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--ice);background:var(--ink);padding:12px 20px;text-decoration:none;transition:background .3s" onmouseover="this.style.background='var(--tc)'" onmouseout="this.style.background='var(--ink)'">Get Free Quote →</a>
       </div>
+    </div>
+    <div class="srow" style="margin-top:2px">
+      <a href="https://www.instagram.com/klever.kuche" class="sr" target="_blank"><div class="srn">Instagram</div></a>
+      <a href="https://www.tiktok.com/@kleverkuche24" class="sr" target="_blank"><div class="srn">TikTok</div></a>
+      <a href="https://t.me/Klever_Kuche" class="sr" target="_blank"><div class="srn">Telegram</div></a>
+      <a href="https://wa.me/251963999992" class="sr" target="_blank"><div class="srn">WhatsApp</div></a>
+      <a href="mailto:kleverkitchen24@gmail.com" class="sr"><div class="srn">Email</div></a>
     </div>
   </div>
 </section>
 
-<div class="cta-band">
-  <div class="sec-tag reveal" style="justify-content:center;margin-bottom:24px"><span style="color:var(--gold);opacity:.7;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:5px">/ Ready to build?</span></div>
-  <h2 class="reveal">Your dream<br><span>space awaits</span></h2>
-  <p class="reveal">Let's design something extraordinary together.</p>
-  <a href="https://forms.gle/Nske4YHdnzrzzH9K8" class="btn btn-gold reveal" target="_blank" style="margin:0 auto">
-    <span>Get a Free Quote →</span>
-  </a>
+<!-- CTA WORLD -->
+<div class="cta-world">
+  <div class="cr" style="width:500px;height:500px"></div>
+  <div class="cr" style="width:700px;height:700px;animation-delay:1.5s"></div>
+  <div class="cr" style="width:900px;height:900px;animation-delay:3s"></div>
+  <div class="stag rv" style="justify-content:center;margin-bottom:18px;color:var(--tc2)"><span style="font-size:9px;letter-spacing:5px;color:var(--tc2);opacity:.6">/ Ready to build?</span></div>
+  <div class="cta-big rv">Zero handles.<br><span class="tc">Pure supermatt.</span></div>
+  <p class="cta-p rv">Your flat-face handleless kitchen, manufactured and installed in Addis Ababa.</p>
+  <a href="https://forms.gle/Nske4YHdnzrzzH9K8" class="btn btn-tc rv" target="_blank" style="z-index:2"><span>Get a Free Quote →</span></a>
 </div>
 
+<!-- FOOTER -->
 <footer>
-  <div class="bottom-socials">
-    <a href="https://www.instagram.com/klever.kuche" class="sticker sticker-ig" target="_blank">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      <span class="sticker-tooltip">Instagram</span>
-    </a>
-    <a href="https://www.tiktok.com/@kleverkuche24" class="sticker sticker-tk" target="_blank">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.27 8.27 0 004.84 1.55V6.79a4.85 4.85 0 01-1.07-.1z"/></svg>
-      <span class="sticker-tooltip">TikTok</span>
-    </a>
-    <a href="https://t.me/Klever_Kuche" class="sticker sticker-tg" target="_blank">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-      <span class="sticker-tooltip">Telegram</span>
-    </a>
-    <a href="https://wa.me/251963999992" class="sticker sticker-wa" target="_blank">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      <span class="sticker-tooltip">WhatsApp</span>
-    </a>
-    <a href="mailto:kleverkitchen24@gmail.com" class="sticker sticker-mail">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="#060606"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-      <span class="sticker-tooltip">Email Us</span>
-    </a>
-  </div>
-
   <div class="ft">
     <div class="fb">
-      <span class="logo">
-        <img src="logoo%20(2).png" alt="Klever Küche Logo">
-      </span>
-      <p>Premium custom furniture manufacturing & installation in Addis Ababa since 2017.</p>
+      <span class="logo" style="cursor:default"><span class="l1">KLEVER</span><span class="l2">KITCHEN</span><span class="l3">®</span></span>
+      <p>Supermatt handleless furniture · Addis Ababa · Since 2017 E.C.</p>
     </div>
     <div class="fn">
-      <div class="fnc">
-        <h4>Products</h4>
-        <a href="#products">Kitchens</a>
-        <a href="#products">Wardrobes</a>
-        <a href="#products">Bathroom Vanities</a>
-        <a href="#products">Media Units</a>
-      </div>
-      <div class="fnc">
-        <h4>Company</h4>
-        <a href="#works">Our Works</a>
-        <a href="#materials">Materials</a>
-        <a href="#mfg">Manufacturing</a>
-        <a href="#about">About Us</a>
-      </div>
-      <div class="fnc">
-        <h4>Follow</h4>
-        <a href="https://www.instagram.com/klever.kuche" target="_blank">Instagram</a>
-        <a href="https://www.tiktok.com/@kleverkuche24" target="_blank">TikTok</a>
-        <a href="https://t.me/Klever_Kuche" target="_blank">Telegram</a>
-        <a href="https://wa.me/251963999992" target="_blank">WhatsApp</a>
-      </div>
+      <div class="fnc"><h4>Collection</h4><a href="#collection">SENSO 491 — White</a><a href="#collection">LASER 463 — LINE N</a><a href="#collection">EASYTOUCH 966 — Navy</a><a href="#collection">SENSO 496 — Black</a><a href="#materials">All 12 Finishes</a></div>
+      <div class="fnc"><h4>Company</h4><a href="#gallery">Gallery</a><a href="#process">Process</a><a href="#models">All Models</a><a href="#about">About</a><a href="https://forms.gle/Nske4YHdnzrzzH9K8" target="_blank">Get Quote</a></div>
+      <div class="fnc"><h4>Follow</h4><a href="https://www.instagram.com/klever.kuche" target="_blank">Instagram</a><a href="https://www.tiktok.com/@kleverkuche24" target="_blank">TikTok</a><a href="https://t.me/Klever_Kuche" target="_blank">Telegram</a><a href="https://wa.me/251963999992" target="_blank">WhatsApp</a></div>
     </div>
   </div>
   <div class="fb2">
@@ -881,85 +837,146 @@ footer{background:var(--black)}
 </footer>
 
 <script>
-// PARTICLES
-const pc=document.getElementById('particles');
-for(let i=0;i<35;i++){
-  const p=document.createElement('div');p.className='particle';
-  const size=Math.random()*2+1;
-  p.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*10}s;opacity:${Math.random()*.4+.1}`;
-  pc.appendChild(p);
+/* SCRAMBLE ENGINE */
+const CHARS='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$@%&';
+function scramble(el,fin,dur=1100){
+  let f=0,tot=Math.round(dur/38),len=fin.length;
+  const t=setInterval(()=>{
+    f++;const p=f/tot;
+    el.textContent=fin.split('').map((c,i)=>i<Math.floor(p*len)?c:CHARS[Math.floor(Math.random()*CHARS.length)]).join('');
+    if(f>=tot){clearInterval(t);el.textContent=fin;}
+  },38);
 }
 
-// NAV
+/* LOADER */
+let pct=0;
+const lTxt=document.getElementById('ldrTxt'),lPct=document.getElementById('ldrPct');
+const li=setInterval(()=>{
+  pct+=Math.random()*10+4;if(pct>100)pct=100;
+  lPct.textContent=Math.floor(pct)+'%';
+  lTxt.textContent='KLEVER'.split('').map(c=>Math.random()>.5?CHARS[Math.floor(Math.random()*CHARS.length)]:c).join('');
+  if(pct>=100){clearInterval(li);lTxt.textContent='KLEVER';lPct.textContent='100%';setTimeout(()=>{document.getElementById('ldr').classList.add('gone');triggerHeroScrambles();},400);}
+},55);
+function triggerHeroScrambles(){
+  document.querySelectorAll('.scr[data-f]').forEach((el,i)=>{setTimeout(()=>scramble(el,el.dataset.f,1000+i*150),i*80);});
+}
+
+/* CURSOR */
+const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
+let mx=0,my=0,r2x=0,r2y=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function a(){r2x+=(mx-r2x)*.1;r2y+=(my-r2y)*.1;cur2.style.left=r2x+'px';cur2.style.top=r2y+'px';requestAnimationFrame(a)})();
+document.querySelectorAll('a,button,.fc,.mrow,.mline,.pcard,.gstat,.sw,.bw').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
+});
+
+/* MAGNETIC BUTTONS */
+document.querySelectorAll('.btn,.ncta').forEach(b=>{
+  b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();const x=(e.clientX-r.left-r.width/2)*.2,y=(e.clientY-r.top-r.height/2)*.2;b.style.transform=`translate(${x}px,${y}px)`;});
+  b.addEventListener('mouseleave',()=>b.style.transform='');
+});
+
+/* NAV */
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>{
-  nav.classList.toggle('scrolled',window.scrollY>60);
-  const secs=['home','products','works','materials','mfg','about'];
-  let cur2='home';
-  secs.forEach(id=>{const el=document.getElementById(id);if(el&&window.scrollY>=el.offsetTop-220)cur2=id;});
-  document.querySelectorAll('.ni').forEach(a=>a.classList.toggle('active',a.dataset.s===cur2));
-});
-document.getElementById('burger').addEventListener('click',()=>document.getElementById('mobMenu').classList.add('open'));
-document.getElementById('mobClose').addEventListener('click',closeMob);
-function closeMob(){document.getElementById('mobMenu').classList.remove('open')}
+  nav.classList.toggle('sc',window.scrollY>60);
+  const ss=['home','collection','gallery','materials','models','process','about'];
+  let c='home';
+  ss.forEach(id=>{const el=document.getElementById(id);if(el&&window.scrollY>=el.offsetTop-230)c=id;});
+  document.querySelectorAll('.ni').forEach(a=>a.classList.toggle('on',a.dataset.s===c));
+},{passive:true});
+document.getElementById('brg').onclick=()=>document.getElementById('mob').classList.add('on');
+document.getElementById('mobx').onclick=cM;
+function cM(){document.getElementById('mob').classList.remove('on')}
 
-// SCROLL REVEAL
-const ro=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');ro.unobserve(x.target)}}),{threshold:.1});
-document.querySelectorAll('.reveal,.from-left,.from-right').forEach(el=>ro.observe(el));
+/* SCROLL REVEAL + SCRAMBLE */
+const ro=new IntersectionObserver(e=>e.forEach(x=>{
+  if(x.isIntersecting){
+    x.target.classList.add('vis');
+    if(x.target.dataset.f&&x.target.classList.contains('scr'))scramble(x.target,x.target.dataset.f,900);
+    ro.unobserve(x.target);
+  }
+}),{threshold:.07,rootMargin:'0px 0px -20px 0px'});
+document.querySelectorAll('.rv,.rvX,.rvL,.rvR,.rvZ').forEach(el=>ro.observe(el));
 
-// COUNT-UP
+/* COUNT-UP */
 const co=new IntersectionObserver(e=>e.forEach(x=>{
   if(x.isIntersecting){
-    const t=+x.target.dataset.count,step=Math.ceil(t/30);
-    let n=0;const ti=setInterval(()=>{n=Math.min(n+step,t);x.target.textContent=n+(t>=100?'+':'');if(n>=t)clearInterval(ti);},50);
+    const t=+x.target.dataset.count;let n=0;
+    const ti=setInterval(()=>{n=Math.min(n+Math.ceil(t/28),t);x.target.textContent=n+(t>=100?'+':'');if(n>=t)clearInterval(ti);},55);
     co.unobserve(x.target);
   }
 }),{threshold:.5});
 document.querySelectorAll('[data-count]').forEach(c=>co.observe(c));
 
-// PRODUCT FILTER
-document.querySelectorAll('.ptab').forEach(tab=>{
-  tab.addEventListener('click',function(){
-    document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('active'));
-    this.classList.add('active');
-    const f=this.dataset.f;
-    document.querySelectorAll('.pcard').forEach(c=>{
-      c.style.display=(f==='all'||c.dataset.cat===f)?'':'none';
-    });
-  });
+/* HERO PARALLAX */
+document.addEventListener('mousemove',e=>{
+  const t=document.querySelector('.h-title');
+  const img=document.getElementById('heroImg');
+  if(t){const x=(e.clientX/window.innerWidth-.5)*8,y=(e.clientY/window.innerHeight-.5)*4;t.style.transform=`translate(${x*.12}px,${y*.12}px)`}
+  if(img){const x=(e.clientX/window.innerWidth-.5)*15,y=(e.clientY/window.innerHeight-.5)*8;img.style.transform=`translate(${x*.06}px,${y*.06}px) scale(1.04)`}
+},{passive:true});
+
+/* STICKER WOBBLE */
+document.querySelectorAll('.sb').forEach(s=>{
+  setInterval(()=>{if(!s.matches(':hover')){s.style.transform=`rotate(${(Math.random()-.5)*5}deg)`;setTimeout(()=>s.style.transform='',380);}},2200+Math.random()*1800);
 });
 
-// WORKS FILTER
-document.querySelectorAll('.wfbtn').forEach(b=>{
-  b.addEventListener('click',function(){
-    document.querySelectorAll('.wfbtn').forEach(x=>x.classList.remove('active'));
-    this.classList.add('active');
-    const f=this.dataset.wf;
-    document.querySelectorAll('.witem').forEach(c=>{
-      c.style.display=(f==='all'||c.dataset.wcat===f)?'':'none';
-    });
+/* HORIZONTAL DRAG */
+const ht=document.getElementById('htrack');
+let hDn=false,hSX,hSL;
+ht.addEventListener('mousedown',e=>{hDn=true;hSX=e.pageX;hSL=ht.scrollLeft;});
+document.addEventListener('mouseup',()=>{hDn=false;});
+document.addEventListener('mousemove',e=>{if(!hDn)return;e.preventDefault();ht.scrollLeft=hSL-(e.pageX-hSX)*1.35;});
+ht.addEventListener('touchstart',e=>{hSX=e.touches[0].pageX;hSL=ht.scrollLeft;},{passive:true});
+ht.addEventListener('touchmove',e=>{ht.scrollLeft=hSL-(e.touches[0].pageX-hSX)*1.35;},{passive:true});
+
+/* MATERIAL SELECTOR with wipe */
+const MATS=[
+  {name:'Alpine White',tag:'SENSO 491 · Supermatt LINE N',sub:'Anti-fingerprint · Push-to-Open · Flat Face 19mm',img:'https://www.nobilia.de/fileadmin/_processed_/c/5/csm_stage_grifflos_409410_25_Senso_491_M_01_db40c84408.webp',dot:'#f5f5f0',flt:'none',props:['Anti-fingerprint','Push-to-Open','19mm','Flat Face','LINE N Profile','Nordic Carcase']},
+  {name:'LINE N Recessed',tag:'LASER 463 · Matt LINE N',sub:'Horizontal recessed handle · Multiple colours',img:'https://www.nobilia.de/fileadmin/_processed_/b/4/csm_line_n_laser_463_1015_640_8f34eaa307.webp',dot:'#d0c8b8',flt:'none',props:['Matt Lacquer','LINE N','Push-to-Open','11 Handle Colours','Modern']},
+  {name:'EASYTOUCH AF',tag:'SENSO 490 · Anti-Fingerprint',sub:'Push mechanism · Premium anti-fingerprint coating',img:'https://www.nobilia.de/fileadmin/_processed_/0/d/csm_line_n_senso_490_1015_640_ac5fb86106.webp',dot:'#e8e0d0',flt:'none',props:['EASYTOUCH Push','Premium AF','Zero Marks','Supermatt','Flat Face']},
+  {name:'LINE One — New 2025',tag:'LASER 412 · Ultra-Minimalist',sub:'Single track below worktop — the future of handleless',img:'https://www.nobilia.de/fileadmin/_processed_/5/0/csm_line_n_31407_25_Laser_412_M_bfc753aa8c.webp',dot:'#c8c0b0',flt:'none',props:['LINE One','Below Worktop','Push-to-Open','2025 New','Ultra-minimal']},
+  {name:'Coral Supermatt',tag:'SENSO 492 · Curve Cabinet',sub:'LINE N Curve end-cab · Organic contours · Bold',img:'https://www.nobilia.de/fileadmin/_processed_/e/8/csm_line_n_senso_492_1920_914_gesamtueberblick_dc1f112300.webp',dot:'#d84818',flt:'none',props:['Coral','Curve End-Cabs','LINE N','Organic','2025 New']},
+  {name:'LED Illuminated',tag:'SOFTLINE 505 · Light Edition',sub:'Illuminated recessed handles · Single/Double/Vertical',img:'https://www.nobilia.de/fileadmin/_processed_/e/d/csm_line_n_31202_25_Softline_505_P_42ffac63c0.webp',dot:'#a09888',flt:'none',props:['LED Handle','Supermatt','Mood Lighting','Vert/Single/Double','Premium']},
+  {name:'Fjord Blue Ultramatt',tag:'EASYTOUCH 966 · Scandi Bold',sub:'EASYTOUCH push · Premium AF · Bold statement',img:'https://www.nobilia.de/fileadmin/_processed_/7/1/csm_LineN_30660_21_Easytouch_966_P_R1_2b621905ce.webp',dot:'#2a4878',flt:'none',props:['Fjord Blue','Ultramatt','EASYTOUCH','Premium AF','Scandi']},
+  {name:'Oak Como Look',tag:'STRUCTURA 406 · Natural Wood',sub:'Eiche Como oak reproduction · LINE N handleless',img:'https://www.nobilia.de/fileadmin/_processed_/d/f/csm_LineN_31003_24_Structura_406_P_81c2d068be.webp',dot:'#c09858',flt:'none',props:['Oak Reproduction','Natural Look','LINE N','Warm Tone','Structured']},
+  {name:'Jade Premium Matt',tag:'SENSO 494 · Earthy Green',sub:'Premium matt jade · Award-winning finish 2024',img:'https://www.nobilia.de/fileadmin/_processed_/2/b/csm_LineN_30973_23_Senso_494_R2_M_004d5857b0.webp',dot:'#4a7850',flt:'none',props:['Jade Green','Premium Matt','Award 2024','Organic','LINE N']},
+  {name:'Black Premium Matt',tag:'SENSO 496 · Maximum Drama',sub:'Zero hardware · Max contrast · Supermatt black',img:'https://www.nobilia.de/fileadmin/_processed_/8/d/csm_LineN_30876_24_Senso_496_P_395f3a5669.webp',dot:'#1a1a18',flt:'none',props:['Black Premium','Supermatt','Max Contrast','EASYTOUCH','Drama']},
+  {name:'INOX Stainless',tag:'INOX 216 · Steel Look',sub:'Brushed steel reproduction · Industrial premium',img:'https://www.nobilia.de/fileadmin/_processed_/1/e/csm_line_n_gallery_30153_23_Inox_216_P_R1_eaf10a73e6.webp',dot:'#989898',flt:'none',props:['Stainless Look','Industrial','LINE N Black Handle','Unique','Premium']},
+  {name:'NOVALUX',tag:'NOVALUX 516 · White High Gloss',sub:'LINE N high gloss · Reflective flat face premium',img:'https://www.nobilia.de/fileadmin/_processed_/b/c/csm_line_n_novalux_516_1015_640_33b072ed3c.webp',dot:'#f8f8f4',flt:'none',props:['High Gloss','LINE N','White','Reflective','Premium']},
+];
+const mImg=document.getElementById('matImg'),mWipe=document.getElementById('matWipe');
+const mTag=document.getElementById('matTag'),mName=document.getElementById('matName'),mSub=document.getElementById('matSub');
+const mList=document.getElementById('matList'),mProps=document.getElementById('matProps');
+MATS.forEach((m,i)=>{
+  const row=document.createElement('div');
+  row.className='mrow'+(i===0?' on':'');
+  row.innerHTML=`<div class="mdot" style="background:${m.dot}"></div><div class="minfo"><div class="mname">${m.name}</div><div class="mdesc">${m.tag}</div></div><div class="mbadge">◆</div>`;
+  row.addEventListener('click',()=>{
+    document.querySelectorAll('.mrow').forEach(r=>r.classList.remove('on'));
+    row.classList.add('on');
+    mWipe.style.transition='transform .32s cubic-bezier(.86,0,.07,1)';
+    mWipe.style.transformOrigin='left';
+    mWipe.style.transform='scaleX(1)';
+    setTimeout(()=>{
+      mImg.src=m.img;
+      mTag.textContent=m.tag;
+      mSub.textContent=m.sub;
+      scramble(mName,m.name,700);
+      mProps.innerHTML=m.props.map(p=>`<span class="dprop">${p}</span>`).join('');
+      mWipe.style.transformOrigin='right';
+      mWipe.style.transform='scaleX(0)';
+    },330);
   });
+  mList.appendChild(row);
 });
+mProps.innerHTML=MATS[0].props.map(p=>`<span class="dprop">${p}</span>`).join('');
 
-// KITCHEN SUB
-function showKSub(e){
-  e.preventDefault();
-  const el=document.getElementById('ksub');
-  if(!el)return;
-  el.style.display='block';
-  setTimeout(()=>{
-    el.querySelectorAll('.reveal').forEach(r=>r.classList.add('vis'));
-    el.scrollIntoView({behavior:'smooth',block:'nearest'});
-  },80);
-}
-
-// SMOOTH LINKS
+/* SMOOTH LINKS */
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const id=a.getAttribute('href').slice(1);
-    const el=document.getElementById(id);
-    if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'})}
-  });
+  a.addEventListener('click',e=>{const id=a.getAttribute('href').slice(1);const el=document.getElementById(id);if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}});
 });
 </script>
 </body>
